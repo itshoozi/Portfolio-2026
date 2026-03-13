@@ -1,0 +1,13 @@
+[build]
+  publish = "."   # Directory to publish
+  functions = "netlify/functions" # Directory with serverless functions
+
+[dev]
+  port = 8888
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
