@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Garden Indoor Skatepark — Website Redesign | Jeremy Pringle — Freelance Web Designer & Developer, Rochester MN</title>
+<meta name="description" content="Jeremy Pringle redesigned The Garden Indoor Skatepark's website in Rochester MN — from cluttered and mobile-broken to clean, fast, and SEO-optimized. A Wix redesign that matched the quality of the physical space.">
+<meta name="keywords" content="Jeremy Pringle, freelance web designer Rochester MN, Wix redesign Rochester, skatepark website design, The Garden Indoor Skatepark, mobile-first web design Minnesota">
+<meta name="author" content="Jeremy Pringle">
+<link rel="canonical" href="https://jeremypringle.com/the-garden-indoor-skatepark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Garden Indoor Skatepark — Website Redesign | Jeremy Pringle">
+<meta property="og:description" content="Rochester's luxury indoor skatepark had a stunning venue and a website that didn't show it. I fixed that.">
+<meta property="og:url" content="https://jeremypringle.com/the-garden-indoor-skatepark">
+<meta property="og:site_name" content="Jeremy Pringle — Freelance Designer & Developer, Rochester MN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Garden Indoor Skatepark — Website Redesign | Jeremy Pringle">
+<meta name="twitter:description" content="Rochester's luxury indoor skatepark had a stunning venue and a website that didn't show it. I fixed that.">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://jeremypringle.com/#person",
+      "name": "Jeremy Pringle",
+      "url": "https://jeremypringle.com",
+      "jobTitle": "Freelance Web Designer & Developer",
+      "worksFor": {"@type": "Organization", "name": "Tarku Digital"},
+      "address": {"@type": "PostalAddress", "addressLocality": "Rochester", "addressRegion": "MN", "addressCountry": "US"}
+    },
+    {
+      "@type": "Article",
+      "@id": "https://jeremypringle.com/the-garden-indoor-skatepark#article",
+      "headline": "The Garden Indoor Skatepark — Website Redesign",
+      "description": "Jeremy Pringle redesigned The Garden Indoor Skatepark's website in Rochester MN — from cluttered and mobile-broken to clean, fast, and SEO-optimized. A Wix redesign that matched the quality of the physical space.",
+      "author": {"@id": "https://jeremypringle.com/#person"},
+      "dateModified": "2026-01-01",
+      "about": {"@type": "LocalBusiness", "name": "The Garden Indoor Skatepark", "address": {"@type": "PostalAddress", "addressLocality": "Rochester", "addressRegion": "MN"}}
+    }
+  ]
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#0a0a0c;--surface:#111114;--surface2:#18181c;--surface3:#1f1f24;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);--border3:rgba(255,255,255,0.18);
+  --text:#f2f2f0;--text2:rgba(242,242,240,0.65);--text3:rgba(242,242,240,0.38);
+  --blue:#4f9eff;--blue-dim:rgba(79,158,255,0.12);--purple:#8b6fff;
+  --green:#30d158;--warm:#ff6b35;--yellow:#ffd60a;
+  --serif:'Instrument Serif',Georgia,serif;--sans:'Geist',-apple-system,sans-serif;
+  --spring:cubic-bezier(0.34,1.56,0.64,1);--spring-sm:cubic-bezier(0.34,1.3,0.64,1);
+  --ease-out:cubic-bezier(0.22,1,0.36,1);--tap:44px;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(130px);will-change:transform}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.2) translate(12px,-18px)}}
+nav{position:fixed;top:0;inset-inline:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,2.5rem);background:rgba(10,10,12,.75);backdrop-filter:blur(32px) saturate(1.6);-webkit-backdrop-filter:blur(32px) saturate(1.6);border-bottom:1px solid var(--border);transform:translateY(-100%);animation:navIn .6s var(--ease-out) .1s forwards}
+@keyframes navIn{to{transform:translateY(0)}}
+.nav-logo{font-family:var(--serif);font-size:1.05rem;color:var(--text);text-decoration:none;opacity:.8;transition:opacity .2s}
+.nav-logo:hover{opacity:1}
+.nav-back{display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:500;color:var(--text3);text-decoration:none;padding:.4rem .75rem;border-radius:8px;transition:color .2s,background .2s;-webkit-tap-highlight-color:transparent;min-height:var(--tap)}
+.nav-back:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-back svg{transition:transform .25s var(--spring-sm)}
+.nav-back:hover svg{transform:translateX(-3px)}
+.nav-cta{display:flex;align-items:center;background:var(--text);color:var(--bg);font-size:.8rem;font-weight:700;height:36px;padding:0 1.2rem;border-radius:100px;text-decoration:none;transition:transform .22s var(--spring-sm),opacity .2s;-webkit-tap-highlight-color:transparent;min-height:var(--tap)}
+.nav-cta:hover{transform:scale(1.04)}
+.nav-cta:active{transform:scale(0.95);transition-duration:.08s}
+.case-hero{position:relative;z-index:10;min-height:75vh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(5rem,12vw,9rem) clamp(1.25rem,5vw,3rem) clamp(2.5rem,5vw,4rem)}
+.case-hero-inner{max-width:1080px;margin:0 auto;width:100%}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--text3);margin-bottom:clamp(1.5rem,3vw,2rem);opacity:0;animation:heroIn .7s var(--ease-out) .2s forwards}
+.breadcrumb a{color:var(--text3);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--text2)}
+.breadcrumb span{color:var(--border3)}
+.case-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--tag-color,rgba(79,158,255,.25));border-radius:100px;padding:.38rem .9rem .38rem .55rem;margin-bottom:clamp(1rem,2.5vw,1.5rem);background:var(--tag-bg,rgba(79,158,255,.06));width:fit-content;opacity:0;animation:heroIn .7s var(--ease-out) .28s forwards}
+.tag-dot{width:6px;height:6px;border-radius:50%;background:var(--tag-accent,var(--blue));animation:pip 2.8s ease infinite}
+@keyframes pip{0%,100%{box-shadow:0 0 0 3px var(--tag-color,rgba(79,158,255,.25))}50%{box-shadow:0 0 0 6px var(--tag-bg,rgba(79,158,255,.06))}}
+.case-tag span{font-size:.73rem;font-weight:500;color:var(--tag-accent,var(--blue))}
+.case-h1{font-family:var(--serif);font-size:clamp(2.6rem,7.5vw,6rem);line-height:1.03;letter-spacing:-.028em;color:var(--text);margin-bottom:clamp(1rem,2vw,1.5rem);max-width:900px;opacity:0;animation:heroIn .9s var(--ease-out) .35s forwards}
+.case-h1 em{font-style:italic;color:var(--text3)}
+.case-sub{font-size:clamp(.92rem,1.9vw,1.05rem);font-weight:300;color:var(--text2);line-height:1.78;max-width:580px;margin-bottom:clamp(2rem,4vw,3rem);opacity:0;animation:heroIn .8s var(--ease-out) .48s forwards}
+.case-meta-row{display:flex;gap:clamp(1.5rem,4vw,3rem);flex-wrap:wrap;padding-top:clamp(1.5rem,3vw,2rem);border-top:1px solid var(--border);opacity:0;animation:heroIn .7s var(--ease-out) .6s forwards}
+.case-meta{display:flex;flex-direction:column;gap:.25rem}
+.case-meta-label{font-size:.65rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3)}
+.case-meta-val{font-size:.88rem;color:var(--text2)}
+@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.stat-banner{position:relative;z-index:10;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap}
+.stat-cell{flex:1;min-width:130px;padding:clamp(1.1rem,3vw,1.75rem) clamp(1rem,3vw,2rem);border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background .25s}
+.stat-cell:last-child{border-right:none}
+.stat-cell:hover{background:rgba(255,255,255,.02)}
+.stat-num{font-family:var(--serif);font-size:clamp(1.8rem,4.5vw,2.8rem);letter-spacing:-.04em;line-height:1;color:var(--text);margin-bottom:.3rem;display:block}
+.stat-lbl{font-size:.69rem;color:var(--text3);line-height:1.4}
+.case-body{position:relative;z-index:10;max-width:1080px;margin:0 auto;padding:clamp(3rem,7vw,5.5rem) clamp(1.25rem,5vw,3rem)}
+.prose-section{display:grid;grid-template-columns:1fr 2.4fr;gap:clamp(2rem,5vw,5rem);margin-bottom:clamp(2.5rem,6vw,5rem);align-items:start}
+@media(max-width:680px){.prose-section{grid-template-columns:1fr}}
+.prose-sidebar{position:sticky;top:80px}
+.section-label{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,var(--blue));display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem}
+.section-label::before{content:'';width:12px;height:1.5px;background:var(--accent,var(--blue));border-radius:1px;flex-shrink:0}
+.section-num{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,4.5rem);font-style:italic;line-height:1;letter-spacing:-.03em;color:var(--border2);margin-top:.5rem}
+.prose-content h2{font-family:var(--serif);font-size:clamp(1.55rem,3.2vw,2.25rem);line-height:1.15;letter-spacing:-.02em;color:var(--text);margin-bottom:.95rem}
+.prose-content h3{font-family:var(--serif);font-size:clamp(1.1rem,2.3vw,1.4rem);line-height:1.25;letter-spacing:-.015em;color:var(--text);margin-bottom:.6rem;margin-top:2rem}
+.prose-content p{font-size:clamp(.88rem,1.7vw,.98rem);font-weight:300;color:var(--text2);line-height:1.85;margin-bottom:1.2rem}
+.prose-content p strong{color:var(--text);font-weight:500}
+.prose-content ul{margin-bottom:1.2rem;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.prose-content ul li{font-size:clamp(.86rem,1.7vw,.96rem);font-weight:300;color:var(--text2);line-height:1.7;padding-left:1.2rem;position:relative}
+.prose-content ul li::before{content:'→';position:absolute;left:0;color:var(--accent,var(--blue));font-size:.78rem;top:.18em}
+.pull-quote{border-left:2px solid var(--accent,var(--blue));padding:1.15rem 1.4rem;margin:1.75rem 0;background:rgba(79,158,255,.04);border-radius:0 8px 8px 0}
+.pull-quote p{font-family:var(--serif);font-size:clamp(.98rem,2.3vw,1.25rem)!important;font-style:italic;color:var(--text)!important;line-height:1.6!important;margin-bottom:0!important}
+.pull-quote cite{font-size:.73rem;color:var(--text3);margin-top:.45rem;display:block;font-style:normal}
+.metric-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;margin:1.6rem 0}
+.metric-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.15rem;transition:border-color .25s,transform .3s var(--spring-sm)}
+.metric-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.metric-card-num{font-family:var(--serif);font-size:1.8rem;letter-spacing:-.03em;line-height:1;margin-bottom:.22rem}
+.metric-card-lbl{font-size:.68rem;color:var(--text3);line-height:1.4}
+.mc-blue{color:var(--blue)}.mc-green{color:var(--green)}.mc-purple{color:var(--purple)}.mc-warm{color:var(--warm)}.mc-yellow{color:var(--yellow)}
+.step-list{display:flex;flex-direction:column;margin:1.6rem 0}
+.step{display:grid;grid-template-columns:40px 1fr;gap:.9rem;padding:1rem 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.82rem;color:var(--text3);flex-shrink:0;margin-top:.1rem}
+.step-title{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.28rem;letter-spacing:-.01em}
+.step-desc{font-size:.82rem;font-weight:300;color:var(--text2);line-height:1.65}
+.stack-row{display:flex;flex-wrap:wrap;gap:.42rem;margin:1.15rem 0}
+.stag{font-size:.67rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:.28rem .72rem;border-radius:100px;background:rgba(79,158,255,.07);color:var(--blue);border:1px solid rgba(79,158,255,.16)}
+.code-block{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:1.1rem 1.35rem;margin:1.35rem 0;overflow-x:auto}
+.code-block pre{font-family:'Geist Mono','Fira Code',monospace;font-size:.78rem;line-height:1.72;color:var(--text2)}
+.kw{color:var(--purple)}.str{color:var(--green)}.fn{color:var(--blue)}.cm{color:var(--text3);font-style:italic}
+.divider{height:1px;background:var(--border);margin:clamp(2rem,4.5vw,3.5rem) 0}
+.next-case{position:relative;z-index:10;background:var(--surface);border-top:1px solid var(--border);padding:clamp(2.5rem,6vw,4.5rem) clamp(1.25rem,5vw,3rem)}
+.next-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.next-label{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.45rem}
+.next-title{font-family:var(--serif);font-size:clamp(1.3rem,3vw,2rem);color:var(--text);letter-spacing:-.02em}
+.next-sub{font-size:.82rem;color:var(--text3);margin-top:.3rem;font-style:italic;font-family:var(--serif)}
+.btn-p{display:inline-flex;align-items:center;gap:.45rem;height:var(--tap);padding:0 1.5rem;border-radius:100px;background:var(--text);color:var(--bg);font-family:var(--sans);font-size:.86rem;font-weight:700;text-decoration:none;flex-shrink:0;transition:transform .22s var(--spring-sm),box-shadow .22s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-p:hover{transform:scale(1.04);box-shadow:0 0 0 5px rgba(242,242,240,.1)}
+.btn-p:active{transform:scale(.95);transition-duration:.08s}
+.btn-g{display:inline-flex;align-items:center;gap:.42rem;height:var(--tap);padding:0 1.3rem;border-radius:100px;background:transparent;border:1px solid var(--border2);color:var(--text2);font-family:var(--sans);font-size:.86rem;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s,transform .2s var(--spring-sm);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-g:hover{border-color:var(--border3);color:var(--text)}
+.btn-g:active{transform:scale(.95);transition-duration:.08s}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
+footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1.5rem clamp(1.25rem,5vw,3rem);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;background:var(--bg)}
+.fc{font-size:.72rem;color:var(--text3)}
+.fl{display:flex;gap:1.4rem}
+.fl a{font-size:.72rem;color:var(--text3);text-decoration:none;transition:color .2s;min-height:var(--tap);display:flex;align-items:center;-webkit-tap-highlight-color:transparent}
+.fl a:hover{color:var(--text)}
+
+.section-label,.section-label::before{color:var(--accent);background:var(--accent)}
+:root{--accent:var(--blue)}
+.stag{background:color-mix(in srgb,var(--accent) 8%,transparent);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 20%,transparent)}
+.pull-quote{border-left-color:var(--accent);background:color-mix(in srgb,var(--accent) 4%,transparent)}
+.prose-content ul li::before{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="scene" aria-hidden="true">
+  <div class="orb" style="width:600px;height:600px;background:#4f9eff;opacity:.11;top:-150px;left:-80px;animation:breathe 18s ease-in-out infinite"></div>
+  <div class="orb" style="width:420px;height:420px;background:#8b6fff;opacity:.09;top:220px;right:-60px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
+  <div class="orb" style="width:480px;height:480px;background:#30d158;opacity:.06;bottom:-60px;left:40%;animation:breathe 20s ease-in-out infinite 9s"></div>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">Jeremy Pringle</a>
+  <div style="display:flex;align-items:center;gap:.5rem">
+    <a href="index.html#work" class="nav-back"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All work</a>
+    <a href="mailto:hey@jeremypringle.com" class="nav-cta">Hire me →</a>
+  </div>
+</nav>
+
+<header class="case-hero" role="banner">
+  <div class="case-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Jeremy Pringle</a>
+      <span>/</span>
+      <a href="index.html#work">Work</a>
+      <span>/</span>
+      <span style="color:var(--text2)">The Garden Indoor Skatepark</span>
+    </nav>
+    <div class="case-tag" style="--tag-color:rgba(79,158,255,.25);--tag-bg:rgba(79,158,255,.06);--tag-accent:var(--blue)">
+      <div class="tag-dot" style="background:var(--blue)"></div>
+      <span>Wix Redesign · Mobile-First · SEO · UX</span>
+    </div>
+    <h1 class="case-h1">A premium skatepark<br><em>with a website to match.</em></h1>
+    <p class="case-sub">The Garden is Rochester's newest luxury indoor skatepark. Their venue was stunning — their website was cluttered, broken on mobile, and didn't come close to reflecting the quality of the physical space. I rebuilt it.</p>
+    <div class="case-meta-row">
+            <div class="case-meta"><span class="case-meta-label">Client</span><span class="case-meta-val">The Garden Indoor Skatepark, Rochester MN</span></div>
+      <div class="case-meta"><span class="case-meta-label">Role</span><span class="case-meta-val">Web Designer, SEO</span></div>
+      <div class="case-meta"><span class="case-meta-label">Platform</span><span class="case-meta-val">Wix Editor + Velo</span></div>
+      <div class="case-meta"><span class="case-meta-label">Outcome</span><span class="case-meta-val">Clean, fast, mobile-first</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="stat-banner" role="region" aria-label="Key results">
+        <div class="stat-cell"><span class="stat-num" style="color:var(--blue)">Mobile</span><span class="stat-lbl">Fully responsive<br>across all screen sizes</span></div>
+      <div class="stat-cell"><span class="stat-num" style="color:var(--text)">1-page</span><span class="stat-lbl">Focused single-page layout<br>replacing cluttered multi-page</span></div>
+      <div class="stat-cell"><span class="stat-num" style="color:var(--text)">Custom</span><span class="stat-lbl">No default Wix components —<br>all brand-specific elements</span></div>
+      <div class="stat-cell"><span class="stat-num" style="color:var(--green)">Local SEO</span><span class="stat-lbl">Targeted content for<br>Rochester skate searches</span></div>
+</div>
+
+<main class="case-body" id="main-content">
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">The Problem</div><div class="section-num">01</div></div>
+    <div class="prose-content">
+      <h2>A stunning venue — a website that didn't show it</h2>
+      <p>Your digital presence should match the energy and professionalism of your physical space. <strong>The Garden</strong> — Rochester's newest luxury indoor skatepark — had built something genuinely impressive. But the website that was supposed to represent it was working against them.</p>
+      <p>The original site was built on Wix but overloaded with scattered content, broken mobile layouts, and disorganized navigation. Visitors struggled to find basic information. The site felt more DIY than premium — a real mismatch for a modern, high-end skatepark that had invested seriously in the physical experience.</p>
+      <p>In a market like Rochester where word of mouth and search visibility both matter, a weak website costs real customers. If someone searches "indoor skatepark Rochester MN" on their phone and lands on a broken mobile layout, they're gone before they've seen what the space actually looks like.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">The Redesign</div><div class="section-num">02</div></div>
+    <div class="prose-content">
+      <h2>Back to basics — clarity and performance first</h2>
+      <p>I went back to the basics, keeping clarity and performance front and center. The goal wasn't to add things — it was to strip away everything that was creating noise and rebuild around what actually mattered: getting a visitor from landing to booking as frictionlessly as possible.</p>
+      <div class="step-list">
+        <div class="step"><div class="step-num">1</div><div><div class="step-title">Simplified Site Structure</div><div class="step-desc">Consolidated sprawling content into a single focused landing page with clean sectioning. One clear path through the information.</div></div></div>
+        <div class="step"><div class="step-num">2</div><div><div class="step-title">Smarter Navigation</div><div class="step-desc">Rebuilt the menu with a dropdown system for ticketing options and reordered navigation for intuitive flow. Visitors should never have to hunt.</div></div></div>
+        <div class="step"><div class="step-num">3</div><div><div class="step-title">Custom Design Elements</div><div class="step-desc">Removed most default Wix components and built custom elements specific to The Garden brand. The site now looks and feels like their venue — not a Wix template.</div></div></div>
+        <div class="step"><div class="step-num">4</div><div><div class="step-title">Mobile Optimization</div><div class="step-desc">Rebuilt with responsiveness as the primary constraint. Tested across devices — not just desktop. Over 70% of local search traffic comes from phones.</div></div></div>
+        <div class="step"><div class="step-num">5</div><div><div class="step-title">Local SEO</div><div class="step-desc">Developed consistent, targeted SEO content for Rochester and surrounding area searches. Structured headings, location-specific copy, and clean performance for Google's crawler.</div></div></div>
+      </div>
+      <div class="stack-row">
+        <span class="stag">Wix Editor</span><span class="stag">Velo</span><span class="stag">Custom CSS</span><span class="stag">Responsive Design</span><span class="stag">On-page SEO</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">Result</div><div class="section-num">03</div></div>
+    <div class="prose-content">
+      <h2>The client reaction says it all</h2>
+      <div class="pull-quote">
+        <p>"Thank you so much Jeremy. We love our new website! Way easier to use and so much more professional! THANK YOU SOO MUCH!!!"</p>
+        <cite>— Laura Kramer, The Garden Indoor Skatepark</cite>
+      </div>
+      <p>The redesigned site reflects the quality of the physical space — clean, modern, and easy to navigate. It's mobile-first because that's where the traffic actually comes from. And the SEO foundation means The Garden shows up when people in Rochester are looking for exactly what they offer.</p>
+      <p>For <strong>Rochester MN businesses</strong> with a website that doesn't match the quality of what they actually do — this is the kind of project I take on. Not a template swap. A real redesign that starts with understanding your brand and your customers.</p>
+    </div>
+  </div>
+
+</main>
+
+<div class="next-case">
+  <div class="next-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;border-right:1px solid var(--border);padding-right:2rem">
+      <div>
+      <div class="next-label">Previous</div>
+      <div class="next-title">Code Ninjas Rochester</div>
+      <div class="next-sub">A custom admin tool that saved hours every week.</div>
+    </div>
+    <div style="display:flex;gap:.7rem;flex-wrap:wrap;align-items:center">
+      <a href="code-ninjas.html" class="btn-g">← Previous</a>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+      <div><div class="next-label">Next</div><div class="next-title">Old School Arcade</div><div class="next-sub">A four-location arcade website that finally treated every location equally.</div></div><a href="old-school-arcade.html" class="btn-p">Read →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="fc">© 2026 Jeremy Pringle · Tarku Digital · Rochester, MN · <a href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none">hey@jeremypringle.com</a></div>
+  <div class="fl">
+    <a href="mailto:hey@jeremypringle.com">Hire me</a>
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script>
+const rio=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');rio.unobserve(x.target)}}),{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>rio.observe(el));
+const orbs=document.querySelectorAll('.orb');
+let mx=0,my=0,cx=0,cy=0;
+window.addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+const dirs=[{x:35,y:28},{x:-28,y:-22},{x:18,y:-14}];
+(function loop(){cx+=(mx-cx)*.04;cy+=(my-cy)*.04;
+  orbs.forEach((o,i)=>{const d=dirs[i]||dirs[0];o.style.transform=`translate(${cx*d.x}px,${cy*d.y}px)`});
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

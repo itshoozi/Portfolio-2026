@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DiscordBot-Script — npm Package for Discord Bot Development | Jeremy Pringle — Freelance Web Designer & Developer, Rochester MN</title>
+<meta name="description" content="Jeremy Pringle was project manager, marketer, and developer for DiscordBot-Script — an npm package that reached 100,000+ installs by making Discord bot creation accessible to developers of all skill levels.">
+<meta name="keywords" content="Jeremy Pringle, npm package developer, Discord bot framework, DiscordBot-Script npm, open source developer, Node.js developer Rochester MN, freelance developer Minnesota">
+<meta name="author" content="Jeremy Pringle">
+<link rel="canonical" href="https://jeremypringle.com/discordbot-script-npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DiscordBot-Script — npm Package for Discord Bot Development | Jeremy Pringle">
+<meta property="og:description" content="DiscordBot-Script: 100,000+ npm installs. I spent over 2 years as project manager, marketer, and developer for a package that made Discord bot creation accessible to everyone.">
+<meta property="og:url" content="https://jeremypringle.com/discordbot-script-npm">
+<meta property="og:site_name" content="Jeremy Pringle — Freelance Designer & Developer, Rochester MN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DiscordBot-Script — npm Package for Discord Bot Development | Jeremy Pringle">
+<meta name="twitter:description" content="DiscordBot-Script: 100,000+ npm installs. I spent over 2 years as project manager, marketer, and developer for a package that made Discord bot creation accessible to everyone.">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://jeremypringle.com/#person",
+      "name": "Jeremy Pringle",
+      "url": "https://jeremypringle.com",
+      "jobTitle": "Freelance Web Designer & Developer",
+      "worksFor": {"@type": "Organization", "name": "Tarku Digital"},
+      "address": {"@type": "PostalAddress", "addressLocality": "Rochester", "addressRegion": "MN", "addressCountry": "US"}
+    },
+    {
+      "@type": "Article",
+      "@id": "https://jeremypringle.com/discordbot-script-npm#article",
+      "headline": "DiscordBot-Script — npm Package for Discord Bot Development",
+      "description": "Jeremy Pringle was project manager, marketer, and developer for DiscordBot-Script — an npm package that reached 100,000+ installs by making Discord bot creation accessible to developers of all skill levels.",
+      "author": {"@id": "https://jeremypringle.com/#person"},
+      "dateModified": "2026-01-01",
+      "about": {"@type": "SoftwareApplication", "name": "DiscordBot-Script", "applicationCategory": "DeveloperApplication", "operatingSystem": "Node.js", "url": "https://www.npmjs.com/package/discordbot-script"}
+    }
+  ]
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#0a0a0c;--surface:#111114;--surface2:#18181c;--surface3:#1f1f24;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);--border3:rgba(255,255,255,0.18);
+  --text:#f2f2f0;--text2:rgba(242,242,240,0.65);--text3:rgba(242,242,240,0.38);
+  --blue:#4f9eff;--blue-dim:rgba(79,158,255,0.12);--purple:#8b6fff;
+  --green:#30d158;--warm:#ff6b35;--yellow:#ffd60a;
+  --serif:'Instrument Serif',Georgia,serif;--sans:'Geist',-apple-system,sans-serif;
+  --spring:cubic-bezier(0.34,1.56,0.64,1);--spring-sm:cubic-bezier(0.34,1.3,0.64,1);
+  --ease-out:cubic-bezier(0.22,1,0.36,1);--tap:44px;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(130px);will-change:transform}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.2) translate(12px,-18px)}}
+nav{position:fixed;top:0;inset-inline:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,2.5rem);background:rgba(10,10,12,.75);backdrop-filter:blur(32px) saturate(1.6);-webkit-backdrop-filter:blur(32px) saturate(1.6);border-bottom:1px solid var(--border);transform:translateY(-100%);animation:navIn .6s var(--ease-out) .1s forwards}
+@keyframes navIn{to{transform:translateY(0)}}
+.nav-logo{font-family:var(--serif);font-size:1.05rem;color:var(--text);text-decoration:none;opacity:.8;transition:opacity .2s}
+.nav-logo:hover{opacity:1}
+.nav-back{display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:500;color:var(--text3);text-decoration:none;padding:.4rem .75rem;border-radius:8px;transition:color .2s,background .2s;-webkit-tap-highlight-color:transparent;min-height:var(--tap)}
+.nav-back:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-back svg{transition:transform .25s var(--spring-sm)}
+.nav-back:hover svg{transform:translateX(-3px)}
+.nav-cta{display:flex;align-items:center;background:var(--text);color:var(--bg);font-size:.8rem;font-weight:700;height:36px;padding:0 1.2rem;border-radius:100px;text-decoration:none;transition:transform .22s var(--spring-sm),opacity .2s;-webkit-tap-highlight-color:transparent;min-height:var(--tap)}
+.nav-cta:hover{transform:scale(1.04)}
+.nav-cta:active{transform:scale(0.95);transition-duration:.08s}
+.case-hero{position:relative;z-index:10;min-height:75vh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(5rem,12vw,9rem) clamp(1.25rem,5vw,3rem) clamp(2.5rem,5vw,4rem)}
+.case-hero-inner{max-width:1080px;margin:0 auto;width:100%}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--text3);margin-bottom:clamp(1.5rem,3vw,2rem);opacity:0;animation:heroIn .7s var(--ease-out) .2s forwards}
+.breadcrumb a{color:var(--text3);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--text2)}
+.breadcrumb span{color:var(--border3)}
+.case-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--tag-color,rgba(79,158,255,.25));border-radius:100px;padding:.38rem .9rem .38rem .55rem;margin-bottom:clamp(1rem,2.5vw,1.5rem);background:var(--tag-bg,rgba(79,158,255,.06));width:fit-content;opacity:0;animation:heroIn .7s var(--ease-out) .28s forwards}
+.tag-dot{width:6px;height:6px;border-radius:50%;background:var(--tag-accent,var(--blue));animation:pip 2.8s ease infinite}
+@keyframes pip{0%,100%{box-shadow:0 0 0 3px var(--tag-color,rgba(79,158,255,.25))}50%{box-shadow:0 0 0 6px var(--tag-bg,rgba(79,158,255,.06))}}
+.case-tag span{font-size:.73rem;font-weight:500;color:var(--tag-accent,var(--blue))}
+.case-h1{font-family:var(--serif);font-size:clamp(2.6rem,7.5vw,6rem);line-height:1.03;letter-spacing:-.028em;color:var(--text);margin-bottom:clamp(1rem,2vw,1.5rem);max-width:900px;opacity:0;animation:heroIn .9s var(--ease-out) .35s forwards}
+.case-h1 em{font-style:italic;color:var(--text3)}
+.case-sub{font-size:clamp(.92rem,1.9vw,1.05rem);font-weight:300;color:var(--text2);line-height:1.78;max-width:580px;margin-bottom:clamp(2rem,4vw,3rem);opacity:0;animation:heroIn .8s var(--ease-out) .48s forwards}
+.case-meta-row{display:flex;gap:clamp(1.5rem,4vw,3rem);flex-wrap:wrap;padding-top:clamp(1.5rem,3vw,2rem);border-top:1px solid var(--border);opacity:0;animation:heroIn .7s var(--ease-out) .6s forwards}
+.case-meta{display:flex;flex-direction:column;gap:.25rem}
+.case-meta-label{font-size:.65rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3)}
+.case-meta-val{font-size:.88rem;color:var(--text2)}
+@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.stat-banner{position:relative;z-index:10;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap}
+.stat-cell{flex:1;min-width:130px;padding:clamp(1.1rem,3vw,1.75rem) clamp(1rem,3vw,2rem);border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background .25s}
+.stat-cell:last-child{border-right:none}
+.stat-cell:hover{background:rgba(255,255,255,.02)}
+.stat-num{font-family:var(--serif);font-size:clamp(1.8rem,4.5vw,2.8rem);letter-spacing:-.04em;line-height:1;color:var(--text);margin-bottom:.3rem;display:block}
+.stat-lbl{font-size:.69rem;color:var(--text3);line-height:1.4}
+.case-body{position:relative;z-index:10;max-width:1080px;margin:0 auto;padding:clamp(3rem,7vw,5.5rem) clamp(1.25rem,5vw,3rem)}
+.prose-section{display:grid;grid-template-columns:1fr 2.4fr;gap:clamp(2rem,5vw,5rem);margin-bottom:clamp(2.5rem,6vw,5rem);align-items:start}
+@media(max-width:680px){.prose-section{grid-template-columns:1fr}}
+.prose-sidebar{position:sticky;top:80px}
+.section-label{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,var(--blue));display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem}
+.section-label::before{content:'';width:12px;height:1.5px;background:var(--accent,var(--blue));border-radius:1px;flex-shrink:0}
+.section-num{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,4.5rem);font-style:italic;line-height:1;letter-spacing:-.03em;color:var(--border2);margin-top:.5rem}
+.prose-content h2{font-family:var(--serif);font-size:clamp(1.55rem,3.2vw,2.25rem);line-height:1.15;letter-spacing:-.02em;color:var(--text);margin-bottom:.95rem}
+.prose-content h3{font-family:var(--serif);font-size:clamp(1.1rem,2.3vw,1.4rem);line-height:1.25;letter-spacing:-.015em;color:var(--text);margin-bottom:.6rem;margin-top:2rem}
+.prose-content p{font-size:clamp(.88rem,1.7vw,.98rem);font-weight:300;color:var(--text2);line-height:1.85;margin-bottom:1.2rem}
+.prose-content p strong{color:var(--text);font-weight:500}
+.prose-content ul{margin-bottom:1.2rem;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.prose-content ul li{font-size:clamp(.86rem,1.7vw,.96rem);font-weight:300;color:var(--text2);line-height:1.7;padding-left:1.2rem;position:relative}
+.prose-content ul li::before{content:'→';position:absolute;left:0;color:var(--accent,var(--blue));font-size:.78rem;top:.18em}
+.pull-quote{border-left:2px solid var(--accent,var(--blue));padding:1.15rem 1.4rem;margin:1.75rem 0;background:rgba(79,158,255,.04);border-radius:0 8px 8px 0}
+.pull-quote p{font-family:var(--serif);font-size:clamp(.98rem,2.3vw,1.25rem)!important;font-style:italic;color:var(--text)!important;line-height:1.6!important;margin-bottom:0!important}
+.pull-quote cite{font-size:.73rem;color:var(--text3);margin-top:.45rem;display:block;font-style:normal}
+.metric-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;margin:1.6rem 0}
+.metric-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.15rem;transition:border-color .25s,transform .3s var(--spring-sm)}
+.metric-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.metric-card-num{font-family:var(--serif);font-size:1.8rem;letter-spacing:-.03em;line-height:1;margin-bottom:.22rem}
+.metric-card-lbl{font-size:.68rem;color:var(--text3);line-height:1.4}
+.mc-blue{color:var(--blue)}.mc-green{color:var(--green)}.mc-purple{color:var(--purple)}.mc-warm{color:var(--warm)}.mc-yellow{color:var(--yellow)}
+.step-list{display:flex;flex-direction:column;margin:1.6rem 0}
+.step{display:grid;grid-template-columns:40px 1fr;gap:.9rem;padding:1rem 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.82rem;color:var(--text3);flex-shrink:0;margin-top:.1rem}
+.step-title{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.28rem;letter-spacing:-.01em}
+.step-desc{font-size:.82rem;font-weight:300;color:var(--text2);line-height:1.65}
+.stack-row{display:flex;flex-wrap:wrap;gap:.42rem;margin:1.15rem 0}
+.stag{font-size:.67rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:.28rem .72rem;border-radius:100px;background:rgba(79,158,255,.07);color:var(--blue);border:1px solid rgba(79,158,255,.16)}
+.code-block{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:1.1rem 1.35rem;margin:1.35rem 0;overflow-x:auto}
+.code-block pre{font-family:'Geist Mono','Fira Code',monospace;font-size:.78rem;line-height:1.72;color:var(--text2)}
+.kw{color:var(--purple)}.str{color:var(--green)}.fn{color:var(--blue)}.cm{color:var(--text3);font-style:italic}
+.divider{height:1px;background:var(--border);margin:clamp(2rem,4.5vw,3.5rem) 0}
+.next-case{position:relative;z-index:10;background:var(--surface);border-top:1px solid var(--border);padding:clamp(2.5rem,6vw,4.5rem) clamp(1.25rem,5vw,3rem)}
+.next-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.next-label{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.45rem}
+.next-title{font-family:var(--serif);font-size:clamp(1.3rem,3vw,2rem);color:var(--text);letter-spacing:-.02em}
+.next-sub{font-size:.82rem;color:var(--text3);margin-top:.3rem;font-style:italic;font-family:var(--serif)}
+.btn-p{display:inline-flex;align-items:center;gap:.45rem;height:var(--tap);padding:0 1.5rem;border-radius:100px;background:var(--text);color:var(--bg);font-family:var(--sans);font-size:.86rem;font-weight:700;text-decoration:none;flex-shrink:0;transition:transform .22s var(--spring-sm),box-shadow .22s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-p:hover{transform:scale(1.04);box-shadow:0 0 0 5px rgba(242,242,240,.1)}
+.btn-p:active{transform:scale(.95);transition-duration:.08s}
+.btn-g{display:inline-flex;align-items:center;gap:.42rem;height:var(--tap);padding:0 1.3rem;border-radius:100px;background:transparent;border:1px solid var(--border2);color:var(--text2);font-family:var(--sans);font-size:.86rem;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s,transform .2s var(--spring-sm);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-g:hover{border-color:var(--border3);color:var(--text)}
+.btn-g:active{transform:scale(.95);transition-duration:.08s}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
+footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1.5rem clamp(1.25rem,5vw,3rem);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;background:var(--bg)}
+.fc{font-size:.72rem;color:var(--text3)}
+.fl{display:flex;gap:1.4rem}
+.fl a{font-size:.72rem;color:var(--text3);text-decoration:none;transition:color .2s;min-height:var(--tap);display:flex;align-items:center;-webkit-tap-highlight-color:transparent}
+.fl a:hover{color:var(--text)}
+
+.section-label,.section-label::before{color:var(--accent);background:var(--accent)}
+:root{--accent:var(--warm)}
+.stag{background:color-mix(in srgb,var(--accent) 8%,transparent);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 20%,transparent)}
+.pull-quote{border-left-color:var(--accent);background:color-mix(in srgb,var(--accent) 4%,transparent)}
+.prose-content ul li::before{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="scene" aria-hidden="true">
+  <div class="orb" style="width:600px;height:600px;background:#ff6b35;opacity:.11;top:-150px;left:-80px;animation:breathe 18s ease-in-out infinite"></div>
+  <div class="orb" style="width:420px;height:420px;background:#8b6fff;opacity:.09;top:220px;right:-60px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
+  <div class="orb" style="width:480px;height:480px;background:#4f9eff;opacity:.06;bottom:-60px;left:40%;animation:breathe 20s ease-in-out infinite 9s"></div>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">Jeremy Pringle</a>
+  <div style="display:flex;align-items:center;gap:.5rem">
+    <a href="index.html#work" class="nav-back"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All work</a>
+    <a href="mailto:hey@jeremypringle.com" class="nav-cta">Hire me →</a>
+  </div>
+</nav>
+
+<header class="case-hero" role="banner">
+  <div class="case-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Jeremy Pringle</a>
+      <span>/</span>
+      <a href="index.html#work">Work</a>
+      <span>/</span>
+      <span style="color:var(--text2)">DiscordBot-Script</span>
+    </nav>
+    <div class="case-tag" style="--tag-color:rgba(255,107,53,.25);--tag-bg:rgba(255,107,53,.06);--tag-accent:var(--warm)">
+      <div class="tag-dot" style="background:var(--warm)"></div>
+      <span>npm · Node.js · Open Source · Project Management</span>
+    </div>
+    <h1 class="case-h1">100,000+ installs.<br><em>Discord bots for everyone.</em></h1>
+    <p class="case-sub">DiscordBot-Script made it possible to build and host a Discord bot without deep coding knowledge. I spent over two years as its project manager, marketer, and part-time developer — growing it to 100,000+ npm installs before it was eventually deprecated.</p>
+    <div class="case-meta-row">
+            <div class="case-meta"><span class="case-meta-label">Project</span><span class="case-meta-val">DiscordBot-Script (npm)</span></div>
+      <div class="case-meta"><span class="case-meta-label">Role</span><span class="case-meta-val">Project Manager, Marketer, Developer</span></div>
+      <div class="case-meta"><span class="case-meta-label">Duration</span><span class="case-meta-val">2+ years</span></div>
+      <div class="case-meta"><span class="case-meta-label">Scale</span><span class="case-meta-val">100,000+ npm installs</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="stat-banner" role="region" aria-label="Key results">
+        <div class="stat-cell"><span class="stat-num" style="color:var(--warm)">100k+</span><span class="stat-lbl">npm installs<br>on discordbot-script</span></div>
+      <div class="stat-cell"><span class="stat-num" style="color:var(--text)">2+ yrs</span><span class="stat-lbl">As PM, marketer,<br>and developer</span></div>
+      <div class="stat-cell"><span class="stat-num" style="color:var(--green)">Free</span><span class="stat-lbl">Bot hosted free —<br>zero barrier to entry</span></div>
+      <div class="stat-cell"><span class="stat-num" style="color:var(--blue)">All levels</span><span class="stat-lbl">Accessible to beginners<br>and advanced devs both</span></div>
+</div>
+
+<main class="case-body" id="main-content">
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">What It Was</div><div class="section-num">01</div></div>
+    <div class="prose-content">
+      <h2>Making Discord bots accessible — no experience needed</h2>
+      <p><strong>DiscordBot-Script</strong> was an npm project that helped you make a Discord bot without previous knowledge. You could build the bot and host it on their servers for free — zero barrier to entry for anyone who wanted to get something running.</p>
+      <p>The core promise was accessibility. The Discord developer ecosystem has always had a skill gap: the official documentation and most existing libraries assume you already know how to code. DiscordBot-Script sat in the middle — it wrapped enough of the complexity that a beginner could get something working in minutes, while still being flexible enough that developers with more experience could do meaningful things with it.</p>
+      <p>People with <strong>less advanced coding knowledge could easily code their own simple or advanced bot</strong> — and the download numbers showed how much demand there was for exactly that.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">My Role</div><div class="section-num">02</div></div>
+    <div class="prose-content">
+      <h2>Two years as PM, marketer, and developer</h2>
+      <p>I was <strong>project manager, marketer, and part-time developer</strong> for DiscordBot-Script for over two years. That combination of roles is unusual — most open source projects have separate people handling community, documentation, promotion, and code. I wore all of those hats simultaneously.</p>
+      <p>As <strong>project manager</strong>, I kept development organized — managing the roadmap, coordinating contributors, deciding what shipped and what didn't, and making sure the project kept moving forward without the chaos that kills most open source side projects.</p>
+      <p>As <strong>marketer</strong>, I grew the install count through developer communities, Discord servers, and documentation quality. In open source, your documentation is your marketing. Clear docs, good examples, and a frictionless getting-started experience were the growth strategy.</p>
+      <p>As a <strong>developer</strong>, I contributed to the codebase — handling parts of the API design, writing and reviewing code, and making sure the abstractions stayed clean as the feature set grew.</p>
+      <div class="pull-quote">
+        <p>"I'm proud to say I was the project manager, marketeer, and part-time developer for over 2 years."</p>
+        <cite>— Jeremy Pringle</cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">Legacy</div><div class="section-num">03</div></div>
+    <div class="prose-content">
+      <h2>100,000 installs, then deprecated</h2>
+      <p>DiscordBot-Script reached <strong>100,000+ npm installs</strong> — a real milestone for an open source developer tool. Since leaving the team, the package has been deprecated, but its install history on npm stands as a record of what it did.</p>
+      <p>The package link is at <a href="https://www.npmjs.com/package/discordbot-script" style="color:var(--warm);text-decoration:none;border-bottom:1px solid rgba(255,107,53,.3)" target="_blank" rel="noopener">npmjs.com/package/discordbot-script</a>.</p>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-card-num mc-warm">100k+</div><div class="metric-card-lbl">npm installs at peak</div></div>
+        <div class="metric-card"><div class="metric-card-num mc-blue">2+ years</div><div class="metric-card-lbl">Active leadership on the project</div></div>
+        <div class="metric-card"><div class="metric-card-num mc-green">3 roles</div><div class="metric-card-lbl">PM, marketing, and development</div></div>
+      </div>
+      <p>For startups and companies looking for a <strong>freelance developer in Rochester MN</strong> who can operate across the full product lifecycle — not just write code but manage direction and grow adoption — this project is a direct illustration of that.</p>
+      <div class="stack-row">
+        <span class="stag">Node.js</span><span class="stag">npm</span><span class="stag">Discord.js</span><span class="stag">Open Source</span><span class="stag">Technical Writing</span><span class="stag">Project Management</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="next-case">
+  <div class="next-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;border-right:1px solid var(--border);padding-right:2rem">
+      <div>
+      <div class="next-label">Previous</div>
+      <div class="next-title">Advice Bot</div>
+      <div class="next-sub">10,000 servers, 20,000 monthly users.</div>
+    </div>
+    <div style="display:flex;gap:.7rem;flex-wrap:wrap;align-items:center">
+      <a href="advice-bot.html" class="btn-g">← Previous</a>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+      <div><div class="next-label">Next</div><div class="next-title">Beginning Experience SE MN</div><div class="next-sub">A WordPress events site for a grief support network.</div></div><a href="beginning-experience.html" class="btn-p">Read →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="fc">© 2026 Jeremy Pringle · Tarku Digital · Rochester, MN · <a href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none">hey@jeremypringle.com</a></div>
+  <div class="fl">
+    <a href="mailto:hey@jeremypringle.com">Hire me</a>
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script>
+const rio=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');rio.unobserve(x.target)}}),{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>rio.observe(el));
+const orbs=document.querySelectorAll('.orb');
+let mx=0,my=0,cx=0,cy=0;
+window.addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+const dirs=[{x:35,y:28},{x:-28,y:-22},{x:18,y:-14}];
+(function loop(){cx+=(mx-cx)*.04;cy+=(my-cy)*.04;
+  orbs.forEach((o,i)=>{const d=dirs[i]||dirs[0];o.style.transform=`translate(${cx*d.x}px,${cy*d.y}px)`});
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
