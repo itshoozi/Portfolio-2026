@@ -687,45 +687,4 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
 }
 .modal-close:hover { color: var(--text); }
 
-/* PAGE TRANSITIONS - ONE SMOOTH SWEEP */
-/* Base: Idle, off-screen left */
-.pt-curtain {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 100000;
-  pointer-events: none;
-  display: flex; /* Keep flex for panels if needed */
-  transform: translateX(-100%);
-  transition: none; /* Instant reset when classes are removed */
-}
 
-.pt-panel {
-  flex: 1;
-  height: 100%;
-  background: #0d0d0d;
-}
-
-/* Exit: Sweeping from left to center */
-.pt-curtain.pt-exit {
-  transform: translateX(0);
-  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
-  pointer-events: auto;
-}
-
-/* Enter phase initial state: Cover screen instantly on page load */
-html.pt-loading .pt-curtain {
-  transform: translateX(0);
-  transition: none;
-}
-
-/* Enter phase prepare: Add transition property before changing transform */
-html.pt-loading .pt-curtain.pt-enter-prepare {
-  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
-}
-
-/* Enter phase active: Trigger the sweep out to the right */
-html.pt-loading .pt-curtain.pt-enter-prepare.pt-enter-active {
-  transform: translateX(100%);
-}

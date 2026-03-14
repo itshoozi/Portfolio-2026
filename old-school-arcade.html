@@ -43,20 +43,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 
-<script>
-  if (sessionStorage.getItem('pt_active') === 'true') {
-    document.documentElement.classList.add('pt-loading');
-  }
-</script>
-
 </head>
 <body>
-<div class="pt-curtain" aria-hidden="true">
-  <div class="pt-panel"></div>
-  <div class="pt-panel"></div>
-  <div class="pt-panel"></div>
-</div>
-
 <div id="cur" aria-hidden="true"></div>
 
 <div class="scene" aria-hidden="true">
@@ -204,7 +192,6 @@ const dirs=[{x:35,y:28,s:0.15},{x:-28,y:-22,s:0.22},{x:18,y:-14,s:0.12}];
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="js/app.js"></script>
-<script src="js/transitions.js"></script>
 <script src="js/contact-modal.js"></script>
 </body>
 </html>

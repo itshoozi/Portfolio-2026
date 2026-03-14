@@ -456,20 +456,8 @@
   }
 </style>
 
-<script>
-  if (sessionStorage.getItem('pt_active') === 'true') {
-    document.documentElement.classList.add('pt-loading');
-  }
-</script>
-
 </head>
 <body class="light-mode">
-<div class="pt-curtain" aria-hidden="true">
-  <div class="pt-panel"></div>
-  <div class="pt-panel"></div>
-  <div class="pt-panel"></div>
-</div>
-
 <div id="cur" aria-hidden="true"></div>
 
 <nav class="res-nav">
@@ -1036,7 +1024,6 @@ renderContent();
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="js/app.js"></script>
-<script src="js/transitions.js"></script>
 <script src="js/contact-modal.js"></script>
 </body>
 </html>
