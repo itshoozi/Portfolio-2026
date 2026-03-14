@@ -577,7 +577,11 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
 .kw{color:var(--purple)}.str{color:var(--green)}.fn{color:var(--blue)}.cm{color:var(--text3);font-style:italic}
 .divider{height:1px;background:var(--border);margin:clamp(2rem,4.5vw,3.5rem) 0}
 .next-case{position:relative;z-index:10;background:var(--surface);border-top:1px solid var(--border);padding:clamp(2.5rem,6vw,4.5rem) clamp(1.25rem,5vw,3rem)}
-.next-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.next-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:stretch;gap:2rem;flex-wrap:wrap}
+.nc-col{flex:1;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding:1rem 0;min-width:300px}
+.nc-prev{border-right:1px solid var(--border);padding-right:2rem}
+.nc-next{padding-left:2rem;flex-direction:row-reverse;text-align:right}
+@media(max-width:768px){.nc-col{flex-direction:column;text-align:center;justify-content:center;gap:1rem}.nc-next{flex-direction:column}.nc-prev{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:2rem}.nc-next{padding-left:0;padding-top:2rem}}
 .next-label{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.45rem}
 .next-title{font-family:var(--serif);font-size:clamp(1.3rem,3vw,2rem);color:var(--text);letter-spacing:-.02em}
 .next-sub{font-size:.82rem;color:var(--text3);margin-top:.3rem;font-style:italic;font-family:var(--serif)}

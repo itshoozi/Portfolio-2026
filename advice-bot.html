@@ -131,19 +131,26 @@
 </main>
 
 <div class="next-case">
-  <div class="next-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;border-right:1px solid var(--border);padding-right:2rem">
-      <div>
-      <div class="next-label">Previous</div>
-      <div class="next-title">Old School Arcade</div>
-      <div class="next-sub">Four-location retro arcade website redesign.</div>
-    </div>
-    <div style="display:flex;gap:.7rem;flex-wrap:wrap;align-items:center">
+  <div class="next-inner">
+    
+    <div class="nc-col nc-prev">
+      <div class="nc-text">
+        <div class="next-label">Previous</div>
+        <div class="next-title">Old School Arcade</div>
+        <div class="next-sub">Four-location retro arcade website redesign.</div>
+      </div>
       <a href="old-school-arcade.html" class="btn-g">← Previous</a>
     </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
-      <div><div class="next-label">Next</div><div class="next-title">DiscordBot-Script (npm)</div><div class="next-sub">100,000+ npm installs. A bot framework for everyone.</div></div><a href="db-script.html" class="btn-p">Read →</a>
+
+    <div class="nc-col nc-next">
+      <div class="nc-text">
+        <div class="next-label">Next</div>
+        <div class="next-title">DiscordBot-Script (npm)</div>
+        <div class="next-sub">100,000+ npm installs. A bot framework for everyone.</div>
+      </div>
+      <a href="db-script.html" class="btn-p">Read →</a>
     </div>
+
   </div>
 </div>
 
@@ -154,7 +161,6 @@
     <a href="index.html">Home</a>
   </div>
 </footer>
-
 <script>
 const rio=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');rio.unobserve(x.target)}}),{threshold:.07,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>rio.observe(el));
