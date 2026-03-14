@@ -10,10 +10,13 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
   :root {
-    --res-bg: #ffffff;
+    --res-bg: #f5f5f7;
+    --res-card: #ffffff;
     --res-text: #1d1d1f;
     --res-text2: #424245;
     --res-border: rgba(0,0,0,0.08);
+    --blue: #0071e3;
+    --modal-bg: rgba(255,255,255,0.95);
   }
   
   body.light-mode {
@@ -21,8 +24,9 @@
     color: var(--res-text);
   }
 
+  /* RESOURCE NAVIGATION */
   .res-nav {
-    padding: 1.5rem clamp(1.25rem, 5vw, 3rem);
+    padding: 1rem clamp(1.25rem, 5vw, 3rem);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,6 +36,7 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     z-index: 100;
+    border-bottom: 1px solid var(--res-border);
   }
 
   .res-logo {
@@ -39,100 +44,109 @@
     align-items: center;
     gap: .75rem;
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     text-decoration: none;
     color: var(--res-text);
   }
 
   .res-logo img {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
   }
 
+  /* HERO */
   .res-hero {
     text-align: center;
-    padding: 80px clamp(1.25rem, 5vw, 3rem) 40px;
-    max-width: 900px;
+    padding: 100px clamp(1.25rem, 5vw, 3rem) 60px;
+    max-width: 1000px;
     margin: 0 auto;
   }
 
   .res-hero h1 {
     font-family: var(--serif);
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    font-size: clamp(3.2rem, 8.5vw, 6.2rem);
+    line-height: 1.05;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
   }
 
   .res-hero p {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
     color: var(--res-text2);
-    line-height: 1.6;
+    line-height: 1.55;
     font-weight: 300;
-    margin-bottom: 2rem;
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
   }
 
   .res-warning {
     font-size: 0.75rem;
     color: var(--res-text2);
     max-width: 600px;
-    margin: 0 auto 3rem;
-    opacity: 0.7;
-    line-height: 1.5;
+    margin: 0 auto;
+    opacity: 0.6;
+    line-height: 1.6;
+    background: rgba(0,0,0,0.03);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
   }
 
+  /* GRID SECTIONS */
   .res-section {
-    padding: 60px clamp(1.25rem, 5vw, 3rem);
-    max-width: 1300px;
+    padding: 80px clamp(1.25rem, 5vw, 3rem);
+    max-width: 1400px;
     margin: 0 auto;
   }
 
   .res-section-h {
-    text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid var(--res-border);
+    padding-bottom: 20px;
   }
 
   .res-section-h h2 {
     font-family: var(--serif);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1rem;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
   }
 
   .res-section-h p {
     color: var(--res-text2);
-    max-width: 600px;
-    margin: 0 auto;
     font-weight: 300;
+    font-size: 1.1rem;
   }
 
   .res-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2.5rem;
   }
 
+  /* CARDS */
   .res-card {
-    background: #fbfbfd;
-    border: 1px solid var(--res-border);
-    border-radius: 20px;
+    background: var(--res-card);
+    border-radius: 24px;
     overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.3s var(--spring-sm), box-shadow 0.3s;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transition: transform 0.4s var(--spring-sm), box-shadow 0.4s;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
 
   .res-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-    border-color: rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
   }
 
   .res-thumb {
     width: 100%;
     aspect-ratio: 16/9;
-    background: #eee;
+    background: #000;
     position: relative;
     overflow: hidden;
   }
@@ -141,105 +155,303 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
   }
 
-  .res-play {
+  .res-card:hover .res-thumb img {
+    transform: scale(1.05);
+  }
+
+  .res-play-overlay {
     position: absolute;
     inset: 0;
+    background: rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,0.2);
     opacity: 0;
     transition: opacity 0.3s;
   }
 
-  .res-card:hover .res-play {
+  .res-card:hover .res-play-overlay {
     opacity: 1;
   }
 
-  .res-play-btn {
-    width: 60px;
-    height: 60px;
-    background: #fff;
+  .res-play-circle {
+    width: 64px;
+    height: 64px;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: scale(0.9);
+    transition: transform 0.3s var(--spring-sm);
   }
 
-  .res-play-btn svg {
+  .res-card:hover .res-play-circle {
+    transform: scale(1);
+  }
+
+  .res-play-circle svg {
     width: 24px;
     height: 24px;
     fill: #000;
     margin-left: 4px;
   }
 
-  .res-card-content {
-    padding: 1.5rem;
+  .res-card-body {
+    padding: 2rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
 
-  .res-type {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--blue);
-    margin-bottom: 0.75rem;
-    display: block;
-  }
-
-  .res-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    line-height: 1.3;
-  }
-
-  .res-age {
-    display: inline-block;
-    padding: 0.25rem 0.6rem;
-    background: rgba(0,0,0,0.05);
-    border-radius: 6px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--res-text2);
+  .res-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1rem;
   }
 
-  .res-desc {
-    font-size: 0.9rem;
+  .res-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    padding: 4px 10px;
+    background: rgba(0,113,227,0.06);
+    border-radius: 6px;
+  }
+
+  .res-age-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--res-text2);
+    opacity: 0.6;
+  }
+
+  .res-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: var(--res-text);
+  }
+
+  .res-card-desc {
+    font-size: 0.95rem;
     line-height: 1.6;
     color: var(--res-text2);
     font-weight: 300;
     margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  .res-links {
-    margin-top: auto;
+  /* MODAL */
+  #videoModal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
     display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
   }
 
-  .res-link-btn {
-    padding: 0.5rem 1rem;
+  #videoModal.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(15px);
+  }
+
+  .modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 1300px;
+    height: 85vh;
+    background: #fff;
+    border-radius: 32px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    transform: scale(0.95) translateY(20px);
+    transition: transform 0.5s var(--spring-sm);
+  }
+
+  #videoModal.active .modal-container {
+    transform: scale(1) translateY(0);
+  }
+
+  .modal-video-side {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-video-side iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .modal-info-side {
+    background: #fff;
+    padding: 3rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--res-border);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s;
+    z-index: 10;
+  }
+
+  .modal-close:hover {
+    background: rgba(0,0,0,0.1);
+  }
+
+  .modal-close svg {
+    width: 20px;
+    height: 20px;
+    stroke: #000;
+    stroke-width: 2.5;
+  }
+
+  .modal-h {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .modal-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .modal-section-t {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .qa-pair {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--res-border);
+  }
+
+  .qa-q {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    color: var(--res-text);
+  }
+
+  .qa-a {
+    font-size: 0.95rem;
+    color: var(--res-text2);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .app-icon-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border: 1px solid var(--res-border);
+  }
+
+  .app-icon-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .modal-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+
+  .modal-link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    border-radius: 12px;
     background: #000;
     color: #fff;
-    border-radius: 8px;
-    font-size: 0.75rem;
     font-weight: 600;
     text-decoration: none;
+    font-size: 1rem;
+    transition: opacity 0.3s;
   }
 
-  .res-link-btn.alt {
-    background: #fff;
+  .modal-link-btn:hover {
+    opacity: 0.9;
+  }
+
+  .modal-link-btn.alt {
+    background: #f5f5f7;
     color: #000;
-    border: 1px solid rgba(0,0,0,0.1);
+  }
+
+  @media (max-width: 1024px) {
+    .modal-container {
+      grid-template-columns: 1fr;
+      height: 95vh;
+    }
+    .modal-video-side {
+      aspect-ratio: 16/9;
+      height: auto;
+    }
+    .modal-info-side {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #videoModal { padding: 0; }
+    .modal-container { border-radius: 0; height: 100vh; }
   }
 </style>
 </head>
@@ -249,229 +461,379 @@
 <nav class="res-nav">
   <a href="index.html" class="res-logo">
     <img src="https://framerusercontent.com/images/NwDz14xj4gYQ76Sxz0KYwL2jDR0.jpg" alt="Jeremy">
-    Jeremy
+    Jeremy Pringle
   </a>
-  <a href="mailto:hey@jeremypringle.com" class="nav-cta">Contact Me ↗</a>
+  <a href="mailto:hey@jeremypringle.com" class="nav-cta">Say Hello</a>
 </nav>
 
 <header class="res-hero">
-  <div class="hero-brand" style="justify-content:center; margin-bottom: 2rem;">Learning Resources <span>/ 2026</span></div>
-  <h1>Teach Your Kid To Code</h1>
-  <p>I believe in empowering students of all ages and backgrounds to become innovative problem solvers and technology leaders. Every student can engage in meaningful, hands-on learning experiences that spark curiosity and inspire a lifelong passion for technology.</p>
+  <div class="hero-brand" style="justify-content:center; margin-bottom: 2rem;">Resource Hub <span>/ 2026</span></div>
+  <h1>Teach Your Kid<br>To Code.</h1>
+  <p>I believe in empowering the next generation to be builders, not just consumers. This is a collection of tools, logic games, and deep dives into how our world is built.</p>
   <div class="res-warning">
-    This website is offered only to individuals. It is illegal to use this collection to source content for your paid course. For-profit educators interested in using this page to help with curricula must write for permission first.
+    <strong>Free for individuals.</strong> This collection is a gift to the community. It is illegal to use this sourcing for paid courses. For-profit educators must seek written permission first.
   </div>
 </header>
 
-<section class="res-section" id="videos">
+<section class="res-section" id="v-section">
   <div class="res-section-h">
-    <h2>Videos</h2>
-    <p>There is no right or wrong order to watch these videos in. These concepts all introduce coding as the simple process that it is.</p>
+    <h2>Explore Videos</h2>
+    <p>Core concepts explained simply for future engineers.</p>
   </div>
-  <div class="res-grid">
-    <!-- Videos from CSV -->
-    <a href="https://www.youtube.com/watch?v=vzRqNTX6xgA" target="_blank" class="res-card reveal">
-      <div class="res-thumb">
-        <img src="https://img.youtube.com/vi/vzRqNTX6xgA/maxresdefault.jpg" alt="Who Invented Computers">
-        <div class="res-play"><div class="res-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="res-card-content">
-        <span class="res-type">Video</span>
-        <div class="res-title">Who Invented Computers</div>
-        <div class="res-age">Age: 4-8</div>
-        <div class="res-desc">Learn about the history of computing, from Charles Babbage's initial concepts to the realization of modern digital technology.</div>
-      </div>
-    </a>
-
-    <a href="https://www.youtube.com/watch?v=2Z03p3yhGmk" target="_blank" class="res-card reveal">
-      <div class="res-thumb">
-        <img src="https://img.youtube.com/vi/2Z03p3yhGmk/maxresdefault.jpg" alt="Binary Basics">
-        <div class="res-play"><div class="res-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="res-card-content">
-        <span class="res-type">Video</span>
-        <div class="res-title">Binary Basics</div>
-        <div class="res-age">Age: 4-8</div>
-        <div class="res-desc">A simple introduction to the language of computers—binary—using just 0s and 1s.</div>
-      </div>
-    </a>
-
-    <a href="https://youtu.be/Wchru8alhaE" target="_blank" class="res-card reveal">
-      <div class="res-thumb">
-        <img src="https://img.youtube.com/vi/Wchru8alhaE/maxresdefault.jpg" alt="Invention of Computer Programming Language">
-        <div class="res-play"><div class="res-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="res-card-content">
-        <span class="res-type">Video</span>
-        <div class="res-title">Invention of Programming Languages</div>
-        <div class="res-age">Age: 4-8</div>
-        <div class="res-desc">Meet Grace Hopper and learn how she made programming easier by creating the first compiler.</div>
-      </div>
-    </a>
-
-    <a href="https://youtu.be/UPAkeZBxb0I" target="_blank" class="res-card reveal">
-      <div class="res-thumb">
-        <img src="https://img.youtube.com/vi/UPAkeZBxb0I/maxresdefault.jpg" alt="Invention of Software Programming">
-        <div class="res-play"><div class="res-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="res-card-content">
-        <span class="res-type">Video</span>
-        <div class="res-title">Invention of Software Programming</div>
-        <div class="res-age">Age: 4-8</div>
-        <div class="res-desc">Discover the story of Margaret Hamilton and the software that landed humanity on the moon.</div>
-      </div>
-    </a>
-
-    <a href="https://youtu.be/VlhlGk_9X4A" target="_blank" class="res-card reveal">
-      <div class="res-thumb">
-        <img src="https://img.youtube.com/vi/VlhlGk_9X4A/maxresdefault.jpg" alt="Invention of Video Games">
-        <div class="res-play"><div class="res-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="res-card-content">
-        <span class="res-type">Video</span>
-        <div class="res-title">Invention of Video Games</div>
-        <div class="res-age">Age: 4-8</div>
-        <div class="res-desc">Learn about Ralph Baer, the father of video games, and how the industry started with a tennis game.</div>
-      </div>
-    </a>
-
-    <a href="https://www.youtube.com/watch?v=j-3eArinB7E" target="_blank" class="res-card reveal">
-      <div class="res-thumb">
-        <img src="https://img.youtube.com/vi/j-3eArinB7E/maxresdefault.jpg" alt="Coding for Beginner Kids">
-        <div class="res-play"><div class="res-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="res-card-content">
-        <span class="res-type">Video</span>
-        <div class="res-title">Coding for Beginner Kids</div>
-        <div class="res-age">Age: 4-8</div>
-        <div class="res-desc">An overview of coding languages like Java, Python, and how visual block coding works.</div>
-      </div>
-    </a>
-  </div>
+  <div class="res-grid" id="videoGrid"></div>
 </section>
 
-<section class="res-section" id="apps">
+<section class="res-section" id="a-section">
   <div class="res-section-h">
-    <h2>Apps</h2>
-    <p>Hands-on tools that make learning to code an interactive adventure.</p>
+    <h2>Learning Apps</h2>
+    <p>Guided paths through the world of programming.</p>
   </div>
-  <div class="res-grid">
-    <div class="res-card reveal">
-      <div class="res-thumb">
-        <img src="https://framerusercontent.com/images/NwDz14xj4gYQ76Sxz0KYwL2jDR0.jpg" alt="codeSpark">
-      </div>
-      <div class="res-card-content">
-        <span class="res-type">App</span>
-        <div class="res-title">codeSpark</div>
-        <div class="res-age">Age: 4-8</div>
-        <div class="res-desc">Super easy introductory app. Kids learn concepts through levels and can even start coding their own.</div>
-        <div class="res-links">
-          <a href="https://codespark.com/" target="_blank" class="res-link-btn">Website</a>
-          <a href="https://play.google.com/store/apps/details?id=org.codespark.thefoos" target="_blank" class="res-link-btn alt">Android</a>
-          <a href="https://apps.apple.com/us/app/codespark-coding-for-kids/id923441570" target="_blank" class="res-link-btn alt">iOS</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="res-card reveal">
-      <div class="res-thumb">
-        <img src="https://framerusercontent.com/images/M0IOJvBE4805kA1pEkjHENhNGCE.webp" alt="Swift Playground">
-      </div>
-      <div class="res-card-content">
-        <span class="res-type">App</span>
-        <div class="res-title">Swift Playground</div>
-        <div class="res-age">Age: 13-18</div>
-        <div class="res-desc">Apple's official program for learning Swift—the language used for iPhone and Mac apps.</div>
-        <div class="res-links">
-          <a href="https://developer.apple.com/swift-playgrounds/" target="_blank" class="res-link-btn">Website</a>
-          <a href="https://apps.apple.com/us/app/swift-playgrounds/id908519492" target="_blank" class="res-link-btn alt">iOS</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="res-card reveal">
-      <div class="res-thumb">
-        <img src="https://framerusercontent.com/images/pMxWoocl87AostsIN5gz4WXs.png" alt="Code.org">
-      </div>
-      <div class="res-card-content">
-        <span class="res-type">App</span>
-        <div class="res-title">Code.org</div>
-        <div class="res-age">Age: 9-12</div>
-        <div class="res-desc">Everything from Hour of Code to AI courses. Amazing curricula for self-paced learning.</div>
-        <div class="res-links">
-          <a href="https://code.org/students" target="_blank" class="res-link-btn">Start Learning</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="res-grid" id="appGrid"></div>
 </section>
 
-<section class="res-section" id="games">
+<section class="res-section" id="g-section">
   <div class="res-section-h">
-    <h2>Games</h2>
-    <p>Gamified typing and mouse skills to build the foundation for professional tech work.</p>
+    <h2>Foundation Games</h2>
+    <p>Mastering the tools of the trade: mouse skills & typing speed.</p>
   </div>
-  <div class="res-grid">
-    <div class="res-card reveal">
-      <div class="res-card-content">
-        <span class="res-type">Game</span>
-        <div class="res-title">NitroType</div>
-        <div class="res-age">Age: 9-12</div>
-        <div class="res-desc">Compete in high-speed typing races against players around the world.</div>
-        <div class="res-links">
-          <a href="https://www.nitrotype.com/" target="_blank" class="res-link-btn">Play Now</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="res-card reveal">
-      <div class="res-card-content">
-        <span class="res-type">Game</span>
-        <div class="res-title">This is Sand</div>
-        <div class="res-age">Age: 4-8</div>
-        <div class="res-desc">A simple, relaxing game to practice mouse control by dropping sand.</div>
-        <div class="res-links">
-          <a href="https://thisissand.com/" target="_blank" class="res-link-btn">Play Now</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="res-card reveal">
-      <div class="res-card-content">
-        <span class="res-type">Game</span>
-        <div class="res-title">Keyboard Jab</div>
-        <div class="res-age">Age: 9-12</div>
-        <div class="res-desc">Improve your keyboard dexterity with this fast-paced typing challenge.</div>
-        <div class="res-links">
-          <a href="https://www.roomrecess.com/mobile/JabJab/play.html" target="_blank" class="res-link-btn">Play Now</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="res-grid" id="gameGrid"></div>
 </section>
 
-<footer>
-  <div class="fc">© 2026 Jeremy Pringle · Teach Kids to Code Initiative · <a href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none">hey@jeremypringle.com</a></div>
+<!-- MODAL -->
+<div id="videoModal">
+  <div class="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal-container">
+    <div class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </div>
+    <div class="modal-video-side" id="modalVideo"></div>
+    <div class="modal-info-side">
+      <div id="modalContent"></div>
+    </div>
+  </div>
+</div>
+
+<footer style="padding: 100px clamp(1.25rem, 5vw, 3rem) 40px; border-top: 1px solid var(--res-border); margin-top: 100px;">
+  <div class="fc">© 2026 Jeremy Pringle · Built with intent</div>
   <div class="fl">
-    <a href="index.html">Back to Portfolio</a>
+    <a href="index.html">Back Home</a>
+    <a href="mailto:hey@jeremypringle.com">Contact</a>
   </div>
 </footer>
 
 <script>
-const rio=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');rio.unobserve(x.target)}}),{threshold:.07,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>rio.observe(el));
+const resources = [
+  {
+    "Slug": "who-invented-computers",
+    "Title": "Who Invented Computers",
+    "Type": "Video",
+    "Link": "https://www.youtube.com/watch?v=vzRqNTX6xgA",
+    "Focus Age": "4-8",
+    "What am I learning": "Modern computers are capable of performing billions of calculations per second, whereas early computers could take hours or even days. This increase in processing power allows for advanced functions like AI and high-definition graphics.",
+    "Question 1": "Is todays technology more powerful than technology of the past?",
+    "Answer 1": "Yes, today's technology is significantly more powerful. Early computers could take hours or days for simple tasks.",
+    "Question 2": "When did Babbage's invention finally get made?",
+    "Answer 2": "1991, when a group of engineers made his prototype a reality. His work in the 1830s laid the foundation for modern computing.",
+    "Question 3": "",
+    "Answer 3": ""
+  },
+  {
+    "Slug": "binary-basics",
+    "Title": "Binary Basics",
+    "Type": "Video",
+    "Link": "https://www.youtube.com/watch?v=2Z03p3yhGmk",
+    "Focus Age": "4-8",
+    "What am I learning": "A simple introduction to the language of computers—binary—using just 0s and 1s.",
+    "Question 1": "What two digits are used in binary?",
+    "Answer 1": "Answer: 0 and 1",
+    "Question 2": "In binary, what number comes after 1?",
+    "Answer 2": "Answer: 10",
+    "Question 3": "",
+    "Answer 3": ""
+  },
+  {
+    "Slug": "invention-of-computer-programming-language",
+    "Title": "History of Programming",
+    "Type": "Video",
+    "Link": "https://youtu.be/Wchru8alhaE",
+    "Focus Age": "4-8",
+    "What am I learning": "How Grace Hopper created the first compiler to let computers understand human language instead of just binary.",
+    "Question 1": "Who was Grace Hopper?",
+    "Answer 1": "An American computer scientist and Navy officer who developed the first compiler.",
+    "Question 2": "What is a 'bug' in programming?",
+    "Answer 2": "Grace Hopper found a literal moth inside her computer while troubleshooting, documenting it as the first actual bug.",
+    "Question 3": "Why was the compiler important?",
+    "Answer 3": "It translated English instructions into a language computers could understand, making coding much faster."
+  },
+  {
+    "Slug": "invention-of-software-programming",
+    "Title": "Apollo: Software in Space",
+    "Type": "Video",
+    "Link": "https://youtu.be/UPAkeZBxb0I",
+    "Focus Age": "4-8",
+    "What am I learning": "The story of Margaret Hamilton and the software that made the moon landing possible.",
+    "Question 1": "What role did Margaret Hamilton play?",
+    "Answer 1": "She developed the software that enabled the Apollo spacecraft to land on the moon successfully.",
+    "Question 2": "How did the software help during the landing?",
+    "Answer 2": "It was designed to eliminate lower-priority tasks and focus on the essential functions needed for landing when the computer was overloaded.",
+    "Question 3": "Did astronauts make mistakes?",
+    "Answer 3": "Yes, on Apollo 8 an astronaut pressed the wrong button, proving that human error is why robust software is critical."
+  },
+  {
+    "Slug": "learn-to-code-invention-of-video-games",
+    "Title": "Invention of Video Games",
+    "Type": "Video",
+    "Link": "https://youtu.be/VlhlGk_9X4A",
+    "Focus Age": "4-8",
+    "What am I learning": "How Ralph Baer recognized the opportunity to create video games for television and patented his invention.",
+    "Question 1": "Who is the 'Father of Video Games'?",
+    "Answer 1": "Ralph Baer, who developed the world's first video game console.",
+    "Question 2": "What was one of the earliest games?",
+    "Answer 2": "A tennis game for two, which lasted only a year due to high costs.",
+    "Question 3": "Are video games harmful?",
+    "Answer 3": "Studies indicate that action games can actually help players make decisions faster and improve cognition."
+  },
+  {
+    "Slug": "coding-for-beginner-kids",
+    "Title": "Coding for Beginners",
+    "Type": "Video",
+    "Link": "https://www.youtube.com/watch?v=j-3eArinB7E",
+    "Focus Age": "4-8",
+    "What am I learning": "Overview of languages like C++, Java, and Python, and why coding is the foundation of modern technology.",
+    "Question 1": "What is visual block coding?",
+    "Answer 1": "It allows users to snap together virtual blocks to create programs without writing complex text code.",
+    "Question 2": "Why is coding important?",
+    "Answer 2": "It is essential for telling computers what to do—it's the foundation of all software, apps, and games.",
+    "Question 3": "",
+    "Answer 3": ""
+  },
+  {
+    "Slug": "coding-for-kids",
+    "Title": "The Recipe for Coding",
+    "Type": "Video",
+    "Link": "https://www.youtube.com/watch?v=g1J4181W8ss",
+    "Focus Age": "4-8",
+    "What am I learning": "Comparing coding to recipes—step-by-step instructions that result in something great.",
+    "Question 1": "How is coding like a recipe?",
+    "Answer 1": "Both provide specific, ordered instructions to achieve a desired result.",
+    "Question 2": "What are common languages?",
+    "Answer 2": "C++, Python, and Java are common ways we talk to machines.",
+    "Question 3": "What has a computer in it?",
+    "Answer 3": "Almost every modern device—from fridges to cars—contains some level of computing technology."
+  },
+  {
+    "Slug": "hardware-vs-software",
+    "Title": "Hardware vs Software",
+    "Type": "Video",
+    "Link": "https://www.youtube.com/watch?v=xZKMmk8JSUk",
+    "Focus Age": "4-8",
+    "What am I learning": "The difference between the physical parts (hardware) and the instructions (software).",
+    "Question 1": "What is hardware?",
+    "Answer 1": "The physical components you can touch: the screen, keyboard, and internal circuits.",
+    "Question 2": "What is software?",
+    "Answer 2": "The code and instructions you cannot touch, but that tell the hardware what to do.",
+    "Question 3": "",
+    "Answer 3": ""
+  },
+  {
+    "Slug": "computer-network",
+    "Title": "How Networks Work",
+    "Type": "Video",
+    "Link": "https://www.youtube.com/watch?v=1VPkXhVPOPo",
+    "Focus Age": "4-8",
+    "What am I learning": "How computers talk to each other to share information, creating the global internet.",
+    "Question 1": "What is a network?",
+    "Answer 1": "A group of connected computers or individuals who share information and support each other.",
+    "Question 2": "What is the Internet?",
+    "Answer 2": "A massive collection of networks that communicate global data.",
+    "Question 3": "What can we use it for?",
+    "Answer 3": "Video calls, emails, learning, and gathering information instantly."
+  },
+  {
+    "Slug": "codespark",
+    "Title": "codeSpark",
+    "Type": "App",
+    "App Icon": "https://framerusercontent.com/images/NwDz14xj4gYQ76Sxz0KYwL2jDR0.jpg",
+    "Website Link": "https://codespark.com/",
+    "Android": "https://play.google.com/store/apps/details?id=org.codespark.thefoos",
+    "Apple": "https://apps.apple.com/us/app/codespark-coding-for-kids/id923441570",
+    "Focus Age": "4-8",
+    "What am I learning": "A variety of coding concepts in a super easy-to-grasp app. Once kids master the levels, they can even code their own games."
+  },
+  {
+    "Slug": "codemonkey",
+    "Title": "CodeMonkey",
+    "Type": "App",
+    "App Icon": "https://framerusercontent.com/images/bPDRLq0kz68hxylfRHzWsj6BwCE.png",
+    "Website Link": "https://www.codemonkey.com/",
+    "Focus Age": "4-8",
+    "What am I learning": "Learn how to code with blocks and eventually transition into written code. Intuitive and fun puzzles."
+  },
+  {
+    "Slug": "swift-playground",
+    "Title": "Swift Playground",
+    "Type": "App",
+    "App Icon": "https://framerusercontent.com/images/M0IOJvBE4805kA1pEkjHENhNGCE.webp",
+    "Website Link": "https://developer.apple.com/swift-playgrounds/",
+    "Apple": "https://apps.apple.com/us/app/swift-playgrounds/id908519492",
+    "Focus Age": "13-18",
+    "What am I learning": "Apple's official program for learning Swift—the language used for iPhone and Mac apps."
+  },
+  {
+    "Slug": "nitrotype",
+    "Title": "NitroType",
+    "Type": "Game",
+    "Website Link": "https://www.nitrotype.com/",
+    "Focus Age": "9-12",
+    "What am I learning": "Competitive racing based on typing speed. Build muscle memory while having fun."
+  },
+  {
+    "Slug": "this-is-sand",
+    "Title": "This is Sand",
+    "Type": "Game",
+    "Website Link": "https://thisissand.com/",
+    "Focus Age": "4-8",
+    "What am I learning": "A simple, relaxing game to practice precise mouse control and artistic expression."
+  },
+  {
+    "Slug": "makecode-arcade",
+    "Title": "Makecode Arcade",
+    "Type": "App",
+    "App Icon": "https://framerusercontent.com/images/0TBfNEPKEdCjrzFpXEz4X2uD5Q.png",
+    "Website Link": "https://arcade.makecode.com/",
+    "Focus Age": "9-12",
+    "What am I learning": "Amazing software. Code with blocks, but see the output in Javascript and Python. Step-by-step project courses."
+  },
+  {
+    "Slug": "code-org",
+    "Title": "Code.org",
+    "Type": "App",
+    "App Icon": "https://framerusercontent.com/images/pMxWoocl87AostsIN5gz4WXs.png",
+    "Website Link": "https://code.org/students",
+    "Focus Age": "9-12",
+    "What am I learning": "The gold standard for school-age coding. Includes 'Hour of Code' and a full, self-paced curriculum."
+  }
+];
+
+function getYoutubeId(url) {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length == 11) ? match[2] : null;
+}
+
+function renderContent() {
+  const vGrid = document.getElementById('videoGrid');
+  const aGrid = document.getElementById('appGrid');
+  const gGrid = document.getElementById('gameGrid');
+
+  resources.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'res-card reveal';
+    card.onclick = () => openModal(r);
+    
+    let thumbHtml = '';
+    if(r.Type === 'Video') {
+      const vidId = getYoutubeId(r.Link);
+      thumbHtml = `<div class="res-thumb"><img src="https://img.youtube.com/vi/${vidId}/maxresdefault.jpg" alt="${r.Title}"><div class="res-play-overlay"><div class="res-play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div>`;
+    } else if(r['App Icon']) {
+      thumbHtml = `<div class="res-thumb" style="background:#fff; display:flex; align-items:center; justify-content:center;"><img src="${r['App Icon']}" style="width:120px; height:120px; border-radius:24px; box-shadow:0 10px 30px rgba(0,0,0,0.1)"></div>`;
+    } else {
+      thumbHtml = `<div class="res-thumb" style="background:var(--res-bg); display:flex; font-size:4rem; align-items:center; justify-content:center;">${r.Type === 'Game' ? '🎮' : '📱'}</div>`;
+    }
+
+    card.innerHTML = `
+      ${thumbHtml}
+      <div class="res-card-body">
+        <div class="res-meta">
+          <span class="res-tag">${r.Type}</span>
+          <span class="res-age-tag">Ages ${r['Focus Age']}</span>
+        </div>
+        <div class="res-title">${r.Title}</div>
+        <div class="res-card-desc">${r['What am I learning']}</div>
+      </div>
+    `;
+
+    if(r.Type === 'Video') vGrid.appendChild(card);
+    else if(r.Type === 'App') aGrid.appendChild(card);
+    else gGrid.appendChild(card);
+  });
+  
+  // Re-run animation observer
+  const rio=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');rio.unobserve(x.target)}}),{threshold:.07});
+  document.querySelectorAll('.reveal').forEach(el=>rio.observe(el));
+}
+
+function openModal(r) {
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  const modalContent = document.getElementById('modalContent');
+  
+  modalVideo.innerHTML = '';
+  modalContent.innerHTML = '';
+
+  if(r.Type === 'Video') {
+    const vidId = getYoutubeId(r.Link);
+    modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${vidId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+  } else if(r['App Icon']) {
+     modalVideo.innerHTML = `<div style="text-align:center"><div class="app-icon-wrap"><img src="${r['App Icon']}"></div><div style="font-size:1.5rem; font-weight:700;">${r.Title}</div></div>`;
+  } else {
+    modalVideo.innerHTML = `<div style="font-size:8rem;">${r.Type === "Game" ? "🎮" : "📱"}</div>`;
+  }
+
+  let questionsHtml = '';
+  [1,2,3].forEach(i => {
+    if(r[`Question ${i}`]) {
+      questionsHtml += `
+        <div class="qa-pair">
+          <div class="qa-q">${r[`Question ${i}`]}</div>
+          <div class="qa-a">${r[`Answer ${i}`]}</div>
+        </div>
+      `;
+    }
+  });
+
+  let linksHtml = '';
+  if(r['Website Link']) linksHtml += `<a href="${r['Website Link']}" target="_blank" class="modal-link-btn">Visit Website</a>`;
+  if(r['Apple']) linksHtml += `<a href="${r['Apple']}" target="_blank" class="modal-link-btn alt">App Store</a>`;
+  if(r['Android']) linksHtml += `<a href="${r['Android']}" target="_blank" class="modal-link-btn alt">Google Play</a>`;
+
+  modalContent.innerHTML = `
+    <span class="modal-section-t">${r.Type}</span>
+    <h2 class="modal-h">${r.Title}</h2>
+    
+    <div class="modal-section">
+      <span class="modal-section-t">What am I learning?</span>
+      <p class="qa-a">${r['What am I learning']}</p>
+    </div>
+
+    ${questionsHtml ? `<div class="modal-section"><span class="modal-section-t">Discovery Questions</span>${questionsHtml}</div>` : ''}
+    
+    <div class="modal-links">${linksHtml}</div>
+  `;
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  modal.classList.remove('active');
+  modalVideo.innerHTML = ''; // Stop video
+  document.body.style.overflow = 'auto';
+}
+
+renderContent();
 
 /* CURSOR */
 const cur=document.getElementById('cur');
 if(window.matchMedia('(pointer:fine)').matches && cur){
   let mx_c=-100,my_c=-100,cx_c=-100,cy_c=-100;
   document.addEventListener('mousemove',e=>{mx_c=e.clientX;my_c=e.clientY});
-  document.querySelectorAll('a,button,.res-card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>cur.classList.add('h'));
-    el.addEventListener('mouseleave',()=>cur.classList.remove('h'));
-  });
+  document.addEventListener('mouseenter',()=>cur.classList.remove('h'), true);
+  
   (function cursorLoop(){
-    cx_c+=(mx_c-cx_c)*0.16; cy_c+=(my_c-cy_c)*0.16;
+    cx_c+=(mx_c-cx_c)*0.2; cy_c+=(my_c-cy_c)*0.2;
     cur.style.transform=`translate(${cx_c}px,${cy_c}px) translate(-50%,-50%)`;
     requestAnimationFrame(cursorLoop);
   })();
