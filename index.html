@@ -22,7 +22,7 @@
       <radialGradient id="gb" cx="82%" cy="18%" r="48%"><stop offset="0%" stop-color="#7c5cfc" stop-opacity=".08"/><stop offset="100%" stop-color="#7c5cfc" stop-opacity="0"/></radialGradient>
     </defs>
     <rect width="1440" height="900" fill="url(#ga)"/><rect width="1440" height="900" fill="url(#gb)"/>
-    <pattern id="dp" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse"><circle cx="24" cy="24" r=".9" fill="rgba(255,255,255,0.22)"/></pattern>
+    <pattern id="dp" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse"><circle cx="24" cy="24" r=".9" fill="rgba(0,0,0,0.06)"/></pattern>
     <rect width="1440" height="900" fill="url(#dp)" opacity=".9"/>
     <!-- Rotating arc rings -->
     <g class="arc-group">
@@ -40,8 +40,8 @@
     <path class="curve2" d="M-60 680 Q380 280 720 540 T1500 380" stroke="rgba(79,158,255,0.04)" stroke-width="1" fill="none"/>
     <path class="curve3" d="M1500 80 Q1060 480 720 230 T-60 420" stroke="rgba(139,111,255,0.06)" stroke-width="1.5" fill="none"/>
     <!-- Dashed guides -->
-    <line x1="720" y1="0" x2="720" y2="900" stroke="rgba(255,255,255,0.022)" stroke-width="1" stroke-dasharray="4 20"/>
-    <line x1="0" y1="450" x2="1440" y2="450" stroke="rgba(255,255,255,0.022)" stroke-width="1" stroke-dasharray="4 20"/>
+    <line x1="720" y1="0" x2="720" y2="900" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="4 20"/>
+    <line x1="0" y1="450" x2="1440" y2="450" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="4 20"/>
     <!-- Corner brackets -->
     <path d="M36 36 L36 80 M36 36 L80 36" stroke="rgba(79,158,255,0.14)" stroke-width="1.5" stroke-linecap="round"/>
     <path d="M1404 36 L1404 80 M1404 36 L1360 36" stroke="rgba(139,111,255,0.14)" stroke-width="1.5" stroke-linecap="round"/>
@@ -245,7 +245,7 @@ window.addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/
           ctx.beginPath();
           ctx.moveTo(pts[i].x,pts[i].y);
           ctx.lineTo(pts[j].x,pts[j].y);
-          ctx.strokeStyle=`rgba(255,255,255,${(1-d/160)*.035})`;
+          ctx.strokeStyle=`rgba(0,0,0,${(1-d/160)*.08})`;
           ctx.lineWidth=.6;
           ctx.stroke();
         }
