@@ -1,25 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
   // PAGE TRANSITION ORCHESTRATION - SEQUENTIAL SWEEP
-  const curtain = document.createElement('div');
-  curtain.className = 'pt-curtain';
-  curtain.innerHTML = '<div class="pt-panel"></div><div class="pt-panel"></div><div class="pt-panel"></div>';
-  document.body.appendChild(curtain);
+  const curtain = document.querySelector('.pt-curtain');
+  if (!curtain) return;
 
   // Check if we just arrived from another page transition
-  // We can use session storage or just always do the reveal on load
-  const isTransitioning = sessionStorage.getItem('pt_active') === 'true';
+  const isTransitioning = sessionStorage.getItem('pt_active') === 'true' || document.documentElement.classList.contains('pt-loading');
 
   if (isTransitioning) {
-    // Start covered and reveal to the right
+    // Ensure we are in the starting state (covered)
     curtain.classList.add('reveal-pt');
-    // Force reflow
+    
+    // Force reflow to ensure CSS is applied
     curtain.offsetHeight;
+    
+    // Start the reveal animation
     curtain.classList.add('revealing');
     
     sessionStorage.removeItem('pt_active');
     
     setTimeout(() => {
       curtain.classList.remove('reveal-pt', 'revealing');
+      document.documentElement.classList.remove('pt-loading');
     }, 850);
   }
 

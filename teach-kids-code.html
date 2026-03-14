@@ -455,8 +455,21 @@
     .modal-container { border-radius: 0; height: 100vh; }
   }
 </style>
+
+<script>
+  if (sessionStorage.getItem('pt_active') === 'true') {
+    document.documentElement.classList.add('pt-loading');
+  }
+</script>
+
 </head>
 <body class="light-mode">
+<div class="pt-curtain" aria-hidden="true">
+  <div class="pt-panel"></div>
+  <div class="pt-panel"></div>
+  <div class="pt-panel"></div>
+</div>
+
 <div id="cur" aria-hidden="true"></div>
 
 <nav class="res-nav">

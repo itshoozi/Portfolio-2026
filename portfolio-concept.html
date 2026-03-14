@@ -251,9 +251,22 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
 .page-fade{position:fixed;inset:0;background:var(--bg);z-index:9990;pointer-events:none;animation:pf .5s ease forwards}
 @keyframes pf{to{opacity:0}}
 </style>
+
+<script>
+  if (sessionStorage.getItem('pt_active') === 'true') {
+    document.documentElement.classList.add('pt-loading');
+  }
+</script>
+
 </head>
 <body>
-<div class="page-fade" aria-hidden="true"></div>
+<div class="pt-curtain" aria-hidden="true">
+  <div class="pt-panel"></div>
+  <div class="pt-panel"></div>
+  <div class="pt-panel"></div>
+</div>
+
+
 <div id="cur" aria-hidden="true"></div>
 <canvas id="cc" aria-hidden="true"></canvas>
 

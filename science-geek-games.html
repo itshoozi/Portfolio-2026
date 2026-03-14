@@ -42,8 +42,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+
+<script>
+  if (sessionStorage.getItem('pt_active') === 'true') {
+    document.documentElement.classList.add('pt-loading');
+  }
+</script>
+
 </head>
 <body>
+<div class="pt-curtain" aria-hidden="true">
+  <div class="pt-panel"></div>
+  <div class="pt-panel"></div>
+  <div class="pt-panel"></div>
+</div>
+
 <div id="cur" aria-hidden="true"></div>
 
 <div class="scene" aria-hidden="true">
