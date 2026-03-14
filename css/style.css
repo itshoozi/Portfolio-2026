@@ -168,7 +168,7 @@ nav{position:fixed;top:0;inset-inline:0;z-index:200;height:80px;display:flex;ali
 .mtrack:hover{animation-play-state:paused}
 @keyframes scroll{
   from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(-33.33%, 0, 0); } /* Adjusting for 3 sets of clones */
 }
 .mi{display:flex;align-items:center;gap:1.5rem;padding:0 2rem;font-size:.71rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);white-space:nowrap;transition:color .2s}
 .mi:hover{color:var(--text2)}
@@ -222,7 +222,7 @@ nav{position:fixed;top:0;inset-inline:0;z-index:200;height:80px;display:flex;ali
 .work-hd{margin-bottom:clamp(2rem,4vw,3.5rem)}
 .wgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(.75rem,1.8vw,1.2rem)}
 @media(max-width:620px){.wgrid{grid-template-columns:1fr}}
-.wcard{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(1.4rem,4vw,2rem);text-decoration:none;color:inherit;display:block;position:relative;overflow:hidden;will-change:transform;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:border-color .4s,box-shadow .4s var(--ease-out),transform .4s var(--spring-sm)}
+.wcard{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(1.4rem,4vw,2rem);text-decoration:none;color:inherit;display:flex;flex-direction:column;position:relative;overflow:hidden;will-change:transform;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:border-color .4s,box-shadow .4s var(--ease-out),transform .4s var(--spring-sm)}
 .wcard::before{content:'';position:absolute;inset:-1px;border-radius:22px;background:linear-gradient(135deg,var(--cc,var(--blue)),var(--purple));opacity:0;z-index:-1;transition:opacity .3s}
 .wcard::after{content:'';position:absolute;inset:1px;border-radius:21px;background:var(--surface);z-index:-1;transition:background .3s}
 .wcard:hover{border-color:transparent;box-shadow:0 32px 80px rgba(0,0,0,.08);transform:translateY(-8px)}
@@ -231,8 +231,8 @@ nav{position:fixed;top:0;inset-inline:0;z-index:200;height:80px;display:flex;ali
 .wcard:active{transform:scale(.97) translateY(0);transition-duration:.1s}
 .wcard.feat{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.25rem,3vw,2rem);align-items:center}
 @media(max-width:620px){.wcard.feat{grid-column:span 1;grid-template-columns:1fr}}
-.wcard-img{width:100%;height:100%;min-height:220px;border-radius:18px;overflow:hidden;background:var(--surface2);position:relative;margin-bottom:1.5rem;border:1px solid var(--border)}
-.wcard.feat .wcard-img{margin-bottom:0;min-height:300px}
+.wcard-img{width:100%;height:220px;border-radius:18px;overflow:hidden;background:var(--surface2);position:relative;margin-bottom:1.5rem;border:1px solid var(--border);flex-shrink:0}
+.wcard.feat .wcard-img{margin-bottom:0;height:100%;min-height:300px}
 .wcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease-out)}
 .wcard:hover .wcard-img img{transform:scale(1.04)}
 .wcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.2rem}
@@ -241,8 +241,8 @@ nav{position:fixed;top:0;inset-inline:0;z-index:200;height:80px;display:flex;ali
 .wcard-arr{font-size:1.1rem;color:var(--text3);line-height:1;transition:color .2s,transform .35s var(--spring-sm)}
 .wcard:hover .wcard-arr{color:var(--text);transform:translate(4px,-4px)}
 .wcard-title{font-family:var(--serif);font-size:clamp(1rem,2.5vw,1.18rem);color:var(--text);margin-bottom:.5rem;letter-spacing:-.01em}
-.wcard-body{font-size:.82rem;color:var(--text2);line-height:1.72;font-weight:300}
-.wtags{display:flex;gap:.38rem;flex-wrap:wrap;margin-top:1rem}
+.wcard-body{font-size:.82rem;color:var(--text2);line-height:1.72;font-weight:300;flex-grow:1}
+.wtags{display:flex;gap:.38rem;flex-wrap:wrap;margin-top:auto;padding-top:1.5rem}
 .wtag{font-size:.63rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:.26rem .7rem;border-radius:100px;background:var(--blue-dim);color:var(--blue);border:1px solid rgba(79,158,255,.18)}
 .feat-metric{background:var(--surface2);border-radius:16px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;min-height:155px;padding:2rem;text-align:center;transition:background .3s}
 .wcard:hover .feat-metric{background:var(--surface3)}
