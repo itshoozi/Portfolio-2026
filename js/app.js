@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
   // Intersection Observer for scroll reveal animations
   const observerOptions = {
     threshold: 0.1,
