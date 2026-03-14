@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedDate = null;
   
   // Modal & Step Elements
-  const openModalBtn = document.getElementById('openBookingFormBtn');
+  const openModalBtns = document.querySelectorAll('.openBookingBtn');
   const bookingModal = document.getElementById('bookingModal');
   const closeModal = document.getElementById('closeModal');
   const bookingForm = document.getElementById('bookingForm');
@@ -45,12 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeStep) activeStep.classList.add('active');
   };
 
-  if (openModalBtn) {
-    openModalBtn.onclick = () => {
-      bookingModal.classList.add('active');
-      if (bookingForm) bookingForm.reset();
-      updateModalStep(step1);
-    };
+  if (openModalBtns.length > 0) {
+    openModalBtns.forEach(btn => {
+      btn.onclick = () => {
+        if (!bookingModal) return;
+        bookingModal.classList.add('active');
+        if (bookingForm) bookingForm.reset();
+        updateModalStep(step1);
+      };
+    });
   }
 
   if (closeModal && bookingModal) {
