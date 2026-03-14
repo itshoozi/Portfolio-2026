@@ -696,8 +696,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
   pointer-events: none;
   z-index: 10000;
   display: flex;
-  transform: translateX(-100%);
-  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+  transform: translateX(-100%); /* Default hidden off left */
 }
 
 .pt-panel {
@@ -706,21 +705,29 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
   background: #0d0d0d;
 }
 
-/* Exit: Cover the screen from left */
+/* Exit: Sweeping in from left to center */
 .pt-curtain.active {
-  transform: translateX(0);
+  animation: ptSweepOut 0.8s cubic-bezier(0.8, 0, 0.2, 1) forwards;
   pointer-events: auto;
 }
 
-/* Enter: Reveal the screen by sliding further right */
-.pt-curtain.reveal-pt,
-.pt-loading .pt-curtain {
-  transform: translateX(0);
-  transition: none; /* Instant start at center */
+@keyframes ptSweepOut {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
 
-.pt-curtain.reveal-pt.revealing,
-.pt-loading .pt-curtain.revealing {
-  transform: translateX(100%);
-  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+/* Enter phase initial state */
+.pt-loading .pt-curtain {
+  transform: translateX(0); /* Default to covering on entry */
+}
+
+/* Enter: Sweeping out from center to right */
+.pt-loading .pt-curtain.revealing, 
+.pt-curtain.revealing {
+  animation: ptSweepIn 0.8s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+}
+
+@keyframes ptSweepIn {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
 }

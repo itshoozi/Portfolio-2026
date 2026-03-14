@@ -7,19 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const isTransitioning = sessionStorage.getItem('pt_active') === 'true' || document.documentElement.classList.contains('pt-loading');
 
   if (isTransitioning) {
-    // Ensure we are in the starting state (covered)
-    curtain.classList.add('reveal-pt');
-    
-    // Force reflow to ensure CSS is applied
-    curtain.offsetHeight;
-    
-    // Start the reveal animation
-    curtain.classList.add('revealing');
+    // Start the reveal animation on the next frame to guarantee CSS animations trigger correctly
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        curtain.classList.add('revealing');
+      });
+    });
     
     sessionStorage.removeItem('pt_active');
     
     setTimeout(() => {
-      curtain.classList.remove('reveal-pt', 'revealing');
+      curtain.classList.remove('revealing');
       document.documentElement.classList.remove('pt-loading');
     }, 850);
   }
