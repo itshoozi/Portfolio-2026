@@ -159,24 +159,49 @@ const initModalLogic = () => {
   let selectedDate = null;
   const generateDates = () => {
     const grid = document.getElementById('datesGrid');
-    if (grid.children.length > 0) return;
     const today = new Date();
-    for (let i = 0; i < 14; i++) {
-      const d = new Date(today);
-      d.setDate(today.getDate() + i);
-      const day = d.getDay();
-      if (day === 0 || day === 6) continue; // Skip weekends
-      
-      const btn = document.createElement('button');
-      btn.className = 'date-btn';
-      btn.innerHTML = `<span>${d.toLocaleDateString('en-US', {weekday:'short'})}</span><strong>${d.getDate()}</strong>`;
-      btn.onclick = () => {
-        document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedDate = d;
-        renderTimes();
-      };
-      grid.appendChild(btn);
+    grid.innerHTML = '';
+    
+    // Header for Month/Year
+    const monthYear = today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    const header = document.createElement('div');
+    header.style.cssText = 'grid-column: 1 / -1; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 12px; text-align: left;';
+    header.textContent = monthYear;
+    grid.appendChild(header);
+
+    // Get first day of month and total days
+    const firstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
+    const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+
+    // Fill blanks for days of week before the 1st
+    for (let i = 0; i < firstDay; i++) {
+      const blank = document.createElement('div');
+      grid.appendChild(blank);
+    }
+
+    // Generate month days
+    for (let i = 1; i <= daysInMonth; i++) {
+        const d = new Date(today.getFullYear(), today.getMonth(), i);
+        const isPast = d < new Date(today.setHours(0,0,0,0));
+        const day = d.getDay();
+        const isWeekend = (day === 0 || day === 6);
+        
+        const btn = document.createElement('button');
+        btn.className = 'date-btn';
+        if (isPast || isWeekend) {
+            btn.disabled = true;
+            btn.style.opacity = '0.2';
+            btn.style.cursor = 'default';
+        }
+        
+        btn.innerHTML = `<strong>${i}</strong>`;
+        btn.onclick = () => {
+          document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedDate = d;
+          renderTimes();
+        };
+        grid.appendChild(btn);
     }
   };
 

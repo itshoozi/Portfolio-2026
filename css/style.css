@@ -27,7 +27,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
 
 /* CURSOR */
 @media(pointer:fine){body,a,button,[role=button],.wcard,.svc,.hstat{cursor:none}}
-#cur{position:fixed;z-index:9998;pointer-events:none;top:0;left:0;width:10px;height:10px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);transition:width .25s var(--spring),height .25s var(--spring),opacity .2s;mix-blend-mode:difference}
+#cur{position:fixed;z-index:999999;pointer-events:none;top:0;left:0;width:10px;height:10px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);transition:width .25s var(--spring),height .25s var(--spring),opacity .2s;mix-blend-mode:difference}
 #cur.h{width:38px;height:38px}
 #cur.c{width:6px;height:6px;transition:width .08s,height .08s}
 
@@ -652,15 +652,15 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
 
 .calendar-wrap { margin-bottom: 24px; border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
 .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.65rem; color: var(--text3); margin-bottom: 12px; }
-.dates-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.dates-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; align-items: stretch; }
 .date-btn {
-  border: none; background: none; padding: 8px 0; border-radius: 8px;
-  display: flex; flex-direction: column; align-items: center; cursor: pointer;
+  border: none; background: none; padding: 12px 0; border-radius: 12px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
-.date-btn:hover { background: rgba(0,0,0,0.03); }
+.date-btn:hover:not(:disabled) { background: rgba(0,0,0,0.05); }
 .date-btn.active { background: var(--blue); color: #fff; }
-.date-btn span { font-size: 0.55rem; text-transform: uppercase; margin-bottom: 2px; opacity: 0.6; }
-.date-btn strong { font-size: 0.9rem; }
+.date-btn strong { font-size: 0.95rem; font-weight: 600; }
 
 .time-slots { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 0; overflow: hidden; transition: height 0.3s; }
 .time-slots.active { height: auto; margin-top: 16px; }
