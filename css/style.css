@@ -688,15 +688,17 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
 .modal-close:hover { color: var(--text); }
 
 /* PAGE TRANSITIONS - ONE SMOOTH SWEEP */
+/* Base: Idle, off-screen left */
 .pt-curtain {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100000;
   pointer-events: none;
-  z-index: 10000;
-  display: flex;
-  transform: translateX(-100%); /* Default hidden off left */
+  display: flex; /* Keep flex for panels if needed */
+  transform: translateX(-100%);
+  transition: none; /* Instant reset when classes are removed */
 }
 
 .pt-panel {
@@ -705,29 +707,25 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
   background: #0d0d0d;
 }
 
-/* Exit: Sweeping in from left to center */
-.pt-curtain.active {
-  animation: ptSweepOut 0.8s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+/* Exit: Sweeping from left to center */
+.pt-curtain.pt-exit {
+  transform: translateX(0);
+  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
   pointer-events: auto;
 }
 
-@keyframes ptSweepOut {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+/* Enter phase initial state: Cover screen instantly on page load */
+html.pt-loading .pt-curtain {
+  transform: translateX(0);
+  transition: none;
 }
 
-/* Enter phase initial state */
-.pt-loading .pt-curtain {
-  transform: translateX(0); /* Default to covering on entry */
+/* Enter phase prepare: Add transition property before changing transform */
+html.pt-loading .pt-curtain.pt-enter-prepare {
+  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
 }
 
-/* Enter: Sweeping out from center to right */
-.pt-loading .pt-curtain.revealing, 
-.pt-curtain.revealing {
-  animation: ptSweepIn 0.8s cubic-bezier(0.8, 0, 0.2, 1) forwards;
-}
-
-@keyframes ptSweepIn {
-  from { transform: translateX(0); }
-  to { transform: translateX(100%); }
+/* Enter phase active: Trigger the sweep out to the right */
+html.pt-loading .pt-curtain.pt-enter-prepare.pt-enter-active {
+  transform: translateX(100%);
 }
