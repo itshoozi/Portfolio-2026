@@ -262,9 +262,15 @@ nav{position:fixed;top:0;inset-inline:0;z-index:200;height:80px;display:flex;ali
 .bc-bio{grid-column:span 8;grid-row:span 2;background:var(--surface2)}
 .bc-rev{grid-column:span 4}
 .bc-npm{grid-column:span 4}
-.bc-social{grid-column:span 4;display:flex;align-items:center;justify-content:space-around;padding:0 clamp(1rem,2vw,1.5rem)!important}
-.soc-link{font-size:1.4rem;color:var(--text3);transition:color .3s,transform .3s var(--spring-sm);text-decoration:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:var(--surface2);border:1px solid var(--border)}
-.soc-link:hover{color:var(--blue);transform:scale(1.15);border-color:var(--blue-dim);background:var(--bg)}
+.bc-social{grid-column:span 4;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:1rem!important}
+.soc-link{font-size:0.75rem;font-weight:700;letter-spacing:0.05em;color:var(--text3);transition:all .3s var(--ease-out);text-decoration:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:var(--surface2);border:1px solid var(--border)}
+.soc-link:hover{color:white;transform:translateY(-3px) scale(1.1);border-color:transparent;box-shadow:0 10px 20px rgba(0,0,0,0.1)}
+.soc-gh:hover{background:#24292e}
+.soc-li:hover{background:#0077b5}
+.soc-x:hover{background:#000000}
+.soc-ig:hover{background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)}
+.soc-sp:hover{background:#1DB954}
+.soc-am:hover{background:#fa243c}
 .bc-disc{grid-column:span 5;grid-row:span 2;background:#5865F2}
 .bc-yt{grid-column:span 3;background:#cc0000}
 .bc-sk{grid-column:span 4}
