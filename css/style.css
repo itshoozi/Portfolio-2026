@@ -14,6 +14,9 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 }
 body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;overscroll-behavior-y:none}
 
+::selection{background:var(--blue);color:#fff}
+::-moz-selection{background:var(--blue);color:#fff}
+
 /* CURSOR */
 @media(pointer:fine){body,a,button,[role=button],.wcard,.svc,.hstat{cursor:none}}
 #cur{position:fixed;z-index:9998;pointer-events:none;top:0;left:0;width:10px;height:10px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);transition:width .25s var(--spring),height .25s var(--spring),opacity .2s;mix-blend-mode:difference}
@@ -609,3 +612,23 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
 .stag{background:color-mix(in srgb,var(--accent) 8%,transparent);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 20%,transparent)}
 .pull-quote{border-left-color:var(--accent);background:color-mix(in srgb,var(--accent) 4%,transparent)}
 .prose-content ul li::before{color:var(--accent)}
+
+
+/* COMET ANIMATIONS */
+.comet1,.comet2,.comet3{
+  stroke-dasharray: 100 2400;
+  stroke-dashoffset: 2500;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px currentColor);
+  opacity: 0.8;
+}
+.comet1 { color: var(--blue); animation: cometAnim 8s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+.comet2 { color: var(--blue); animation: cometAnim 12s cubic-bezier(0.4, 0, 0.2, 1) infinite 4s; }
+.comet3 { color: var(--purple); animation: cometAnim 10s cubic-bezier(0.4, 0, 0.2, 1) infinite 2s; }
+
+@keyframes cometAnim {
+  0% { stroke-dashoffset: 2500; opacity: 0; }
+  10% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { stroke-dashoffset: -100; opacity: 0; }
+}

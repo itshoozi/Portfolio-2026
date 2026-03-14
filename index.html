@@ -39,6 +39,11 @@
     <path class="curve1" d="M-60 580 Q380 180 720 440 T1500 280" stroke="rgba(79,158,255,0.07)" stroke-width="1.5" fill="none"/>
     <path class="curve2" d="M-60 680 Q380 280 720 540 T1500 380" stroke="rgba(79,158,255,0.04)" stroke-width="1" fill="none"/>
     <path class="curve3" d="M1500 80 Q1060 480 720 230 T-60 420" stroke="rgba(139,111,255,0.06)" stroke-width="1.5" fill="none"/>
+    
+    <path class="comet1" d="M-60 580 Q380 180 720 440 T1500 280" stroke="currentColor" stroke-width="2" fill="none"/>
+    <path class="comet2" d="M-60 680 Q380 280 720 540 T1500 380" stroke="currentColor" stroke-width="1.5" fill="none"/>
+    <path class="comet3" d="M1500 80 Q1060 480 720 230 T-60 420" stroke="currentColor" stroke-width="2" fill="none"/>
+    
     <!-- Dashed guides -->
     <line x1="720" y1="0" x2="720" y2="900" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="4 20"/>
     <line x1="0" y1="450" x2="1440" y2="450" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="4 20"/>
@@ -198,13 +203,14 @@ document.querySelectorAll('.reveal').forEach(el=>rio.observe(el));
 
 /* MOUSE PARALLAX on orbs */
 const o1=document.querySelector('.o1'),o2=document.querySelector('.o2'),o3=document.querySelector('.o3');
-let mx=0,my=0,cx=0,cy=0;
+let mx=0,my=0,cx=0,cy=0, sy=0, csy=0;
 window.addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+window.addEventListener('scroll', ()=>sy=window.scrollY);
 (function orbLoop(){
-  cx+=(mx-cx)*.04; cy+=(my-cy)*.04;
-  if(o1)o1.style.transform=`scale(1) translate(${cx*40}px,${cy*30}px)`;
-  if(o2)o2.style.transform=`scale(1) translate(${cx*-30}px,${cy*-22}px)`;
-  if(o3)o3.style.transform=`scale(1) translate(${cx*20}px,${cy*-15}px)`;
+  cx+=(mx-cx)*.04; cy+=(my-cy)*.04; csy+=(sy-csy)*.07;
+  if(o1)o1.style.transform=`scale(1) translate(${cx*40}px,${cy*30 - csy*.15}px)`;
+  if(o2)o2.style.transform=`scale(1) translate(${cx*-30}px,${cy*-22 - csy*.22}px)`;
+  if(o3)o3.style.transform=`scale(1) translate(${cx*20}px,${cy*-15 - csy*.12}px)`;
   requestAnimationFrame(orbLoop);
 })();
 

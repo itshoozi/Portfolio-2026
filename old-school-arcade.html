@@ -165,11 +165,12 @@
 const rio=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');rio.unobserve(x.target)}}),{threshold:.07,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>rio.observe(el));
 const orbs=document.querySelectorAll('.orb');
-let mx=0,my=0,cx=0,cy=0;
+let mx=0,my=0,cx=0,cy=0, sy=0, csy=0;
 window.addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
-const dirs=[{x:35,y:28},{x:-28,y:-22},{x:18,y:-14}];
-(function loop(){cx+=(mx-cx)*.04;cy+=(my-cy)*.04;
-  orbs.forEach((o,i)=>{const d=dirs[i]||dirs[0];o.style.transform=`translate(${cx*d.x}px,${cy*d.y}px)`});
+window.addEventListener('scroll', ()=>sy=window.scrollY);
+const dirs=[{x:35,y:28,s:0.15},{x:-28,y:-22,s:0.22},{x:18,y:-14,s:0.12}];
+(function loop(){cx+=(mx-cx)*.04;cy+=(my-cy)*.04; csy+=(sy-csy)*.07;
+  orbs.forEach((o,i)=>{const d=dirs[i]||dirs[0];o.style.transform=`translate(${cx*d.x}px,${cy*d.y - csy*d.s}px)`});
   requestAnimationFrame(loop);
 })();
 </script>
