@@ -46,7 +46,6 @@
 <body>
 <div id="cur" aria-hidden="true"></div>
 
-
 <div class="scene" aria-hidden="true">
   <div class="orb" style="width:600px;height:600px;background:#5865F2;opacity:.11;top:-150px;left:-80px;animation:breathe 18s ease-in-out infinite"></div>
   <div class="orb" style="width:420px;height:420px;background:#4f9eff;opacity:.09;top:220px;right:-60px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
@@ -155,15 +154,16 @@
 </div>
 
 <footer>
-  <div class="fc">© 2026 Jeremy Pringle · <span class="tarku-brand">Tarku Digital</span> · Rochester, MN · <a href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none" class="nav-cta">hey@jeremypringle.com</a></div>
+  <div class="fc">© 2026 Jeremy Pringle · <span class="tarku-brand">Tarku Digital</span> · Rochester, MN · <a href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none" class="nav-cta inline">hey@jeremypringle.com</a></div>
   <div class="fl">
-    <a href="mailto:hey@jeremypringle.com" class="nav-cta">Hire me</a>
+    <a href="mailto:hey@jeremypringle.com" class="nav-cta inline">Hire me</a>
+    <a href="teach-kids-code.html">Teach Kids</a>
     <a href="index.html">Home</a>
   </div>
 </footer>
+
 <script>
-const rio=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');rio.unobserve(x.target)}}),{threshold:.07,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>rio.observe(el));
+
 const orbs=document.querySelectorAll('.orb');
 let mx=0,my=0,cx=0,cy=0, sy=0, csy=0;
 window.addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
@@ -174,26 +174,11 @@ const dirs=[{x:35,y:28,s:0.15},{x:-28,y:-22,s:0.22},{x:18,y:-14,s:0.12}];
   requestAnimationFrame(loop);
 })();
 
-/* CURSOR */
-const cur=document.getElementById('cur');
-if(window.matchMedia('(pointer:fine)').matches && cur){
-  let mx_c=-100,my_c=-100,cx_c=-100,cy_c=-100;
-  document.addEventListener('mousemove',e=>{mx_c=e.clientX;my_c=e.clientY});
-  document.addEventListener('mousedown',()=>cur.classList.add('c'));
-  document.addEventListener('mouseup',()=>cur.classList.remove('c'));
-  document.querySelectorAll('a,button,.wcard,.svc,.hstat,.bc,.btn-p,.btn-g').forEach(el=>{
-    el.addEventListener('mouseenter',()=>cur.classList.add('h'));
-    el.addEventListener('mouseleave',()=>cur.classList.remove('h'));
-  });
-  (function cursorLoop(){
-    cx_c+=(mx_c-cx_c)*0.16; cy_c+=(my_c-cy_c)*0.16;
-    cur.style.transform=`translate(${cx_c}px,${cy_c}px) translate(-50%,-50%)`;
-    requestAnimationFrame(cursorLoop);
-  })();
-}
 </script>
-<script src="js/transitions.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/transitions.js"></script>
 <script src="js/contact-modal.js"></script>
 </body>
 </html>

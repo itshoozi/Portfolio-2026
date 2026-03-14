@@ -78,6 +78,8 @@ nav{position:fixed;top:0;inset-inline:0;z-index:200;height:80px;display:flex;ali
 .nav-cta{display:flex;align-items:center;background:var(--text);color:var(--bg);font-size:.9rem;font-weight:700;height:42px;padding:0 1.5rem;border-radius:100px;text-decoration:none;letter-spacing:-.01em;border:none;cursor:pointer;transition:transform .22s var(--spring-sm),box-shadow .22s,opacity .2s;-webkit-tap-highlight-color:transparent}
 .nav-cta:hover{transform:scale(1.04);box-shadow:0 0 0 5px rgba(242,242,240,.12)}
 .nav-cta:active{transform:scale(0.95);opacity:.85;transition-duration:.08s}
+.nav-cta.inline { background: none; color: var(--text3); padding: 0; height: auto; border-radius: 0; font-weight: 500; font-size: inherit; }
+.nav-cta.inline:hover { transform: none; box-shadow: none; color: var(--text); }
 
 /* HERO */
 .hero{position:relative;z-index:10;min-height:100svh;display:flex;align-items:center;padding:120px clamp(1.25rem,5vw,3rem) 60px;max-width:1440px;margin:0 auto}
@@ -684,3 +686,39 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
   color: var(--text3); cursor: pointer; transition: color 0.2s;
 }
 .modal-close:hover { color: var(--text); }
+
+/* PAGE TRANSITIONS - ONE SMOOTH SWEEP */
+.pt-curtain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000;
+  display: flex;
+  transform: translateX(-100%);
+  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+.pt-panel {
+  flex: 1;
+  height: 100%;
+  background: #0d0d0d;
+}
+
+/* Exit: Cover the screen from left */
+.pt-curtain.active {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Enter: Reveal the screen by sliding further right */
+.pt-curtain.reveal-pt {
+  transform: translateX(0);
+  transition: none; /* Instant start at center */
+}
+
+.pt-curtain.reveal-pt.revealing {
+  transform: translateX(100%);
+  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+}
