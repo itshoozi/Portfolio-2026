@@ -44,6 +44,8 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="cur" aria-hidden="true"></div>
+
 
 <div class="scene" aria-hidden="true">
   <div class="orb" style="width:600px;height:600px;background:#4f9eff;opacity:.11;top:-150px;left:-80px;animation:breathe 18s ease-in-out infinite"></div>
@@ -172,6 +174,24 @@ const dirs=[{x:35,y:28,s:0.15},{x:-28,y:-22,s:0.22},{x:18,y:-14,s:0.12}];
   orbs.forEach((o,i)=>{const d=dirs[i]||dirs[0];o.style.transform=`translate(${cx*d.x}px,${cy*d.y - csy*d.s}px)`});
   requestAnimationFrame(loop);
 })();
+
+/* CURSOR */
+const cur=document.getElementById('cur');
+if(window.matchMedia('(pointer:fine)').matches && cur){
+  let mx_c=-100,my_c=-100,cx_c=-100,cy_c=-100;
+  document.addEventListener('mousemove',e=>{mx_c=e.clientX;my_c=e.clientY});
+  document.addEventListener('mousedown',()=>cur.classList.add('c'));
+  document.addEventListener('mouseup',()=>cur.classList.remove('c'));
+  document.querySelectorAll('a,button,.wcard,.svc,.hstat,.bc,.btn-p,.btn-g').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('h'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('h'));
+  });
+  (function cursorLoop(){
+    cx_c+=(mx_c-cx_c)*0.16; cy_c+=(my_c-cy_c)*0.16;
+    cur.style.transform=`translate(${cx_c}px,${cy_c}px) translate(-50%,-50%)`;
+    requestAnimationFrame(cursorLoop);
+  })();
+}
 </script>
 </body>
 </html>
