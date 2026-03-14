@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // PARALLAX MOTION LOGIC
   const heroVisual = document.querySelector('.hero-visual');
-  const scene = document.querySelector('.geo');
   const orbs = document.querySelectorAll('.orb');
+  const ctaOrbs = document.querySelectorAll('.cta-orb');
   
   let scrollY = window.scrollY;
   let targetScrollY = scrollY;
@@ -28,26 +28,25 @@ document.addEventListener('DOMContentLoaded', () => {
   function tick() {
     scrollY += (targetScrollY - scrollY) * 0.1;
     
-    // Parallax background elements
-    if (scene) {
-      scene.style.transform = `translate3d(0, ${scrollY * 0.15}px, 0)`;
-    }
-    
-    // Parallax orbs
+    // Parallax global orbs (subtle background drift)
     orbs.forEach((orb, i) => {
-      const depth = (i + 1) * 0.1;
-      orb.style.transform = `translate3d(0, ${scrollY * depth}px, 0)`;
+      const depth = 0.04 + (i * 0.02);
+      orb.style.transform = `translate3d(0, ${scrollY * -depth}px, 0)`;
     });
 
-    // Tilt hero visual cards on scroll
+    // Parallax CTA orbs (localized to footer section)
+    ctaOrbs.forEach((orb, i) => {
+      const depth = 0.08 + (i * 0.04);
+      // We use a relative offset so it's not "off" from the section start
+      orb.style.transform = `translate3d(-50%, ${scrollY * -depth}px, 0)`;
+    });
+
+    // Subtly drift hero visual cards on scroll via CSS variable
     if (heroVisual) {
       const cards = heroVisual.querySelectorAll('.vcard');
       cards.forEach((card, i) => {
-        const speed = (i + 1) * 0.05;
-        const rotate = (scrollY * 0.02);
-        const currentTransform = window.getComputedStyle(card).transform;
-        // Apply delicate parallax to cards
-        card.style.transform = `${currentTransform} translateY(${scrollY * speed}px)`;
+        const speed = (i + 1) * 0.06;
+        card.style.setProperty('--py', `${scrollY * speed}px`);
       });
     }
 
