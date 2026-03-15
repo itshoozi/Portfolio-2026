@@ -13,8 +13,11 @@ exports.handler = async (event, context) => {
     const smtpHost = "mail.spacemail.com";
     const smtpPort = 465;
     const smtpUser = "hey@jeremypringle.com";
-    // We try to get the password from Env Vars first, fallback to provided one for immediate fix
-    const smtpPass = process.env.SMTP_PASSWORD || "33b1A42a-eb26-4D22-be3e-abCA855B96B3";
+    const smtpPass = process.env.SMTP_PASSWORD;
+
+    if (!smtpPass) {
+      throw new Error("SMTP_PASSWORD environment variable is not set");
+    }
 
     const transporter = nodemailer.createTransport({
       host: smtpHost,
