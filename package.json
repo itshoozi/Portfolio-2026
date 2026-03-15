@@ -1,0 +1,14 @@
+{
+  "name": "jeremy-pringle-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Jeremy Pringle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.9"
+  },
+  "author": "",
+  "license": "ISC"
+}
