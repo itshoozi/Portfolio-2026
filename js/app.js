@@ -97,4 +97,44 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.style.transform = 'translate3d(0, 0, 0) scale(1)';
     });
   });
+  // NAV SCROLL LOGIC
+  const nav = document.querySelector('nav');
+  const navProgress = document.querySelector('.nav-progress');
+  
+  const handleScroll = () => {
+    const scroll = window.scrollY;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scroll / height) * 100;
+    
+    // Toggle scrolled state
+    if (scroll > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    
+    // Update progress bar
+    if (navProgress) {
+      nav.style.setProperty('--scroll-p', `${progress}%`);
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll(); // Initial check
+
+  // ACTIVE SECTION OBSERVER
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('section[id]').forEach(section => {
+    sectionObserver.observe(section);
+  });
 });
