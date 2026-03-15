@@ -264,15 +264,15 @@ nav{position:fixed;top:0;inset-inline:0;z-index:200;height:80px;display:flex;ali
 
 /* BENTO */
 .about-wrap{background:var(--surface);border-top:1px solid var(--border)}
-.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:160px;gap:20px;margin-top:clamp(2.5rem,5.5vw,4.5rem)}
-@media(max-width:960px){.bento{display:flex!important;flex-direction:column!important}.bc{width:100%!important;min-height:200px!important;margin-bottom:12px}}
-.bc{border:1px solid var(--border);border-radius:36px;padding:1.6rem;overflow:hidden;position:relative;background:var(--bg);transition:border-color .4s var(--ease-out),transform .4s var(--ease-out),box-shadow .4s var(--ease-out);display:flex;flex-direction:column;justify-content:flex-start;-webkit-tap-highlight-color:transparent}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:180px;gap:20px;margin-top:clamp(2.5rem,5.5vw,4.5rem)}
+@media(max-width:960px){.bento{display:flex!important;flex-direction:column!important}.bc{width:100%!important;min-height:220px!important;margin-bottom:12px}}
+.bc{border:1px solid var(--border);border-radius:36px;padding:2rem;overflow:hidden;position:relative;background:var(--bg);transition:border-color .4s var(--ease-out),transform .4s var(--ease-out),box-shadow .4s var(--ease-out);display:flex;flex-direction:column;justify-content:space-between;-webkit-tap-highlight-color:transparent}
 .bc:hover{border-color:var(--border3);transform:translateY(-8px);box-shadow:0 40px 80px rgba(0,0,0,0.1)}
 .bc-selfie{grid-column:span 4;grid-row:span 2;padding:0!important;background:var(--surface2)}
 .bc-selfie img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-out)}
 .bc-selfie:hover img{transform:scale(1.08)}
-.bc-bio{grid-column:span 8;grid-row:span 2;background:var(--surface2);justify-content:flex-start}
-.bc-social{grid-column:span 4;grid-row:span 1;flex-direction:row;align-items:center;justify-content:space-between;padding:0 1.6rem!important;background:linear-gradient(to bottom right, var(--bg), var(--surface2))}
+.bc-bio{grid-column:span 8;grid-row:span 2;background:var(--surface2);justify-content:space-between}
+.bc-social{grid-column:span 4;grid-row:span 1;flex-direction:row;align-items:center;justify-content:space-between;padding:0 2rem!important;background:linear-gradient(to bottom right, var(--bg), var(--surface2))}
 .bc-rev{grid-column:span 4;grid-row:span 1;text-align:center;background:#fff}
 .bc-npm{grid-column:span 4;grid-row:span 1;text-align:center;background:#fff}
 .bc-disc{grid-column:span 6;grid-row:span 2;background:linear-gradient(135deg,#5865F2,#3b45a0);color:white;border-color:rgba(255,255,255,0.15);justify-content:flex-end}
@@ -287,24 +287,25 @@ nav{position:fixed;top:0;inset-inline:0;z-index:200;height:80px;display:flex;ali
 .soc-ig:hover{background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)}
 .soc-sp:hover{background:#1DB954}
 .soc-am:hover{background:#fa243c}
-.bc-lbl{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:8px;margin-bottom:0.5rem}
-.bc-num{font-family:var(--serif);font-size:clamp(2.5rem,5vw,3.2rem);letter-spacing:-.04em;line-height:1;color:var(--text);margin:0.4rem 0}
-.bc-sub{font-size:.85rem;font-weight:400;color:var(--text2);line-height:1.5;margin-top:0}
+.bc-lbl{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:8px;margin-bottom:0}
+.bc-num{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,2.8rem);letter-spacing:-.04em;line-height:1;color:var(--text);margin:0.5rem 0}
+.bc-sub{font-size:.82rem;font-weight:400;color:var(--text2);line-height:1.45;margin-top:0}
 .bc-social .soc-link{width:46px;height:46px;font-size:1.3rem;border-radius:16px}
 .bc-bio .bc-body{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2vw,1.15rem);color:var(--text2);line-height:1.65;margin-top:1.5rem}
 .bc-bio .bc-body strong{color:var(--text);font-weight:600}
 .bc-npm .bc-num{color:var(--warm)}
-.bc-disc .bc-lbl,.bc-yt .bc-lbl{color:rgba(255,255,255,0.8);margin-bottom:0.8rem}
-.bc-disc .bc-num,.bc-yt .bc-num{color:white;font-size:clamp(3.5rem,8vw,5rem)}
-.bc-disc .bc-sub,.bc-yt .bc-sub{color:rgba(255,255,255,0.9);font-weight:400;max-width:80%}
-.bc-sk .spills{margin-top:1.5rem;gap:.6rem;display:grid;grid-template-columns:1fr 1fr}
-.sp{font-size:.72rem;font-weight:600;padding:.5rem .7rem;border-radius:12px;background:var(--bg);border:1px solid var(--border);color:var(--text2);display:flex;align-items:center;justify-content:center;text-align:center}
+.bc-disc .bc-lbl,.bc-yt .bc-lbl{color:rgba(255,255,255,0.7);margin-bottom:0}
+.bc-disc .bc-num,.bc-yt .bc-num{color:white;font-size:clamp(2.8rem,6vw,4rem)}
+.bc-disc .bc-sub,.bc-yt .bc-sub{color:rgba(255,255,255,0.85);font-weight:400;max-width:100%}
+.bc-sk .spills{margin-top:1.2rem;gap:.6rem;display:grid;grid-template-columns:1fr 1fr}
+.sp{font-size:.7rem;font-weight:600;padding:.45rem .6rem;border-radius:12px;background:var(--bg);border:1px solid var(--border);color:var(--text2);display:flex;align-items:center;justify-content:center;text-align:center}
 .bc-sk .bc-lbl{margin-bottom:0}
 .bc-edu .bc-body{font-size:.85rem;color:var(--text2);line-height:1.5;margin-top:0.8rem}
-.bc-status{display:flex;align-items:center;gap:6px;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-left:auto}
+.bc-status{display:flex;align-items:center;gap:6px;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--green)}
 .bc-status::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 10px var(--green)}
-.bc-bio-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;width:100%}
+.bc-bio-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:0;width:100%}
 .bc-bio-hd .bc-lbl{margin-bottom:0}
+.bc-edu .bc-body{font-size:.8rem;color:var(--text2);line-height:1.5;margin-top:0.6rem}
 .bc-edu .bc-body strong{color:var(--text);font-weight:500}
 
 /* CTA */
