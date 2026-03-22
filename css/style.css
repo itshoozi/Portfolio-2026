@@ -4,7 +4,14 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+  width:100%;
+  position:relative;
+  -webkit-font-smoothing: antialiased;
+}
 :root{
   --bg:#fcfcfc;--surface:#ffffff;--surface2:#fbfbfd;--surface3:#f5f5f7;
   --border:rgba(0,0,0,0.06);--border2:rgba(0,0,0,0.11);--border3:rgba(0,0,0,0.18);
@@ -206,6 +213,11 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 
 .bitmoji-badge.b1 { top: 15%; left: -5%; animation: badgeFloat 5s ease-in-out infinite; }
 .bitmoji-badge.b2 { bottom: 20%; right: -5%; animation: badgeFloat 5s ease-in-out infinite 1s reverse; }
+
+@media (max-width: 600px) {
+  .bitmoji-badge.b1 { left: 0; }
+  .bitmoji-badge.b2 { right: 0; }
+}
 
 @keyframes bitmojiFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 @keyframes bitmojiSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
