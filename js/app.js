@@ -137,4 +137,48 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('section[id]').forEach(section => {
     sectionObserver.observe(section);
   });
+
+  // ARCHIVE QUICK LOOK MODAL
+  const qlOverlay = document.getElementById('qlOverlay');
+  const qlImg = document.getElementById('qlImg');
+  const qlTitle = document.getElementById('qlTitle');
+  const qlDesc = document.getElementById('qlDesc');
+  const qlLink = document.getElementById('qlLink');
+  
+  if (qlOverlay) {
+    document.querySelectorAll('.arch-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.getAttribute('data-title');
+        const desc = card.getAttribute('data-desc');
+        const img = card.getAttribute('data-img');
+        const link = card.getAttribute('data-link');
+        
+        qlTitle.textContent = title;
+        qlDesc.textContent = desc;
+        qlImg.src = img;
+        
+        if (link) {
+          qlLink.style.display = 'inline-flex';
+          qlLink.style.visibility = 'visible';
+          qlLink.href = link;
+        } else {
+          qlLink.style.visibility = 'hidden';
+        }
+        
+        qlOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    const closeQL = () => {
+      qlOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    document.getElementById('qlClose')?.addEventListener('click', closeQL);
+    document.getElementById('qlCloseBtn')?.addEventListener('click', closeQL);
+    qlOverlay.addEventListener('click', (e) => {
+      if (e.target === qlOverlay) closeQL();
+    });
+  }
 });
