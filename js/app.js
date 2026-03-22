@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ARCHIVE PEEK TRIGGER
-    document.querySelectorAll('.arch-card').forEach(card => {
+    document.querySelectorAll('.arch-peek').forEach(card => {
       card.addEventListener('mouseenter', () => {
         const imgs = card.getAttribute('data-imgs')?.split(',');
         if (imgs && imgs.length > 0 && curImg) {
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const qlLink = document.getElementById('qlLink');
   
   if (qlOverlay) {
-    document.querySelectorAll('.arch-card').forEach(card => {
+    document.querySelectorAll('.modal-trigger').forEach(card => {
       card.addEventListener('click', () => {
         const title = card.getAttribute('data-title');
         const desc = card.getAttribute('data-desc');
