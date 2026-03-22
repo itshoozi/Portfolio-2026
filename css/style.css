@@ -314,6 +314,7 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
   position: relative;
   background: none;
   border-radius: 0;
+  text-decoration: none;
 }
 
 .arch-card:hover {
