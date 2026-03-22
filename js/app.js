@@ -56,15 +56,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // CURSOR LOGIC
   const cur = document.getElementById('cur');
+  const curImg = cur?.querySelector('.cur-img');
+  
   if (window.matchMedia('(pointer:fine)').matches && cur) {
     let mx = -100, my = -100, cx = -100, cy = -100;
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY });
     document.addEventListener('mousedown', () => cur.classList.add('c'));
     document.addEventListener('mouseup', () => cur.classList.remove('c'));
-    document.querySelectorAll('a, button, .wcard, .svc, .hstat, .bc, .btn-p, .btn-g').forEach(el => {
+    
+    // Default hover triggers
+    document.querySelectorAll('a, button, .wcard, .svc, .hstat, .bc, .btn-p, .btn-g, .nav-cta').forEach(el => {
       el.addEventListener('mouseenter', () => cur.classList.add('h'));
       el.addEventListener('mouseleave', () => cur.classList.remove('h'));
     });
+
+    // ARCHIVE PEEK TRIGGER
+    document.querySelectorAll('.arch-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const imgs = card.getAttribute('data-imgs')?.split(',');
+        if (imgs && imgs.length > 0 && curImg) {
+          curImg.style.backgroundImage = `url(${imgs[0]})`;
+          cur.classList.add('peek');
+        }
+      });
+      card.addEventListener('mouseleave', () => {
+        cur.classList.remove('peek');
+      });
+    });
+
     (function cursorLoop() {
       cx += (mx - cx) * 0.14; cy += (my - cy) * 0.14;
       cur.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
@@ -140,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ARCHIVE QUICK LOOK MODAL
   const qlOverlay = document.getElementById('qlOverlay');
-  const qlImg = document.getElementById('qlImg');
+  const qlScroll = document.getElementById('qlScroll');
   const qlTitle = document.getElementById('qlTitle');
   const qlDesc = document.getElementById('qlDesc');
   const qlLink = document.getElementById('qlLink');
@@ -150,12 +169,23 @@ document.addEventListener('DOMContentLoaded', () => {
       card.addEventListener('click', () => {
         const title = card.getAttribute('data-title');
         const desc = card.getAttribute('data-desc');
-        const img = card.getAttribute('data-img');
+        const imgs = card.getAttribute('data-imgs')?.split(',');
         const link = card.getAttribute('data-link');
         
         qlTitle.textContent = title;
         qlDesc.textContent = desc;
-        qlImg.src = img;
+        
+        // Clear and add images
+        qlScroll.innerHTML = '';
+        if (imgs) {
+          imgs.forEach(src => {
+            const imgEl = document.createElement('img');
+            imgEl.src = src.trim();
+            imgEl.alt = title;
+            imgEl.loading = 'lazy';
+            qlScroll.appendChild(imgEl);
+          });
+        }
         
         if (link) {
           qlLink.style.display = 'inline-flex';
