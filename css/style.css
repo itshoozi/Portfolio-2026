@@ -30,8 +30,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
 #cur{position:fixed;z-index:999999;pointer-events:none;top:0;left:0;width:10px;height:10px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);transition:width .25s var(--spring),height .25s var(--spring),opacity .2s,background .2s,border-radius .25s;mix-blend-mode:difference}
 #cur.h{width:38px;height:38px}
 #cur.c{width:6px;height:6px;transition:width .08s,height .08s}
-#cur.peek{width:280px;height:160px;background:#fff;mix-blend-mode:normal;border-radius:20px;border:1px solid rgba(0,0,0,0.1);box-shadow:0 30px 80px rgba(0,0,0,0.2);overflow:hidden;z-index:1000000}
-.cur-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;scale:1.2;transition:opacity .3s,scale .5s var(--ease-out)}
+#cur.peek{width:280px;height:160px;background:#fff;mix-blend-mode:normal;border-radius:20px;border:1px solid rgba(0,0,0,0.1);box-shadow:0 30px 80px rgba(0,0,0,0.2);overflow:hidden;z-index:1000000;transition:width .4s var(--spring),height .4s var(--spring),border-radius .4s,transform .1s ease-out}
+.cur-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;scale:1.1;transition:opacity .4s ease,scale .6s var(--ease-out)}
 #cur.peek .cur-img{opacity:1;scale:1}
 
 /* SCENE */
@@ -116,7 +116,7 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
   .hero-visual{height:400px}
 }
 
-.hero-brand{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.04em;color:var(--text);margin-bottom:2rem;display:flex;align-items:center;gap:.5rem}
+.hero-brand{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:800;letter-spacing:-.04em;color:var(--text);margin-bottom:2rem;display:flex;align-items:center;gap:.5rem}
 .hero-brand span{opacity:1}
 
 .hero-h1{font-family:var(--serif);font-size:clamp(2.8rem,7.5vw,6rem);line-height:1.1;letter-spacing:0;color:var(--text);margin-bottom:1.5rem;max-width:100%}
@@ -290,7 +290,7 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 
 /* The Archive - List Style */
 .archive-wrap { 
-  padding: 32px 0 60px; 
+  padding: 12px 0 40px; 
   border-top: 1px solid var(--border);
 }
 
