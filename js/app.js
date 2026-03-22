@@ -189,10 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (link) {
           qlLink.style.display = 'inline-flex';
-          qlLink.style.visibility = 'visible';
           qlLink.href = link;
         } else {
-          qlLink.style.visibility = 'hidden';
+          qlLink.style.display = 'none';
         }
         
         qlOverlay.classList.add('active');
