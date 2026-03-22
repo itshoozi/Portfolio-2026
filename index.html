@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Jeremy Pringle — Designer & Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="css/style.css">
-<script type="application/ld+json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Jeremy Pringle — Designer & Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -32,403 +35,676 @@
 }
 </script>
 </head>
+
 <body>
-<div id="cur" aria-hidden="true"></div>
-<canvas id="cc" aria-hidden="true"></canvas>
+  <div id="cur" aria-hidden="true"></div>
+  <canvas id="cc" aria-hidden="true"></canvas>
 
-<div class="scene" aria-hidden="true">
-  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
-  <div class="grain"></div>
-  <svg class="geo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
-    <defs>
-      <radialGradient id="ga" cx="25%" cy="20%" r="55%"><stop offset="0%" stop-color="#1a6fff" stop-opacity=".08"/><stop offset="100%" stop-color="#1a6fff" stop-opacity="0"/></radialGradient>
-      <radialGradient id="gb" cx="82%" cy="18%" r="48%"><stop offset="0%" stop-color="#7c5cfc" stop-opacity=".08"/><stop offset="100%" stop-color="#7c5cfc" stop-opacity="0"/></radialGradient>
-    </defs>
-    <rect width="1440" height="900" fill="url(#ga)"/><rect width="1440" height="900" fill="url(#gb)"/>
-    <pattern id="dp" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse"><circle cx="24" cy="24" r=".9" fill="rgba(0,0,0,0.06)"/></pattern>
-    <rect width="1440" height="900" fill="url(#dp)" opacity=".9"/>
-    <!-- Rotating arc rings -->
-    <g class="arc-group">
-      <circle cx="180" cy="210" r="310" stroke="rgba(79,158,255,0.06)" stroke-width="1" stroke-dasharray="12 8"/>
-      <circle cx="180" cy="210" r="200" stroke="rgba(79,158,255,0.05)" stroke-width="1"/>
-      <circle cx="180" cy="210" r="100" stroke="rgba(79,158,255,0.09)" stroke-width="1" stroke-dasharray="6 14"/>
-    </g>
-    <g class="arc-group-r">
-      <circle cx="1270" cy="170" r="370" stroke="rgba(139,111,255,0.06)" stroke-width="1" stroke-dasharray="10 12"/>
-      <circle cx="1270" cy="170" r="240" stroke="rgba(139,111,255,0.05)" stroke-width="1"/>
-      <circle cx="1270" cy="170" r="110" stroke="rgba(139,111,255,0.09)" stroke-width="1" stroke-dasharray="5 16"/>
-    </g>
-    <!-- Draw-on curves -->
-    <path class="curve1" d="M-60 580 Q380 180 720 440 T1500 280" stroke="rgba(79,158,255,0.07)" stroke-width="1.5" fill="none"/>
-    <path class="curve2" d="M-60 680 Q380 280 720 540 T1500 380" stroke="rgba(79,158,255,0.04)" stroke-width="1" fill="none"/>
-    <path class="curve3" d="M1500 80 Q1060 480 720 230 T-60 420" stroke="rgba(139,111,255,0.06)" stroke-width="1.5" fill="none"/>
-    
-    <path class="comet1" d="M-60 580 Q380 180 720 440 T1500 280" stroke="currentColor" stroke-width="2" fill="none"/>
-    <path class="comet2" d="M-60 680 Q380 280 720 540 T1500 380" stroke="currentColor" stroke-width="1.5" fill="none"/>
-    <path class="comet3" d="M1500 80 Q1060 480 720 230 T-60 420" stroke="currentColor" stroke-width="2" fill="none"/>
-    
-    <!-- Dashed guides -->
-    <line x1="720" y1="0" x2="720" y2="900" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="4 20"/>
-    <line x1="0" y1="450" x2="1440" y2="450" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="4 20"/>
-    <!-- Corner brackets -->
-    <path d="M36 36 L36 80 M36 36 L80 36" stroke="rgba(79,158,255,0.14)" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M1404 36 L1404 80 M1404 36 L1360 36" stroke="rgba(139,111,255,0.14)" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M36 864 L36 820 M36 864 L80 864" stroke="rgba(255,107,53,0.1)" stroke-width="1.5" stroke-linecap="round"/>
-    <!-- Pulsing center dots -->
-    <circle class="dot-center1" cx="180" cy="210" r="3.5" fill="rgba(79,158,255,0.4)"/>
-    <circle class="dot-center2" cx="1270" cy="170" r="3.5" fill="rgba(139,111,255,0.4)"/>
-    <circle class="dot-mid" cx="720" cy="440" r="2.5" fill="rgba(79,158,255,0.25)"/>
-    <!-- Spinning diamonds -->
-    <path class="diamond1" d="M390 135 L402 147 L390 159 L378 147 Z" stroke="rgba(79,158,255,0.28)" stroke-width="1" fill="rgba(79,158,255,0.04)"/>
-    <path class="diamond2" d="M1050 285 L1060 295 L1050 305 L1040 295 Z" stroke="rgba(139,111,255,0.26)" stroke-width="1" fill="rgba(139,111,255,0.04)"/>
-    <path class="diamond3" d="M860 82 L869 91 L860 100 L851 91 Z" stroke="rgba(255,107,53,0.24)" stroke-width="1" fill="rgba(255,107,53,0.04)"/>
-    <!-- Pulsing crosses -->
-    <g class="cross1">
-      <line x1="390" y1="128" x2="390" y2="166" stroke="rgba(79,158,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="371" y1="147" x2="409" y2="147" stroke="rgba(79,158,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-    </g>
-    <g class="cross2">
-      <line x1="860" y1="74" x2="860" y2="108" stroke="rgba(255,107,53,0.28)" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="843" y1="91" x2="877" y2="91" stroke="rgba(255,107,53,0.28)" stroke-width="1.5" stroke-linecap="round"/>
-    </g>
-  </svg>
-</div>
+  <div class="scene" aria-hidden="true">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="grain"></div>
+    <svg class="geo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+      <defs>
+        <radialGradient id="ga" cx="25%" cy="20%" r="55%">
+          <stop offset="0%" stop-color="#1a6fff" stop-opacity=".08" />
+          <stop offset="100%" stop-color="#1a6fff" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="gb" cx="82%" cy="18%" r="48%">
+          <stop offset="0%" stop-color="#7c5cfc" stop-opacity=".08" />
+          <stop offset="100%" stop-color="#7c5cfc" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="1440" height="900" fill="url(#ga)" />
+      <rect width="1440" height="900" fill="url(#gb)" />
+      <pattern id="dp" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+        <circle cx="24" cy="24" r=".9" fill="rgba(0,0,0,0.06)" />
+      </pattern>
+      <rect width="1440" height="900" fill="url(#dp)" opacity=".9" />
+      <!-- Rotating arc rings -->
+      <g class="arc-group">
+        <circle cx="180" cy="210" r="310" stroke="rgba(79,158,255,0.06)" stroke-width="1" stroke-dasharray="12 8" />
+        <circle cx="180" cy="210" r="200" stroke="rgba(79,158,255,0.05)" stroke-width="1" />
+        <circle cx="180" cy="210" r="100" stroke="rgba(79,158,255,0.09)" stroke-width="1" stroke-dasharray="6 14" />
+      </g>
+      <g class="arc-group-r">
+        <circle cx="1270" cy="170" r="370" stroke="rgba(139,111,255,0.06)" stroke-width="1" stroke-dasharray="10 12" />
+        <circle cx="1270" cy="170" r="240" stroke="rgba(139,111,255,0.05)" stroke-width="1" />
+        <circle cx="1270" cy="170" r="110" stroke="rgba(139,111,255,0.09)" stroke-width="1" stroke-dasharray="5 16" />
+      </g>
+      <!-- Draw-on curves -->
+      <path class="curve1" d="M-60 580 Q380 180 720 440 T1500 280" stroke="rgba(79,158,255,0.07)" stroke-width="1.5"
+        fill="none" />
+      <path class="curve2" d="M-60 680 Q380 280 720 540 T1500 380" stroke="rgba(79,158,255,0.04)" stroke-width="1"
+        fill="none" />
+      <path class="curve3" d="M1500 80 Q1060 480 720 230 T-60 420" stroke="rgba(139,111,255,0.06)" stroke-width="1.5"
+        fill="none" />
 
-<nav>
-  <a href="#" class="nav-logo">Jeremy Pringle</a>
-  <div class="nav-links">
-    <a href="#services" class="nav-link">Services</a>
-    <a href="#work" class="nav-link">Work</a>
-    <a href="#about" class="nav-link">About</a>
-    <button class="nav-cta openBookingBtn">Let's talk →</button>
+      <path class="comet1" d="M-60 580 Q380 180 720 440 T1500 280" stroke="currentColor" stroke-width="2" fill="none" />
+      <path class="comet2" d="M-60 680 Q380 280 720 540 T1500 380" stroke="currentColor" stroke-width="1.5"
+        fill="none" />
+      <path class="comet3" d="M1500 80 Q1060 480 720 230 T-60 420" stroke="currentColor" stroke-width="2" fill="none" />
+
+      <!-- Dashed guides -->
+      <line x1="720" y1="0" x2="720" y2="900" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="4 20" />
+      <line x1="0" y1="450" x2="1440" y2="450" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="4 20" />
+      <!-- Corner brackets -->
+      <path d="M36 36 L36 80 M36 36 L80 36" stroke="rgba(79,158,255,0.14)" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M1404 36 L1404 80 M1404 36 L1360 36" stroke="rgba(139,111,255,0.14)" stroke-width="1.5"
+        stroke-linecap="round" />
+      <path d="M36 864 L36 820 M36 864 L80 864" stroke="rgba(255,107,53,0.1)" stroke-width="1.5"
+        stroke-linecap="round" />
+      <!-- Pulsing center dots -->
+      <circle class="dot-center1" cx="180" cy="210" r="3.5" fill="rgba(79,158,255,0.4)" />
+      <circle class="dot-center2" cx="1270" cy="170" r="3.5" fill="rgba(139,111,255,0.4)" />
+      <circle class="dot-mid" cx="720" cy="440" r="2.5" fill="rgba(79,158,255,0.25)" />
+      <!-- Spinning diamonds -->
+      <path class="diamond1" d="M390 135 L402 147 L390 159 L378 147 Z" stroke="rgba(79,158,255,0.28)" stroke-width="1"
+        fill="rgba(79,158,255,0.04)" />
+      <path class="diamond2" d="M1050 285 L1060 295 L1050 305 L1040 295 Z" stroke="rgba(139,111,255,0.26)"
+        stroke-width="1" fill="rgba(139,111,255,0.04)" />
+      <path class="diamond3" d="M860 82 L869 91 L860 100 L851 91 Z" stroke="rgba(255,107,53,0.24)" stroke-width="1"
+        fill="rgba(255,107,53,0.04)" />
+      <!-- Pulsing crosses -->
+      <g class="cross1">
+        <line x1="390" y1="128" x2="390" y2="166" stroke="rgba(79,158,255,0.3)" stroke-width="1.5"
+          stroke-linecap="round" />
+        <line x1="371" y1="147" x2="409" y2="147" stroke="rgba(79,158,255,0.3)" stroke-width="1.5"
+          stroke-linecap="round" />
+      </g>
+      <g class="cross2">
+        <line x1="860" y1="74" x2="860" y2="108" stroke="rgba(255,107,53,0.28)" stroke-width="1.5"
+          stroke-linecap="round" />
+        <line x1="843" y1="91" x2="877" y2="91" stroke="rgba(255,107,53,0.28)" stroke-width="1.5"
+          stroke-linecap="round" />
+      </g>
+    </svg>
   </div>
-  <div class="nav-progress"></div>
-</nav>
 
-<section class="hero section" id="home">
-  <div class="hero-grid">
-    <div class="hero-content">
-      <div class="hero-brand"><span class="tarku-brand">Tarku Digital</span> <span>/ 2026</span></div>
-      <h1 class="hero-h1">I build products<br><em>with an operator's edge.</em></h1>
-      <p class="hero-sub">From first line of code to first $100k in revenue. I design, build, and scale digital products that solve real problems for real people.</p>
-      <div class="hero-actions">
-        <a href="#work" class="btn-p">View selected work <span class="arr">→</span></a>
-        <button class="btn-g openBookingBtn">Book a call</button>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><span class="hstat-num">150k+</span><span class="hstat-lbl">npm downloads</span></div>
-        <div class="hstat"><span class="hstat-num">+$55k</span><span class="hstat-lbl">Revenue grown</span></div>
-        <div class="hstat"><span class="hstat-num">25k</span><span class="hstat-lbl">Members built</span></div>
-      </div>
+  <nav>
+    <a href="#" class="nav-logo">Jeremy Pringle</a>
+    <div class="nav-links">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#work" class="nav-link">Work</a>
+      <a href="#about" class="nav-link">About</a>
+      <button class="nav-cta openBookingBtn">Let's talk →</button>
     </div>
-    
-    <div class="hero-visual">
-      <div class="vcard v-main">
-        <div class="vcard-bar"><span></span><span></span><span></span></div>
-        <div class="vcard-content">
-          <div class="vcard-shimmer"></div>
-          <div class="v-ui-line d1"></div>
-          <div class="v-ui-line d2"></div>
-          <div class="v-ui-grid">
-            <div class="v-ui-box"><span>Revenue</span><strong>+$55k</strong></div>
-            <div class="v-ui-box"><span>Growth</span><strong>+42%</strong></div>
-            <div class="v-ui-box"><span>Users</span><strong>25k</strong></div>
-            <div class="v-ui-box"><span>Builds</span><strong>892</strong></div>
+    <div class="nav-progress"></div>
+  </nav>
+
+  <section class="hero section" id="home">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-brand"><span class="tarku-brand">Tarku Digital</span> <span>/ 2026</span></div>
+        <h1 class="hero-h1">I build products<br><em>with an operator's edge.</em></h1>
+        <p class="hero-sub">From first line of code to first $100k in revenue. I design, build, and scale digital
+          products that solve real problems for real people.</p>
+        <div class="hero-actions">
+          <a href="#work" class="btn-p">View selected work <span class="arr">→</span></a>
+          <button class="btn-g openBookingBtn">Book a call</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><span class="hstat-num">150k+</span><span class="hstat-lbl">npm downloads</span></div>
+          <div class="hstat"><span class="hstat-num">+$55k</span><span class="hstat-lbl">Revenue grown</span></div>
+          <div class="hstat"><span class="hstat-num">25k</span><span class="hstat-lbl">Members built</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="vcard v-main">
+          <div class="vcard-bar"><span></span><span></span><span></span></div>
+          <div class="vcard-content">
+            <div class="vcard-shimmer"></div>
+            <div class="v-ui-line d1"></div>
+            <div class="v-ui-line d2"></div>
+            <div class="v-ui-grid">
+              <div class="v-ui-box"><span>Revenue</span><strong>+$55k</strong></div>
+              <div class="v-ui-box"><span>Growth</span><strong>+42%</strong></div>
+              <div class="v-ui-box"><span>Users</span><strong>25k</strong></div>
+              <div class="v-ui-box"><span>Builds</span><strong>892</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="vcard v-sub v1">
+          <div class="vcard-content">
+            <div class="v-ui-line d2"></div>
+            <div class="v-ui-line d1"></div>
+            <div style="font-size: 10px; color: var(--text3); font-family: monospace; line-height: 1.4;">deploy_status:
+              <span style="color:var(--blue)">SUCCESS</span><br>env: <span style="color:var(--blue)">PRODUCTION</span>
+            </div>
+          </div>
+        </div>
+        <div class="vcard v-sub v2">
+          <div class="vcard-content">
+            <div
+              style="font-size: 10px; color: var(--text3); font-family: var(--sans); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">
+              Weekly Active</div>
+            <div style="height: 40px; display: flex; align-items: flex-end; gap: 4px;">
+              <div style="flex:1; height: 40%; background: var(--blue); opacity: 0.3; border-radius: 2px;"></div>
+              <div style="flex:1; height: 60%; background: var(--blue); opacity: 0.5; border-radius: 2px;"></div>
+              <div style="flex:1; height: 45%; background: var(--blue); opacity: 0.3; border-radius: 2px;"></div>
+              <div style="flex:1; height: 90%; background: var(--blue); border-radius: 2px;"></div>
+              <div style="flex:1; height: 75%; background: var(--blue); opacity: 0.7; border-radius: 2px;"></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="vcard v-sub v1">
-        <div class="vcard-content">
-          <div class="v-ui-line d2"></div>
-          <div class="v-ui-line d1"></div>
-          <div style="font-size: 10px; color: var(--text3); font-family: monospace; line-height: 1.4;">deploy_status: <span style="color:var(--blue)">SUCCESS</span><br>env: <span style="color:var(--blue)">PRODUCTION</span></div>
+    </div>
+  </section>
+
+
+  <div class="mwrap" aria-hidden="true">
+    <div class="mrow">
+      <div class="mtrack">
+        <div class="mi">Branding<div class="mdot"></div>
+        </div>
+        <div class="mi">Web Development<div class="mdot"></div>
+        </div>
+        <div class="mi">Product Design<div class="mdot"></div>
+        </div>
+        <div class="mi">iOS & Android<div class="mdot"></div>
+        </div>
+        <div class="mi">Open Source<div class="mdot"></div>
+        </div>
+        <div class="mi">Community Building<div class="mdot"></div>
+        </div>
+        <div class="mi">Operations & GM<div class="mdot"></div>
+        </div>
+        <div class="mi"><span class="tarku-brand">Tarku Digital</span>
+          <div class="mdot"></div>
+        </div>
+        <div class="mi">Branding<div class="mdot"></div>
+        </div>
+        <div class="mi">Web Development<div class="mdot"></div>
+        </div>
+        <div class="mi">Product Design<div class="mdot"></div>
+        </div>
+        <div class="mi">iOS & Android<div class="mdot"></div>
+        </div>
+        <div class="mi">Open Source<div class="mdot"></div>
+        </div>
+        <div class="mi">Community Building<div class="mdot"></div>
+        </div>
+        <div class="mi">Operations & GM<div class="mdot"></div>
+        </div>
+        <div class="mi"><span class="tarku-brand">Tarku Digital</span>
+          <div class="mdot"></div>
+        </div>
+        <div class="mi">Branding<div class="mdot"></div>
+        </div>
+        <div class="mi">Web Development<div class="mdot"></div>
+        </div>
+        <div class="mi">Product Design<div class="mdot"></div>
+        </div>
+        <div class="mi">iOS & Android<div class="mdot"></div>
+        </div>
+        <div class="mi">Open Source<div class="mdot"></div>
+        </div>
+        <div class="mi">Community Building<div class="mdot"></div>
+        </div>
+        <div class="mi">Operations & GM<div class="mdot"></div>
+        </div>
+        <div class="mi"><span class="tarku-brand">Tarku Digital</span>
+          <div class="mdot"></div>
         </div>
       </div>
-      <div class="vcard v-sub v2">
-        <div class="vcard-content">
-          <div style="font-size: 10px; color: var(--text3); font-family: var(--sans); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Weekly Active</div>
-          <div style="height: 40px; display: flex; align-items: flex-end; gap: 4px;">
-            <div style="flex:1; height: 40%; background: var(--blue); opacity: 0.3; border-radius: 2px;"></div>
-            <div style="flex:1; height: 60%; background: var(--blue); opacity: 0.5; border-radius: 2px;"></div>
-            <div style="flex:1; height: 45%; background: var(--blue); opacity: 0.3; border-radius: 2px;"></div>
-            <div style="flex:1; height: 90%; background: var(--blue); border-radius: 2px;"></div>
-            <div style="flex:1; height: 75%; background: var(--blue); opacity: 0.7; border-radius: 2px;"></div>
+    </div>
+    <div class="mrow">
+      <div class="mtrack">
+        <div class="mi">Security & Privacy<div class="mdot"></div>
+        </div>
+        <div class="mi">Framer<div class="mdot"></div>
+        </div>
+        <div class="mi">React<div class="mdot"></div>
+        </div>
+        <div class="mi">Node.js<div class="mdot"></div>
+        </div>
+        <div class="mi">Swift<div class="mdot"></div>
+        </div>
+        <div class="mi">Shopify<div class="mdot"></div>
+        </div>
+        <div class="mi">Webflow<div class="mdot"></div>
+        </div>
+        <div class="mi">Figma<div class="mdot"></div>
+        </div>
+        <div class="mi">Security & Privacy<div class="mdot"></div>
+        </div>
+        <div class="mi">Framer<div class="mdot"></div>
+        </div>
+        <div class="mi">React<div class="mdot"></div>
+        </div>
+        <div class="mi">Node.js<div class="mdot"></div>
+        </div>
+        <div class="mi">Swift<div class="mdot"></div>
+        </div>
+        <div class="mi">Shopify<div class="mdot"></div>
+        </div>
+        <div class="mi">Webflow<div class="mdot"></div>
+        </div>
+        <div class="mi">Figma<div class="mdot"></div>
+        </div>
+        <div class="mi">Security & Privacy<div class="mdot"></div>
+        </div>
+        <div class="mi">Framer<div class="mdot"></div>
+        </div>
+        <div class="mi">React<div class="mdot"></div>
+        </div>
+        <div class="mi">Node.js<div class="mdot"></div>
+        </div>
+        <div class="mi">Swift<div class="mdot"></div>
+        </div>
+        <div class="mi">Shopify<div class="mdot"></div>
+        </div>
+        <div class="mi">Webflow<div class="mdot"></div>
+        </div>
+        <div class="mi">Figma<div class="mdot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="svc-wrap section" id="services">
+    <div class="wrap">
+      <div class="svc-hd">
+        <div class="eyebrow reveal d0">What I do</div>
+        <h2 class="sec-h reveal d1">End-to-end, <em>for real.</em></h2>
+        <p class="sec-sub reveal d2">Not a one-trick freelancer. I cover the full stack — so you don't need five vendors
+          for one project.</p>
+      </div>
+      <div class="svc-grid reveal d2">
+        <div class="svc">
+          <div class="svc-n">01</div><span class="svc-icon">✦</span>
+          <div class="svc-title">Branding & Identity</div>
+          <div class="svc-body">Logos, visual systems, and guidelines built to last — not just look good in a mockup.
+          </div>
+          <div class="chips"><span class="chip">Logo</span><span class="chip">Guidelines</span><span
+              class="chip">Collateral</span></div>
+        </div>
+        <div class="svc">
+          <div class="svc-n">02</div><span class="svc-icon">◈</span>
+          <div class="svc-title">Product Design & UX</div>
+          <div class="svc-body">Research-driven interfaces from wireframes to pixel-perfect prototypes tested with real
+            users.</div>
+          <div class="chips"><span class="chip">Figma</span><span class="chip">UX Research</span><span
+              class="chip">Prototyping</span></div>
+        </div>
+        <div class="svc">
+          <div class="svc-n">03</div><span class="svc-icon">⬡</span>
+          <div class="svc-title">Web Development</div>
+          <div class="svc-body">Fast, conversion-focused sites with SEO built in from day one. Framer, React, or
+            Webflow.</div>
+          <div class="chips"><span class="chip">Framer</span><span class="chip">React</span><span
+              class="chip">SEO</span></div>
+        </div>
+        <div class="svc">
+          <div class="svc-n">04</div><span class="svc-icon">◎</span>
+          <div class="svc-title">Mobile Apps</div>
+          <div class="svc-body">iOS and Android from prototype to App Store — plus ongoing maintenance most freelancers
+            skip.</div>
+          <div class="chips"><span class="chip">iOS</span><span class="chip">Android</span><span
+              class="chip">Launch</span></div>
+        </div>
+        <div class="svc">
+          <div class="svc-n">05</div><span class="svc-icon">⬟</span>
+          <div class="svc-title">Security & Privacy</div>
+          <div class="svc-body">HIPAA-compliant strategy for healthcare-adjacent startups near the Mayo Clinic corridor.
+          </div>
+          <div class="chips"><span class="chip">HIPAA</span><span class="chip">Privacy</span><span
+              class="chip">Compliance</span></div>
+        </div>
+        <div class="svc">
+          <div class="svc-n">06</div><span class="svc-icon">◇</span>
+          <div class="svc-title">Digital Marketing</div>
+          <div class="svc-body">Local SEO and targeted ads that convert. Cut Old School Arcade's spend 65% while holding
+            reach.</div>
+          <div class="chips"><span class="chip">SEO</span><span class="chip">Google Ads</span><span
+              class="chip">Analytics</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-wrap section" id="work">
+    <div class="wrap">
+      <div class="work-hd">
+        <div class="eyebrow reveal d0">Selected work</div>
+        <h2 class="sec-h reveal d1">Projects <em>that shipped.</em></h2>
+        <p class="sec-sub reveal d2">Client work and personal projects — from membership software to open-source tools
+          used by half a million people.</p>
+      </div>
+      <div class="wgrid"><a href="old-school-arcade.html" class="wcard feat reveal d1" style="--cc:#30d158">
+          <div class="wcard-img"><img src="img/projects/arcade-responsive-mockup.jpg" alt="Old School Arcade Mockup">
+          </div>
+          <div>
+            <div class="wcard-top">
+              <div class="wcard-ico">🕹️</div><span class="wcard-arr">↗</span>
+            </div>
+            <div class="wcard-title">Old School Arcade</div>
+            <div class="wcard-body">Not just a website — I run this place. As GM I grew revenue +$55k (+22%) in under a
+              year, cut ad spend 65%, rebuilt the site from scratch, and navigated city planning to secure a liquor
+              license previously denied.</div>
+            <div class="wtags"><span class="wtag">GM & Ops</span><span class="wtag">Web Dev</span><span
+                class="wtag">Growth</span><span class="wtag">Ads</span></div>
+          </div>
+        </a>
+        <a href="science-geek-games.html" class="wcard reveal d2" style="--cc:#4f9eff">
+          <div class="wcard-img"><img src="img/projects/science-geek-mockup.jpg" alt="Science Geek Games Mockup"></div>
+          <div class="wcard-top">
+            <div class="wcard-ico">🧬</div><span class="wcard-arr">↗</span>
+          </div>
+          <div class="wcard-title">Science Geek Games</div>
+          <div class="wcard-body">Website launch with an interactive card game demo. Consulted on Amazon seller
+            compliance to significantly reduce fees.</div>
+          <div class="wtags"><span class="wtag">Web</span><span class="wtag">Strategy</span><span
+              class="wtag">SEO</span></div>
+        </a>
+        <a href="the-scoops-udder-place.html" class="wcard feat reveal d1" style="--cc:#ff4081">
+          <div class="wcard-bg" style="background-image:url('img/scoops-mockup.png')"></div>
+          <div class="wcard-top">
+            <div class="wcard-ico">🍦</div><span class="wcard-arr">↗</span>
+          </div>
+          <div class="wcard-title">The Scoop's Udder Place</div>
+          <div class="wcard-body">A playful and premium digital storefront for a local ice cream institution. Built with
+            high-velocity animations and a "Build Your Own" interactive menu system.</div>
+          <div class="wtags"><span class="wtag">UI/UX</span><span class="wtag">Motion Design</span><span
+              class="wtag">Branding</span></div>
+        </a>
+        <a href="valia.html" class="wcard reveal d1" style="--cc:#7c4dff">
+          <div class="wcard-img"><img src="img/valia-1.png" alt="Valia Mockup"></div>
+          <div class="wcard-top">
+            <div class="wcard-ico">💎</div><span class="wcard-arr">↗</span>
+          </div>
+          <div class="wcard-title">Valia</div>
+          <div class="wcard-body">AI-powered domain accelerator. Uses human-grade content and advanced SEO to age and
+            validate domains, helping investors sell assets faster.</div>
+          <div class="wtags"><span class="wtag">AI Content</span><span class="wtag">SEO</span><span
+              class="wtag">SaaS</span></div>
+        </a>
+        <a href="code-ninjas.html" class="wcard reveal d1" style="--cc:#ffd60a">
+          <div class="wcard-img"><img src="img/projects/code-ninjas-mockup.png" alt="Code Ninjas Mockup"></div>
+          <div class="wcard-top">
+            <div class="wcard-ico">🥷</div><span class="wcard-arr">↗</span>
+          </div>
+          <div class="wcard-title">Code Ninjas Rochester</div>
+          <div class="wcard-body">NinjaAssets — a custom admin tool that turned hours of Excel work into a 5-minute
+            task. Replaces spreadsheets with a fast app.</div>
+          <div class="wtags"><span class="wtag">Custom Software</span><span class="wtag">Node.js</span><span
+              class="wtag">UX</span></div>
+        </a>
+        <a href="the-garden.html" class="wcard feat reveal d3" style="--cc:#ff6b35">
+          <div class="wcard-img"><img src="img/projects/garden-mockup-laptop.jpg" alt="The Garden Mockup"></div>
+          <div>
+            <div class="wcard-top">
+              <div class="wcard-ico">🛹</div><span class="wcard-arr">↗</span>
+            </div>
+            <div class="wcard-title">The Garden Skate Office</div>
+            <div class="wcard-body">Built the site and a membership program now driving 5–10% of monthly revenue. I led
+              the full website redesign and developed the custom software backend for member management.</div>
+            <div class="wtags"><span class="wtag">Web Dev</span><span class="wtag">Software</span><span
+                class="wtag">Revenue</span></div>
+          </div>
+        </a>
+        <a href="discsender.html" class="wcard reveal d1" style="--cc:#5865F2">
+          <div class="wcard-top">
+            <div class="wcard-ico">📨</div><span class="wcard-arr">↗</span>
+          </div>
+          <div class="wcard-title">DiscSender</div>
+          <div class="wcard-body">Simple webhooks made powerful. I led the product from a basic web form to a native
+            Flutter app with custom embeds and saved configurations.</div>
+          <div class="wtags"><span class="wtag">Flutter</span><span class="wtag">Dart</span><span
+              class="wtag">Product</span></div>
+        </a>
+        <a href="advice-bot.html" class="wcard reveal d2" style="--cc:#5865F2">
+          <div class="wcard-top">
+            <div class="wcard-ico">🤖</div><span class="wcard-arr">↗</span>
+          </div>
+          <div class="wcard-title">Advice Bot</div>
+          <div class="wcard-body">Discord-verified community tool — 10,000 servers and 20,000 monthly users. Point-based
+            ad system for organic discovery.</div>
+          <div class="wtags"><span class="wtag">Product</span><span class="wtag">Discord</span><span
+              class="wtag">Scale</span></div>
+        </a>
+        <a href="db-script.html" class="wcard reveal d1" style="--cc:#8b6fff">
+          <div class="wcard-top">
+            <div class="wcard-ico">📦</div><span class="wcard-arr">↗</span>
+          </div>
+          <div class="wcard-title">db-script (npm)</div>
+          <div class="wcard-body">Open-source Discord framework — 150k+ npm downloads and a 2,000-developer community. I
+            led PM, marketing, and core dev for 2 years.</div>
+          <div class="wtags"><span class="wtag">Open Source</span><span class="wtag">Node.js</span><span
+              class="wtag">DevTools</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="archive-wrap section">
+    <div class="wrap">
+      <div class="arch-hd">
+        <div>
+          <div class="eyebrow reveal">The Archive</div>
+          <h2 class="sec-h reveal">Small Work, <em>Big Impact.</em></h2>
+        </div>
+      </div>
+      <div class="arch-grid">
+        <!-- On Time Services -->
+        <div class="arch-card reveal" data-title="On Time Services"
+          data-desc="Built a high-trust digital identity for a local Rochester service firm. Although the project was completed before the business sadly closed, it stands as a prime example of high-conversion design for the service industry."
+          data-img="img/ontime-mockup.png" data-link="">
+          <div class="arch-icon"><img src="img/ontime-logo.png" alt="OTS Logo"></div>
+          <div class="arch-content">
+            <div class="arch-title">On Time Services</div>
+            <p class="arch-sub">High-trust brand identity and lead-gen site for local service professionals.</p>
+            <span class="arch-tag">Brand · Web Design</span>
+          </div>
+        </div>
+
+        <!-- Docupin -->
+        <div class="arch-card reveal" 
+             data-title="Docupin" 
+             data-desc="Brand exploration for an AI-first knowledge pinning platform. Focused on 'organizing chaos' by centralizing documentation with a smart retrieval system called Genie AI." 
+             data-img="img/docupin-mockup.png" 
+             data-link="">
+          <div class="arch-icon">📌</div>
+          <div class="arch-content">
+            <div class="arch-title">Docupin</div>
+            <p class="arch-sub">A high-fidelity concept for organized knowledge and AI productivity.</p>
+            <span class="arch-tag">AI · Brand Exploration</span>
+          </div>
+        </div>
+
+        <!-- Tarku AI -->
+        <div class="arch-card reveal" 
+             data-title="Tarku AI" 
+             data-desc="One of the earliest explorations into LLM integration, Tarku AI allowed small businesses to generate high-converting Facebook ads and blog content through a simplified, per-use interface." 
+             data-img="img/tarku-ai-1.png" 
+             data-link="">
+          <div class="arch-icon">🤖</div>
+          <div class="arch-content">
+            <div class="arch-title">Tarku AI</div>
+            <p class="arch-sub">Custom AI-content generation engine built for localized business marketing.</p>
+            <span class="arch-tag">AI Wrapper · SaaS</span>
+          </div>
+        </div>
+
+        <!-- Eastwood Caddyshack -->
+        <div class="arch-card reveal" data-title="Eastwood Caddyshack"
+          data-desc="Modernized the digital presence for a Rochester favorite. I led the integration of their first delivery system that synced directly with their kitchen software, now driving 15% of annual revenue."
+          data-img="img/projects/science-geek-mockup.jpg" data-link="eastwood-caddyshack.html">
+          <div class="arch-icon">🍕</div>
+          <div class="arch-content">
+            <div class="arch-title">Eastwood Caddyshack</div>
+            <p class="arch-sub">Growth strategy and delivery integration for a Rochester institution.</p>
+            <span class="arch-tag">Integration · Growth</span>
+          </div>
+        </div>
+
+        <!-- Beginning Experience -->
+        <div class="arch-card reveal" data-title="Beginning Experience"
+          data-desc="Redesigned the digital home for a Southeast MN grief support network. Streamlined their complex event RSVP process and aligned the local chapter with national branding."
+          data-img="img/projects/science-geek-mockup.jpg" data-link="beginning-experience.html">
+          <div class="arch-icon">🤝</div>
+          <div class="arch-content">
+            <div class="arch-title">Beginning Experience</div>
+            <p class="arch-sub">Simplified event registration and branding for a non-profit network.</p>
+            <span class="arch-tag">WordPress · Non-profit</span>
+          </div>
+        </div>
+
+        <!-- Teach Your Kid To Code -->
+        <div class="arch-card reveal" data-title="Teach Your Kid To Code"
+          data-desc="A community-first project providing free resources, tutorials, and games to encourage the next generation of builders in Rochester and beyond."
+          data-img="img/teach-kids-og.jpg" data-link="teach-kids-code.html">
+          <div class="arch-icon">🎓</div>
+          <div class="arch-content">
+            <div class="arch-title">Teach Kids To Code</div>
+            <p class="arch-sub">A free community resource to help the next generation learn to build.</p>
+            <span class="arch-tag">Education · Freebie</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
 
+  <div class="about-wrap section" id="about">
+    <div class="wrap">
+      <div class="eyebrow reveal d0">About</div>
+      <h2 class="sec-h reveal d1">More than <em>a freelancer.</em></h2>
+      <div class="bento">
+        <div class="bc bc-selfie reveal d1"><img src="img/me.jpg" alt="Jeremy Pringle"></div>
 
-<div class="mwrap" aria-hidden="true">
-  <div class="mrow">
-    <div class="mtrack">
-      <div class="mi">Branding<div class="mdot"></div></div><div class="mi">Web Development<div class="mdot"></div></div><div class="mi">Product Design<div class="mdot"></div></div><div class="mi">iOS & Android<div class="mdot"></div></div><div class="mi">Open Source<div class="mdot"></div></div><div class="mi">Community Building<div class="mdot"></div></div><div class="mi">Operations & GM<div class="mdot"></div></div><div class="mi"><span class="tarku-brand">Tarku Digital</span><div class="mdot"></div></div>
-      <div class="mi">Branding<div class="mdot"></div></div><div class="mi">Web Development<div class="mdot"></div></div><div class="mi">Product Design<div class="mdot"></div></div><div class="mi">iOS & Android<div class="mdot"></div></div><div class="mi">Open Source<div class="mdot"></div></div><div class="mi">Community Building<div class="mdot"></div></div><div class="mi">Operations & GM<div class="mdot"></div></div><div class="mi"><span class="tarku-brand">Tarku Digital</span><div class="mdot"></div></div>
-      <div class="mi">Branding<div class="mdot"></div></div><div class="mi">Web Development<div class="mdot"></div></div><div class="mi">Product Design<div class="mdot"></div></div><div class="mi">iOS & Android<div class="mdot"></div></div><div class="mi">Open Source<div class="mdot"></div></div><div class="mi">Community Building<div class="mdot"></div></div><div class="mi">Operations & GM<div class="mdot"></div></div><div class="mi"><span class="tarku-brand">Tarku Digital</span><div class="mdot"></div></div>
-    </div>
-  </div>
-  <div class="mrow">
-    <div class="mtrack">
-      <div class="mi">Security & Privacy<div class="mdot"></div></div><div class="mi">Framer<div class="mdot"></div></div><div class="mi">React<div class="mdot"></div></div><div class="mi">Node.js<div class="mdot"></div></div><div class="mi">Swift<div class="mdot"></div></div><div class="mi">Shopify<div class="mdot"></div></div><div class="mi">Webflow<div class="mdot"></div></div><div class="mi">Figma<div class="mdot"></div></div>
-      <div class="mi">Security & Privacy<div class="mdot"></div></div><div class="mi">Framer<div class="mdot"></div></div><div class="mi">React<div class="mdot"></div></div><div class="mi">Node.js<div class="mdot"></div></div><div class="mi">Swift<div class="mdot"></div></div><div class="mi">Shopify<div class="mdot"></div></div><div class="mi">Webflow<div class="mdot"></div></div><div class="mi">Figma<div class="mdot"></div></div>
-      <div class="mi">Security & Privacy<div class="mdot"></div></div><div class="mi">Framer<div class="mdot"></div></div><div class="mi">React<div class="mdot"></div></div><div class="mi">Node.js<div class="mdot"></div></div><div class="mi">Swift<div class="mdot"></div></div><div class="mi">Shopify<div class="mdot"></div></div><div class="mi">Webflow<div class="mdot"></div></div><div class="mi">Figma<div class="mdot"></div></div>
-    </div>
-  </div>
-</div>
-
-<div class="svc-wrap section" id="services">
-  <div class="wrap">
-    <div class="svc-hd"><div class="eyebrow reveal d0">What I do</div><h2 class="sec-h reveal d1">End-to-end, <em>for real.</em></h2><p class="sec-sub reveal d2">Not a one-trick freelancer. I cover the full stack — so you don't need five vendors for one project.</p></div>
-    <div class="svc-grid reveal d2">
-      <div class="svc"><div class="svc-n">01</div><span class="svc-icon">✦</span><div class="svc-title">Branding & Identity</div><div class="svc-body">Logos, visual systems, and guidelines built to last — not just look good in a mockup.</div><div class="chips"><span class="chip">Logo</span><span class="chip">Guidelines</span><span class="chip">Collateral</span></div></div>
-      <div class="svc"><div class="svc-n">02</div><span class="svc-icon">◈</span><div class="svc-title">Product Design & UX</div><div class="svc-body">Research-driven interfaces from wireframes to pixel-perfect prototypes tested with real users.</div><div class="chips"><span class="chip">Figma</span><span class="chip">UX Research</span><span class="chip">Prototyping</span></div></div>
-      <div class="svc"><div class="svc-n">03</div><span class="svc-icon">⬡</span><div class="svc-title">Web Development</div><div class="svc-body">Fast, conversion-focused sites with SEO built in from day one. Framer, React, or Webflow.</div><div class="chips"><span class="chip">Framer</span><span class="chip">React</span><span class="chip">SEO</span></div></div>
-      <div class="svc"><div class="svc-n">04</div><span class="svc-icon">◎</span><div class="svc-title">Mobile Apps</div><div class="svc-body">iOS and Android from prototype to App Store — plus ongoing maintenance most freelancers skip.</div><div class="chips"><span class="chip">iOS</span><span class="chip">Android</span><span class="chip">Launch</span></div></div>
-      <div class="svc"><div class="svc-n">05</div><span class="svc-icon">⬟</span><div class="svc-title">Security & Privacy</div><div class="svc-body">HIPAA-compliant strategy for healthcare-adjacent startups near the Mayo Clinic corridor.</div><div class="chips"><span class="chip">HIPAA</span><span class="chip">Privacy</span><span class="chip">Compliance</span></div></div>
-      <div class="svc"><div class="svc-n">06</div><span class="svc-icon">◇</span><div class="svc-title">Digital Marketing</div><div class="svc-body">Local SEO and targeted ads that convert. Cut Old School Arcade's spend 65% while holding reach.</div><div class="chips"><span class="chip">SEO</span><span class="chip">Google Ads</span><span class="chip">Analytics</span></div></div>
-    </div>
-  </div>
-</div>
-
-<div class="work-wrap section" id="work">
-  <div class="wrap">
-    <div class="work-hd"><div class="eyebrow reveal d0">Selected work</div><h2 class="sec-h reveal d1">Projects <em>that shipped.</em></h2><p class="sec-sub reveal d2">Client work and personal projects — from membership software to open-source tools used by half a million people.</p></div>
-    <div class="wgrid"><a href="old-school-arcade.html" class="wcard feat reveal d1" style="--cc:#30d158">
-        <div class="wcard-img"><img src="img/projects/arcade-responsive-mockup.jpg" alt="Old School Arcade Mockup"></div>
-        <div><div class="wcard-top"><div class="wcard-ico">🕹️</div><span class="wcard-arr">↗</span></div><div class="wcard-title">Old School Arcade</div><div class="wcard-body">Not just a website — I run this place. As GM I grew revenue +$55k (+22%) in under a year, cut ad spend 65%, rebuilt the site from scratch, and navigated city planning to secure a liquor license previously denied.</div><div class="wtags"><span class="wtag">GM & Ops</span><span class="wtag">Web Dev</span><span class="wtag">Growth</span><span class="wtag">Ads</span></div></div>
-      </a>
-<a href="science-geek-games.html" class="wcard reveal d2" style="--cc:#4f9eff">
-        <div class="wcard-img"><img src="img/projects/science-geek-mockup.jpg" alt="Science Geek Games Mockup"></div>
-        <div class="wcard-top"><div class="wcard-ico">🧬</div><span class="wcard-arr">↗</span></div><div class="wcard-title">Science Geek Games</div><div class="wcard-body">Website launch with an interactive card game demo. Consulted on Amazon seller compliance to significantly reduce fees.</div><div class="wtags"><span class="wtag">Web</span><span class="wtag">Strategy</span><span class="wtag">SEO</span></div>
-      </a>
-<a href="the-scoops-udder-place.html" class="wcard feat reveal d1" style="--cc:#ff4081"><div class="wcard-bg" style="background-image:url('img/scoops-mockup.png')"></div><div class="wcard-top"><div class="wcard-ico">🍦</div><span class="wcard-arr">↗</span></div><div class="wcard-title">The Scoop's Udder Place</div><div class="wcard-body">A playful and premium digital storefront for a local ice cream institution. Built with high-velocity animations and a "Build Your Own" interactive menu system.</div><div class="wtags"><span class="wtag">UI/UX</span><span class="wtag">Motion Design</span><span class="wtag">Branding</span></div></a>
-<a href="valia.html" class="wcard reveal d1" style="--cc:#7c4dff">
-        <div class="wcard-img"><img src="img/valia-1.png" alt="Valia Mockup"></div>
-        <div class="wcard-top"><div class="wcard-ico">💎</div><span class="wcard-arr">↗</span></div><div class="wcard-title">Valia</div><div class="wcard-body">AI-powered domain accelerator. Uses human-grade content and advanced SEO to age and validate domains, helping investors sell assets faster.</div><div class="wtags"><span class="wtag">AI Content</span><span class="wtag">SEO</span><span class="wtag">SaaS</span></div>
-      </a>
-<a href="code-ninjas.html" class="wcard reveal d1" style="--cc:#ffd60a">
-        <div class="wcard-img"><img src="img/projects/code-ninjas-mockup.png" alt="Code Ninjas Mockup"></div>
-        <div class="wcard-top"><div class="wcard-ico">🥷</div><span class="wcard-arr">↗</span></div><div class="wcard-title">Code Ninjas Rochester</div><div class="wcard-body">NinjaAssets — a custom admin tool that turned hours of Excel work into a 5-minute task. Replaces spreadsheets with a fast app.</div><div class="wtags"><span class="wtag">Custom Software</span><span class="wtag">Node.js</span><span class="wtag">UX</span></div>
-      </a>
-<a href="the-garden.html" class="wcard feat reveal d3" style="--cc:#ff6b35">
-        <div class="wcard-img"><img src="img/projects/garden-mockup-laptop.jpg" alt="The Garden Mockup"></div>
-        <div>
-          <div class="wcard-top"><div class="wcard-ico">🛹</div><span class="wcard-arr">↗</span></div>
-          <div class="wcard-title">The Garden Skate Office</div>
-          <div class="wcard-body">Built the site and a membership program now driving 5–10% of monthly revenue. I led the full website redesign and developed the custom software backend for member management.</div>
-          <div class="wtags"><span class="wtag">Web Dev</span><span class="wtag">Software</span><span class="wtag">Revenue</span></div>
+        <div class="bc bc-bio reveal d1">
+          <div class="bc-bio-hd">
+            <div class="bc-lbl"><i class="fas fa-user-circle"></i> Who I am</div>
+            <div class="bc-status">Live in Rochester, MN</div>
+          </div>
+          <div class="bc-body">
+            <strong>Rochester-born builder</strong> deeply embedded in the tech and local business intersection of the
+            Mayo Clinic corridor. From shipping open-source software used by over <strong>150,000 developers</strong> to
+            growing digital communities from scratch.
+            <br><br>Currently balancing operations as <strong>GM of a 4-location venue</strong> while finishing my
+            degree at Winona State, I bring strategy and technical execution to every project.
+          </div>
         </div>
-      </a>
-<a href="discsender.html" class="wcard reveal d1" style="--cc:#5865F2"><div class="wcard-top"><div class="wcard-ico">📨</div><span class="wcard-arr">↗</span></div><div class="wcard-title">DiscSender</div><div class="wcard-body">Simple webhooks made powerful. I led the product from a basic web form to a native Flutter app with custom embeds and saved configurations.</div><div class="wtags"><span class="wtag">Flutter</span><span class="wtag">Dart</span><span class="wtag">Product</span></div></a>
-<a href="advice-bot.html" class="wcard reveal d2" style="--cc:#5865F2"><div class="wcard-top"><div class="wcard-ico">🤖</div><span class="wcard-arr">↗</span></div><div class="wcard-title">Advice Bot</div><div class="wcard-body">Discord-verified community tool — 10,000 servers and 20,000 monthly users. Point-based ad system for organic discovery.</div><div class="wtags"><span class="wtag">Product</span><span class="wtag">Discord</span><span class="wtag">Scale</span></div></a>
-<a href="db-script.html" class="wcard reveal d1" style="--cc:#8b6fff"><div class="wcard-top"><div class="wcard-ico">📦</div><span class="wcard-arr">↗</span></div><div class="wcard-title">db-script (npm)</div><div class="wcard-body">Open-source Discord framework — 150k+ npm downloads and a 2,000-developer community. I led PM, marketing, and core dev for 2 years.</div><div class="wtags"><span class="wtag">Open Source</span><span class="wtag">Node.js</span><span class="wtag">DevTools</span></div></a></div>
-  </div>
-</div>
 
-<div class="archive-wrap section">
-  <div class="wrap">
-    <div class="arch-hd">
-      <div>
-        <div class="eyebrow reveal">The Archive</div>
-        <h2 class="sec-h reveal">Small Work, <em>Big Impact.</em></h2>
-      </div>
-    </div>
-    <div class="arch-grid">
-      <!-- On Time Services -->
-      <div class="arch-card reveal" 
-           data-title="On Time Services" 
-           data-desc="Built a high-trust digital identity for a local Rochester service firm. Although the project was completed before the business sadly closed, it stands as a prime example of high-conversion design for the service industry." 
-           data-img="img/ontime-mockup.png" 
-           data-link="">
-        <div class="arch-icon"><img src="img/ontime-logo.png" alt="OTS Logo"></div>
-        <div class="arch-content">
-          <div class="arch-title">On Time Services</div>
-          <p class="arch-sub">High-trust brand identity and lead-gen site for local service professionals.</p>
-          <span class="arch-tag">Brand · Web Design</span>
+        <div class="bc bc-social reveal d2">
+          <a href="https://github.com/itshoozi" class="soc-link soc-gh" target="_blank" title="GitHub"><i
+              class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/jeremy-pringle-b69921238" class="soc-link soc-li" target="_blank"
+            title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://x.com/itshoozi" class="soc-link soc-x" target="_blank" title="X (Twitter)"><i
+              class="fab fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/itshoozi" class="soc-link soc-ig" target="_blank" title="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://open.spotify.com/artist/4PAznOu8fJAf7gd07lz9BP" class="soc-link soc-sp" target="_blank"
+            title="Spotify"><i class="fab fa-spotify"></i></a>
+          <a href="https://music.apple.com/us/artist/jeremy-pringle/1513836223" class="soc-link soc-am" target="_blank"
+            title="Apple Music"><i class="fab fa-itunes-note"></i></a>
         </div>
-      </div>
 
-      <!-- Eastwood Caddyshack -->
-      <div class="arch-card reveal" 
-           data-title="Eastwood Caddyshack" 
-           data-desc="Modernized the digital presence for a Rochester favorite. I led the integration of their first delivery system that synced directly with their kitchen software, now driving 15% of annual revenue." 
-           data-img="img/projects/science-geek-mockup.jpg" 
-           data-link="eastwood-caddyshack.html">
-        <div class="arch-icon">🍕</div>
-        <div class="arch-content">
-          <div class="arch-title">Eastwood Caddyshack</div>
-          <p class="arch-sub">Growth strategy and delivery integration for a Rochester institution.</p>
-          <span class="arch-tag">Integration · Growth</span>
+        <div class="bc bc-rev reveal d2">
+          <div class="bc-lbl"><i class="fas fa-chart-line"></i> Revenue grown</div>
+          <div>
+            <div class="bc-num">+$55k</div>
+            <div class="bc-sub">Scale at Old School Arcade driven by data-backed growth strategies.</div>
+          </div>
         </div>
-      </div>
 
-      <!-- Beginning Experience -->
-      <div class="arch-card reveal" 
-           data-title="Beginning Experience" 
-           data-desc="Redesigned the digital home for a Southeast MN grief support network. Streamlined their complex event RSVP process and aligned the local chapter with national branding." 
-           data-img="img/projects/science-geek-mockup.jpg" 
-           data-link="beginning-experience.html">
-        <div class="arch-icon">🤝</div>
-        <div class="arch-content">
-          <div class="arch-title">Beginning Experience</div>
-          <p class="arch-sub">Simplified event registration and branding for a non-profit network.</p>
-          <span class="arch-tag">WordPress · Non-profit</span>
+        <div class="bc bc-npm reveal d3">
+          <div class="bc-lbl"><i class="fas fa-box-open"></i> npm · Open Source</div>
+          <div>
+            <div class="bc-num">150k+</div>
+            <div class="bc-sub">Global downloads on the db-script framework before acquisition.</div>
+          </div>
         </div>
-      </div>
 
-      <!-- Teach Your Kid To Code -->
-      <div class="arch-card reveal" 
-           data-title="Teach Your Kid To Code" 
-           data-desc="A community-first project providing free resources, tutorials, and games to encourage the next generation of builders in Rochester and beyond." 
-           data-img="img/teach-kids-og.jpg" 
-           data-link="teach-kids-code.html">
-        <div class="arch-icon">🎓</div>
-        <div class="arch-content">
-          <div class="arch-title">Teach Kids To Code</div>
-          <p class="arch-sub">A free community resource to help the next generation learn to build.</p>
-          <span class="arch-tag">Education · Freebie</span>
+        <div class="bc bc-yt reveal d1">
+          <div class="bc-lbl" style="color:white"><i class="fab fa-youtube"></i> YouTube</div>
+          <div>
+            <div class="bc-num" style="color:white">30k</div>
+            <div class="bc-sub" style="color:rgba(255,255,255,0.85)">Digital education subscribers · 1,000,000+ views
+              across tutorials.</div>
+          </div>
         </div>
-      </div>
 
-      <!-- Docupin -->
-      <div class="arch-card reveal" 
-           data-title="Docupin" 
-           data-desc="Brand exploration for an AI-first knowledge pinning platform. Focused on 'organizing chaos' by centralizing documentation with a smart retrieval system called Genie AI." 
-           data-img="img/docupin-mockup.png" 
-           data-link="">
-        <div class="arch-icon">📌</div>
-        <div class="arch-content">
-          <div class="arch-title">Docupin</div>
-          <p class="arch-sub">A high-fidelity concept for organized knowledge and AI productivity.</p>
-          <span class="arch-tag">AI · Brand Exploration</span>
+        <div class="bc bc-disc reveal d2">
+          <div class="bc-lbl" style="color:white"><i class="fab fa-discord"></i> Community</div>
+          <div>
+            <div class="bc-num" style="color:white">25k+</div>
+            <div class="bc-sub" style="color:white; font-weight: 500;">Managed infrastructure of enterprise servers.
+            </div>
+          </div>
+        </div>
+
+        <div class="bc bc-sk reveal d3">
+          <div class="bc-lbl"><i class="fas fa-layer-group"></i> Daily stack</div>
+          <div class="spills">
+            <span class="sp">Figma</span><span class="sp">Framer</span><span class="sp">Claude AI</span><span
+              class="sp">React</span><span class="sp">Node.js</span><span class="sp">Canva</span><span
+              class="sp">Square</span><span class="sp">Shopify</span><span class="sp">Swift</span><span
+              class="sp">Webflow</span>
+          </div>
+        </div>
+
+        <div class="bc bc-edu reveal d3">
+          <div class="bc-lbl"><i class="fas fa-graduation-cap"></i> Education</div>
+          <div class="bc-body">
+            <strong>Winona State University</strong><br>
+            <span style="opacity:0.7">B.S. HRM · (Current)</span><br>
+            <div style="margin-top:12px; font-weight:600; color:var(--text)">A.A.S. Business</div>
+            <span style="opacity:0.7">Rochester Community & Technical College</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="about-wrap section" id="about">
-  <div class="wrap">
-    <div class="eyebrow reveal d0">About</div>
-    <h2 class="sec-h reveal d1">More than <em>a freelancer.</em></h2>
-    <div class="bento">
-      <div class="bc bc-selfie reveal d1"><img src="img/me.jpg" alt="Jeremy Pringle"></div>
-      
-      <div class="bc bc-bio reveal d1">
-        <div class="bc-bio-hd">
-          <div class="bc-lbl"><i class="fas fa-user-circle"></i> Who I am</div>
-          <div class="bc-status">Live in Rochester, MN</div>
-        </div>
-        <div class="bc-body">
-          <strong>Rochester-born builder</strong> deeply embedded in the tech and local business intersection of the Mayo Clinic corridor. From shipping open-source software used by over <strong>150,000 developers</strong> to growing digital communities from scratch.
-          <br><br>Currently balancing operations as <strong>GM of a 4-location venue</strong> while finishing my degree at Winona State, I bring strategy and technical execution to every project.
-        </div>
+  <div class="cta-wrap section" id="contact">
+    <div class="cta-orb co1"></div>
+    <div class="cta-orb co2"></div>
+    <div class="cta-inner">
+      <div class="cta-ey reveal d0">Get in touch</div>
+      <h2 class="cta-h reveal d1">Got an idea?<br><em>Let's build it.</em></h2>
+      <p class="cta-sub reveal d2">From research to ideation to shipped product.<br>I'm ready for all of it.</p>
+      <div class="cta-acts reveal d3">
+        <a href="mailto:hey@jeremypringle.com" class="nav-cta btn-p openMessageBtn">Send a message <span
+            class="arr">→</span></a>
+        <button class="btn-g openBookingBtn">Book a Call</button>
       </div>
+    </div>
+  </div>
 
-      <div class="bc bc-social reveal d2">
-        <a href="https://github.com/itshoozi" class="soc-link soc-gh" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/jeremy-pringle-b69921238" class="soc-link soc-li" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://x.com/itshoozi" class="soc-link soc-x" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.instagram.com/itshoozi" class="soc-link soc-ig" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://open.spotify.com/artist/4PAznOu8fJAf7gd07lz9BP" class="soc-link soc-sp" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
-        <a href="https://music.apple.com/us/artist/jeremy-pringle/1513836223" class="soc-link soc-am" target="_blank" title="Apple Music"><i class="fab fa-itunes-note"></i></a>
-      </div>
+  <footer>
+    <div class="fc">© 2026 Jeremy Pringle · <span class="tarku-brand">Tarku Digital</span> · Rochester, MN · <a
+        href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none"
+        class="nav-cta inline">hey@jeremypringle.com</a></div>
+    <div class="fl">
+      <a href="mailto:hey@jeremypringle.com" class="nav-cta inline openMessageBtn">Hire me</a>
+      <a href="teach-kids-code.html">Teach Kids</a>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
 
-      <div class="bc bc-rev reveal d2">
-        <div class="bc-lbl"><i class="fas fa-chart-line"></i> Revenue grown</div>
-        <div>
-          <div class="bc-num">+$55k</div>
-          <div class="bc-sub">Scale at Old School Arcade driven by data-backed growth strategies.</div>
-        </div>
-      </div>
-
-      <div class="bc bc-npm reveal d3">
-        <div class="bc-lbl"><i class="fas fa-box-open"></i> npm · Open Source</div>
-        <div>
-          <div class="bc-num">150k+</div>
-          <div class="bc-sub">Global downloads on the db-script framework before acquisition.</div>
-        </div>
-      </div>
-
-      <div class="bc bc-yt reveal d1">
-        <div class="bc-lbl" style="color:white"><i class="fab fa-youtube"></i> YouTube</div>
-        <div>
-          <div class="bc-num" style="color:white">30k</div>
-          <div class="bc-sub" style="color:rgba(255,255,255,0.85)">Digital education subscribers · 1,000,000+ views across tutorials.</div>
-        </div>
-      </div>
-
-      <div class="bc bc-disc reveal d2">
-        <div class="bc-lbl" style="color:white"><i class="fab fa-discord"></i> Community</div>
-        <div>
-          <div class="bc-num" style="color:white">25k+</div>
-          <div class="bc-sub" style="color:white; font-weight: 500;">Managed infrastructure of enterprise servers.</div>
-        </div>
-      </div>
-
-      <div class="bc bc-sk reveal d3">
-        <div class="bc-lbl"><i class="fas fa-layer-group"></i> Daily stack</div>
-        <div class="spills">
-          <span class="sp">Figma</span><span class="sp">Framer</span><span class="sp">Claude AI</span><span class="sp">React</span><span class="sp">Node.js</span><span class="sp">Canva</span><span class="sp">Square</span><span class="sp">Shopify</span><span class="sp">Swift</span><span class="sp">Webflow</span>
-        </div>
-      </div>
-
-      <div class="bc bc-edu reveal d3">
-        <div class="bc-lbl"><i class="fas fa-graduation-cap"></i> Education</div>
-        <div class="bc-body">
-          <strong>Winona State University</strong><br>
-          <span style="opacity:0.7">B.S. HRM · (Current)</span><br>
-          <div style="margin-top:12px; font-weight:600; color:var(--text)">A.A.S. Business</div>
-          <span style="opacity:0.7">Rochester Community & Technical College</span>
+  <!-- Modals & Overlays -->
+  <div class="ql-overlay" id="qlOverlay">
+    <div class="ql-modal">
+      <div class="ql-close" id="qlClose"><i class="fas fa-times"></i></div>
+      <div class="ql-img"><img src="" id="qlImg" alt="Project Preview"></div>
+      <div class="ql-body">
+        <h2 class="ql-title" id="qlTitle">Project Title</h2>
+        <p class="ql-desc" id="qlDesc">Project description goes here...</p>
+        <div class="ql-btns">
+          <a href="" class="ql-btn ql-btn-p" id="qlLink">Read Case Study →</a>
+          <button class="ql-btn ql-btn-s" id="qlCloseBtn">Close</button>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="cta-wrap section" id="contact">
-  <div class="cta-orb co1"></div><div class="cta-orb co2"></div>
-  <div class="cta-inner">
-    <div class="cta-ey reveal d0">Get in touch</div>
-    <h2 class="cta-h reveal d1">Got an idea?<br><em>Let's build it.</em></h2>
-    <p class="cta-sub reveal d2">From research to ideation to shipped product.<br>I'm ready for all of it.</p>
-    <div class="cta-acts reveal d3">
-      <a href="mailto:hey@jeremypringle.com" class="nav-cta btn-p openMessageBtn">Send a message <span class="arr">→</span></a>
-      <button class="btn-g openBookingBtn">Book a Call</button>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <div class="fc">© 2026 Jeremy Pringle · <span class="tarku-brand">Tarku Digital</span> · Rochester, MN · <a href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none" class="nav-cta inline">hey@jeremypringle.com</a></div>
-  <div class="fl">
-    <a href="mailto:hey@jeremypringle.com" class="nav-cta inline openMessageBtn">Hire me</a>
-    <a href="teach-kids-code.html">Teach Kids</a>
-    <a href="index.html">Home</a>
-  </div>
-</footer>
-
-<!-- Modals & Overlays -->
-<div class="ql-overlay" id="qlOverlay">
-  <div class="ql-modal">
-    <div class="ql-close" id="qlClose"><i class="fas fa-times"></i></div>
-    <div class="ql-img"><img src="" id="qlImg" alt="Project Preview"></div>
-    <div class="ql-body">
-      <h2 class="ql-title" id="qlTitle">Project Title</h2>
-      <p class="ql-desc" id="qlDesc">Project description goes here...</p>
-      <div class="ql-btns">
-        <a href="" class="ql-btn ql-btn-p" id="qlLink">Read Case Study →</a>
-        <button class="ql-btn ql-btn-s" id="qlCloseBtn">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script src="js/app.js"></script>
-<script src="js/contact-modal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/contact-modal.js"></script>
 </body>
 
 </html>
