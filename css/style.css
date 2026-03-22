@@ -419,15 +419,81 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 .ql-btn-p:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,122,255,0.3)}
 .ql-btn-s{background:var(--surface2);color:var(--text)}
 .ql-btn-s:hover{background:var(--surface3)}
-.svc-n{font-family:var(--serif);font-size:.74rem;font-style:italic;color:var(--border3);margin-bottom:1.35rem}
-.svc-icon{font-size:1.45rem;display:block;margin-bottom:1rem;transition:transform .4s var(--spring);width:fit-content}
-.svc:hover .svc-icon{transform:scale(1.2) rotate(-10deg) translateY(-2px)}
-.svc:active .svc-icon{transform:scale(.95);transition-duration:.1s}
-.svc-title{font-family:var(--serif);font-size:1.08rem;color:var(--text);margin-bottom:.5rem}
-.svc-body{font-size:.81rem;color:var(--text2);line-height:1.72;font-weight:300}
-.chips{display:flex;flex-wrap:wrap;gap:.38rem;margin-top:1.15rem}
-.chip{font-size:.64rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:.26rem .68rem;border-radius:100px;background:rgba(0,0,0,.03);color:var(--text3);border:1px solid var(--border2);transition:background .2s,color .2s,border-color .2s}
-.svc:hover .chip{background:rgba(79,158,255,.07);color:var(--blue);border-color:rgba(79,158,255,.2)}
+/* SERVICES REDESIGN - BESPOKE FLOW */
+.svc-wrap { padding: 80px 0; border-top: 1px solid var(--border); }
+.svc-list { display: flex; flex-direction: column; }
+.svc-item { 
+  display: grid; 
+  grid-template-columns: 80px 1.2fr 1.8fr; 
+  padding: 48px 0; 
+  border-bottom: 1px solid var(--border);
+  transition: all 0.4s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+}
+.svc-item:hover { 
+  background: var(--surface2); 
+  padding-left: 40px; 
+  padding-right: 40px; 
+  border-radius: 20px;
+  border-bottom-color: transparent;
+}
+.svc-n { 
+  font-family: var(--serif); 
+  font-size: 1.2rem; 
+  font-style: italic; 
+  color: var(--text3); 
+  opacity: 0.5;
+}
+.svc-title { 
+  font-family: var(--serif); 
+  font-size: clamp(1.8rem, 4vw, 2.8rem); 
+  line-height: 1; 
+  color: var(--text); 
+  margin: 0;
+}
+.svc-body { 
+  font-size: 1.05rem; 
+  color: var(--text2); 
+  line-height: 1.6; 
+  max-width: 500px;
+}
+.svc-tools { 
+  display: flex; 
+  gap: 8px; 
+  margin-top: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s var(--ease-out);
+}
+.svc-item:hover .svc-tools { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.tool-tag { 
+  font-size: 0.65rem; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+  letter-spacing: 0.08em; 
+  padding: 6px 12px; 
+  background: var(--surface); 
+  border: 1px solid var(--border); 
+  border-radius: 100px;
+  color: var(--text3);
+}
+.svc-arr { 
+  position: absolute; 
+  right: 0; 
+  font-size: 1.5rem; 
+  opacity: 0; 
+  transition: all 0.3s;
+}
+.svc-item:hover .svc-arr { opacity: 1; right: 40px; }
+
+@media (max-width: 960px) {
+  .svc-item { grid-template-columns: 1fr; gap: 20px; padding: 40px 0; }
+  .svc-item:hover { padding-left: 20px; padding-right: 20px; }
+  .svc-n { display: none; }
+  .svc-arr { display: none; }
+}
 
 /* WORK */
 .work-wrap{border-top:1px solid var(--border)}
