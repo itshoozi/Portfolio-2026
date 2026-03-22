@@ -864,9 +864,24 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
 .btn-g{display:inline-flex;align-items:center;gap:.42rem;height:var(--tap);padding:0 1.3rem;border-radius:100px;background:transparent;border:1px solid var(--border2);color:var(--text2);font-family:var(--sans);font-size:.86rem;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s,transform .2s var(--spring-sm);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .btn-g:hover{border-color:var(--border3);color:var(--text)}
 .btn-g:active{transform:scale(.95);transition-duration:.08s}
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
-.reveal.in{opacity:1;transform:translateY(0)}
-.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
+.reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.985);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--spring-sm);
+  will-change: transform, opacity;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.d1 { transition-delay: 0.05s; }
+.d2 { transition-delay: 0.1s; }
+.d3 { transition-delay: 0.15s; }
+.d4 { transition-delay: 0.2s; }
+.d5 { transition-delay: 0.25s; }
+.d6 { transition-delay: 0.3s; }
+.d7 { transition-delay: 0.35s; }
+.d8 { transition-delay: 0.4s; }
 footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1.5rem clamp(1.25rem,5vw,3rem);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;background:var(--bg)}
 .fc{font-size:.72rem;color:var(--text3)}
 .fl{display:flex;gap:1.4rem}
