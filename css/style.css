@@ -27,7 +27,8 @@ html,body{
   --tarku-muted: #f8ece8;
 }
 
-body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;overscroll-behavior-y:none}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body.modal-open { overflow: hidden !important; }
 
 ::selection{background:var(--blue);color:#fff}
 ::-moz-selection{background:var(--blue);color:#fff}
@@ -457,8 +458,6 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 }
 .svc-item:hover { 
   background: var(--surface2); 
-  padding-left: 40px; 
-  padding-right: 40px; 
   border-radius: 20px;
   border-bottom-color: transparent;
 }
@@ -486,11 +485,9 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
   display: flex; 
   gap: 8px; 
   margin-top: 12px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s var(--ease-out);
+  opacity: 1;
+  transform: translateY(0);
 }
-.svc-item:hover .svc-tools { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
 .tool-tag { 
   font-size: 0.65rem; 
   font-weight: 700; 
@@ -503,13 +500,8 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
   color: var(--text3);
 }
 .svc-arr { 
-  position: absolute; 
-  right: 0; 
-  font-size: 1.5rem; 
-  opacity: 0; 
-  transition: all 0.3s;
+  display: none;
 }
-.svc-item:hover .svc-arr { opacity: 1; right: 40px; }
 
 @media (max-width: 960px) {
   .svc-item { grid-template-columns: 1fr; gap: 20px; padding: 40px 0; }

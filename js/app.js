@@ -102,25 +102,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Magnetic Premium Buttons & Elements
-  const magneticItems = document.querySelectorAll('.btn-p, .btn-g, .nav-cta, .svc-item, .bento .bc');
-  magneticItems.forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const h = rect.width / 2;
-      const v = rect.height / 2;
-      
-      // Increased sensitivity for footer and nav links
-      const damp = btn.classList.contains('nav-cta') ? 0.35 : 0.18;
-      
-      const x = (e.clientX - rect.left - h) * damp;
-      const y = (e.clientY - rect.top - v) * damp;
-      btn.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.035)`;
+  // Magnetic Premium Buttons & Elements (Mouse ONLY)
+  if (window.matchMedia('(pointer:fine)').matches) {
+    const magneticItems = document.querySelectorAll('.btn-p, .btn-g, .nav-cta, .svc-item, .bento .bc');
+    magneticItems.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const h = rect.width / 2;
+        const v = rect.height / 2;
+        
+        // Increased sensitivity for footer and nav links
+        const damp = btn.classList.contains('nav-cta') ? 0.35 : 0.18;
+        
+        const x = (e.clientX - rect.left - h) * damp;
+        const y = (e.clientY - rect.top - v) * damp;
+        btn.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.035)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate3d(0, 0, 0) scale(1)';
+      });
     });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'translate3d(0, 0, 0) scale(1)';
-    });
-  });
+  }
   // NAV SCROLL LOGIC
   const nav = document.querySelector('nav');
   const navProgress = document.querySelector('.nav-progress');
@@ -200,13 +202,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         qlOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
       });
     });
 
     const closeQL = () => {
       qlOverlay.classList.remove('active');
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
     };
 
     document.getElementById('qlClose')?.addEventListener('click', closeQL);

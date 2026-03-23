@@ -159,7 +159,7 @@ const initModalLogic = () => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
       
       if (btn.classList.contains('openMessageBtn')) {
         showStep('messageStep');
@@ -171,7 +171,7 @@ const initModalLogic = () => {
 
   close.onclick = () => {
     modal.classList.remove('active');
-    document.body.style.overflow = '';
+    document.body.classList.remove('modal-open');
   };
 
   // Step 1 -> 2 or 4
