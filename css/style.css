@@ -1087,4 +1087,13 @@ footer{
 }
 .modal-close:hover { color: var(--text); }
 
+/* YouTube Card Enhancements */
+.bc-yt .yt-content { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.bc-yt .yt-row { display: flex; gap: 24px; align-items: baseline; }
+.counter { display: inline-block; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 480px) {
+  .bc-yt .yt-row { flex-direction: column; gap: 4px; }
+}
+
 

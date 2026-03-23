@@ -152,6 +152,34 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll(); // Initial check
 
+  // COUNTER ANIMATION
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        let count = 0;
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16);
+        
+        const update = () => {
+          count += step;
+          if (count < target) {
+            el.innerText = Math.floor(count) + suffix;
+            requestAnimationFrame(update);
+          } else {
+            el.innerText = target + suffix;
+          }
+        };
+        update();
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+
   // ACTIVE SECTION OBSERVER
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
