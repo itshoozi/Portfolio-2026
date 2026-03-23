@@ -4,11 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(e => { 
       if (e.isIntersecting) { 
         e.target.classList.add('in'); 
-      } 
+      } else {
+        // Toggle out for a dynamic "living" feel if desired
+        // But let's check if the user wants it to RE-animate every time
+        e.target.classList.remove('in');
+      }
     });
   }, { 
-    threshold: 0.1, 
-    rootMargin: '0px 0px -10% 0px' 
+    threshold: 0.15, 
+    rootMargin: '0px 0px -15% 0px' 
   });
   
   document.querySelectorAll('.reveal').forEach(el => rio.observe(el));

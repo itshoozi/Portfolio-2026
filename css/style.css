@@ -407,6 +407,7 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
     gap: 16px;
     padding: 16px 0;
   }
+  .arch-card::after { display: none; }
 }
 
 /* Quick Look Modal */
@@ -876,8 +877,8 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1
 .btn-g:active{transform:scale(.95);transition-duration:.08s}
 .reveal {
   opacity: 0;
-  transform: translateY(30px) scale(0.985);
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--spring-sm);
+  transform: translateY(40px) scale(0.96);
+  transition: opacity 0.85s var(--ease-out), transform 0.85s var(--spring-sm);
   will-change: transform, opacity;
 }
 .reveal.in {
