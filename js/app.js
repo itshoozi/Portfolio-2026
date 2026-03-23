@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Magnetic Premium Buttons & Elements (Mouse ONLY)
   if (window.matchMedia('(pointer:fine)').matches) {
-    const magneticItems = document.querySelectorAll('.btn-p, .btn-g, .nav-cta, .svc-item, .bento .bc');
+    const magneticItems = document.querySelectorAll('.btn-p, .btn-g, .nav-cta, .bento .bc');
     magneticItems.forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();

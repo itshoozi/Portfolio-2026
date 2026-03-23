@@ -446,13 +446,22 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 .svc-list { display: flex; flex-direction: column; }
 .svc-item { 
   display: grid; 
-  grid-template-columns: 80px 1.2fr 1.8fr; 
-  padding: 48px 0; 
+  grid-template-columns: 60px 2fr 3fr; 
+  gap: 40px;
+  padding: 48px 24px; 
   border-bottom: 1px solid var(--border);
   transition: all 0.4s var(--ease-out);
   position: relative;
-  overflow: hidden;
-  align-items: center;
+  align-items: flex-start;
+}
+@media (max-width: 900px) {
+  .svc-item { grid-template-columns: 40px 1fr; gap: 24px; padding: 32px 16px; align-items: flex-start; }
+  .svc-body { grid-column: 2; margin-top: 8px; }
+}
+@media (max-width: 600px) {
+  .svc-item { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
+  .svc-body { grid-column: 1; }
+  .svc-n { display: none; }
 }
 .svc-item:hover { 
   background: var(--surface2); 
