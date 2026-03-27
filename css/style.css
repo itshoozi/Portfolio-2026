@@ -8,6 +8,8 @@ html,body{
   scroll-behavior:smooth;
   -webkit-text-size-adjust:100%;
   width:100%;
+  min-height:100svh;
+  overflow-x:hidden;
   -webkit-font-smoothing: antialiased;
 }
 :root{
@@ -148,6 +150,7 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Clips drifting bitmoji badges and prevents overflow */
 }
 
 .bitmoji-container {
