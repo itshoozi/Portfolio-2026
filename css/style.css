@@ -45,9 +45,9 @@ body.modal-open { overflow: hidden !important; }
 /* SCENE */
 .scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(120px);will-change:transform}
-.o1{width:700px;height:700px;background:#1a6fff;opacity:.20;top:-180px;left:-100px;animation:breathe 16s ease-in-out infinite}
-.o2{width:500px;height:500px;background:#7c5cfc;opacity:.18;top:80px;right:-80px;animation:breathe 20s ease-in-out infinite 4s reverse}
-.o3{width:550px;height:550px;background:#ff6b35;opacity:.14;bottom:-80px;left:35%;animation:breathe 18s ease-in-out infinite 8s}
+.o1{width:700px;height:700px;background:#f5926f;opacity:.12;top:-180px;left:-100px;animation:breathe 16s ease-in-out infinite}
+.o2{width:500px;height:500px;background:#ffb396;opacity:.10;top:80px;right:-80px;animation:breathe 20s ease-in-out infinite 4s reverse}
+.o3{width:550px;height:550px;background:#e07a5f;opacity:.08;bottom:-80px;left:35%;animation:breathe 18s ease-in-out infinite 8s}
 @keyframes breathe{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.18) translate(15px,-20px)}}
 
 /* Animated geometry */
