@@ -77,8 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // ARCHIVE PEEK TRIGGER
     document.querySelectorAll('.arch-peek').forEach(card => {
       card.addEventListener('mouseenter', () => {
-        const imgs = card.getAttribute('data-imgs')?.split(',');
-        if (imgs && imgs.length > 0 && curImg) {
+        const rawImgs = card.getAttribute('data-imgs');
+        if (!rawImgs || rawImgs.trim() === '') return;
+        
+        const imgs = rawImgs.split(',').filter(s => s.trim() !== '');
+        if (imgs.length > 0 && curImg) {
           curImg.style.backgroundImage = `url(${imgs[0]})`;
           cur.classList.add('peek');
         }

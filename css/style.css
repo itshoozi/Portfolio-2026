@@ -449,8 +449,8 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 .svc-list { display: flex; flex-direction: column; }
 .svc-item { 
   display: grid; 
-  grid-template-columns: 60px 2fr 3fr; 
-  gap: 40px;
+  grid-template-columns: 1fr 1fr; 
+  gap: clamp(2rem, 6vw, 5rem);
   padding: 48px 24px; 
   border-bottom: 1px solid var(--border);
   transition: all 0.4s var(--ease-out);
@@ -458,8 +458,8 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
   align-items: flex-start;
 }
 @media (max-width: 900px) {
-  .svc-item { grid-template-columns: 40px 1fr; gap: 24px; padding: 32px 16px; align-items: flex-start; }
-  .svc-body { grid-column: 2; margin-top: 8px; }
+  .svc-item { grid-template-columns: 1fr; gap: 16px; padding: 40px 16px; }
+  .svc-body { margin-top: 0; }
 }
 @media (max-width: 600px) {
   .svc-item { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
