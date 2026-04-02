@@ -44,10 +44,10 @@ body.modal-open { overflow: hidden !important; }
 
 /* SCENE */
 .scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.orb{position:absolute;border-radius:50%;filter:blur(120px);will-change:transform}
-.o1{width:700px;height:700px;background:#f5926f;opacity:.14;top:-180px;left:-100px;animation:breathe 16s ease-in-out infinite}
-.o2{width:500px;height:500px;background:#0071e3;opacity:.15;top:80px;right:-80px;animation:breathe 20s ease-in-out infinite 4s reverse}
-.o3{width:550px;height:550px;background:#1a6fff;opacity:.12;bottom:-120px;left:35%;animation:breathe 18s ease-in-out infinite 8s}
+.orb{position:absolute;border-radius:50%;will-change:transform;backface-visibility:hidden;transform:translateZ(0)}
+.o1{width:700px;height:700px;background:radial-gradient(circle, #f5926f 0%, rgba(245,146,111,0) 70%);opacity:.16;top:-180px;left:-100px;animation:breathe 16s ease-in-out infinite}
+.o2{width:500px;height:500px;background:radial-gradient(circle, #0071e3 0%, rgba(0,113,227,0) 70%);opacity:.18;top:80px;right:-80px;animation:breathe 20s ease-in-out infinite 4s reverse}
+.o3{width:550px;height:550px;background:radial-gradient(circle, #1a6fff 0%, rgba(26,111,255,0) 70%);opacity:.14;bottom:-120px;left:35%;animation:breathe 18s ease-in-out infinite 8s}
 @keyframes breathe{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.18) translate(15px,-20px)}}
 
 /* Animated geometry */

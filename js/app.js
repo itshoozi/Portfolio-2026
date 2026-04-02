@@ -29,29 +29,32 @@ document.addEventListener('DOMContentLoaded', () => {
     targetScrollY = window.scrollY;
   }, { passive: true });
 
+  const heroCards = heroVisual ? Array.from(heroVisual.querySelectorAll('.vcard')) : [];
+  
   function tick() {
+    if (Math.abs(targetScrollY - scrollY) < 0.1) {
+      requestAnimationFrame(tick);
+      return;
+    }
+    
     scrollY += (targetScrollY - scrollY) * 0.1;
     
     // Parallax global orbs (subtle background drift)
-    orbs.forEach((orb, i) => {
-      const depth = 0.04 + (i * 0.02);
-      orb.style.transform = `translate3d(0, ${scrollY * -depth}px, 0)`;
-    });
+    for (let i = 0; i < orbs.length; i++) {
+        const depth = 0.04 + (i * 0.02);
+        orbs[i].style.transform = `translate3d(0, ${scrollY * -depth}px, 0)`;
+    }
 
     // Parallax CTA orbs (localized to footer section)
-    ctaOrbs.forEach((orb, i) => {
-      const depth = 0.08 + (i * 0.04);
-      // We use a relative offset so it's not "off" from the section start
-      orb.style.transform = `translate3d(-50%, ${scrollY * -depth}px, 0)`;
-    });
+    for (let i = 0; i < ctaOrbs.length; i++) {
+        const depth = 0.08 + (i * 0.04);
+        ctaOrbs[i].style.transform = `translate3d(-50%, ${scrollY * -depth}px, 0)`;
+    }
 
     // Subtly drift hero visual cards on scroll via CSS variable
-    if (heroVisual) {
-      const cards = heroVisual.querySelectorAll('.vcard');
-      cards.forEach((card, i) => {
+    for (let i = 0; i < heroCards.length; i++) {
         const speed = (i + 1) * 0.06;
-        card.style.setProperty('--py', `${scrollY * speed}px`);
-      });
+        heroCards[i].style.setProperty('--py', `${scrollY * speed}px`);
     }
 
     requestAnimationFrame(tick);
@@ -92,8 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     (function cursorLoop() {
-      cx += (mx - cx) * 0.14; cy += (my - cy) * 0.14;
-      cur.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+      const lerp = 0.14;
+      cx += (mx - cx) * lerp; cy += (my - cy) * lerp;
+      // Using translate3d for GPU acceleration
+      cur.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate3d(-50%, -50%, 0)`;
       requestAnimationFrame(cursorLoop);
     })();
   }
