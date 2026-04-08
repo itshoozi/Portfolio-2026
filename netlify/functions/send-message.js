@@ -7,7 +7,25 @@ exports.handler = async (event, context) => {
 
   try {
     const data = JSON.parse(event.body);
-    const { name, email, phone, message } = data;
+    const { name, email, phone, message, website_url, _submissionSpeed, _jsChallenge } = data;
+
+    // --- ANTI-SPAM DEFENSE LAYER ---
+    const isBot = 
+      (website_url && website_url.length > 0) || // Honeypot filled
+      (_submissionSpeed && _submissionSpeed < 3000) || // Too fast (< 3s)
+      (!_jsChallenge || _jsChallenge !== 84) || // Missing/wrong JS proof
+      (/[bcdfghjklmnpqrstvwxyz]{8,}/i.test(name)) || // Gibberish name check
+      (/[bcdfghjklmnpqrstvwxyz]{12,}/i.test(message)); // Gibberish message check
+
+    if (isBot) {
+      console.log("Blocking spam submission from: ", email);
+      // Return 200 to trick the bot into thinking it succeeded
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ message: "Message sent successfully" }),
+      };
+    }
+    // --------------------------------
 
     const smtpHost = "mail.spacemail.com";
     const smtpPort = 465;

@@ -7,7 +7,23 @@ exports.handler = async (event, context) => {
 
   try {
     const data = JSON.parse(event.body);
-    const { name, email, phone, location, date, time, message } = data;
+    const { name, email, phone, location, date, time, message, website_url, _submissionSpeed, _jsChallenge } = data;
+
+    // --- ANTI-SPAM DEFENSE LAYER ---
+    const isBot = 
+      (website_url && website_url.length > 0) || // Honeypot filled
+      (_submissionSpeed && _submissionSpeed < 3000) || // Too fast (< 3s)
+      (!_jsChallenge || _jsChallenge !== 84) || // Missing/wrong JS proof
+      (/[bcdfghjklmnpqrstvwxyz]{8,}/i.test(name)); // Gibberish name check
+
+    if (isBot) {
+      console.log("Blocking spam booking from: ", email);
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ message: "Booking confirmed with calendar invite", data }),
+      };
+    }
+    // --------------------------------
 
     // SMTP Credentials - Best to set these in Netlify Env Vars
     const smtpHost = "mail.spacemail.com";

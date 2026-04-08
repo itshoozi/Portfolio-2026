@@ -1,154 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valia Case Study — Jeremy Pringle</title>
-    <meta name="description" content="AI-powered domain accelerator & management suite. Built by Jeremy Pringle using GPT-4, autonomous SEO, and custom nameserver logic.">
-    <meta property="og:title" content="Valia Case Study — Jeremy Pringle">
-    <meta property="og:description" content="Transforming 'parked' domains into search-ready assets with AI content and automated management.">
-    <meta property="og:image" content="img/valia-dash-1.png">
-    <meta property="og:type" content="article">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="img/valia-dash-1.png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-      :root {
-        --valia-purple: #7c4dff;
-        --valia-bg: #f8f6ff;
-      }
-      .cs-hero { background: var(--valia-bg); }
-      .cs-accent { color: var(--valia-purple); }
-      .cs-btn { background: var(--valia-purple); color: white; padding: 16px 32px; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-block; transition: all .3s var(--spring); }
-      .cs-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(124, 77, 255, 0.4); }
-      .v-char { width: 120px; margin-bottom: 24px; }
-      .cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
-      .cs-g-img img { width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
-      @media (max-width: 900px) { .cs-grid { grid-template-columns: 1fr; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Valia — AI-Powered Domain Management & Accelerator | Jeremy Pringle — Freelance Web Designer & Developer, Rochester MN</title>
+<meta name="description" content="Jeremy Pringle developed Valia, an end-to-end platform for domain investors to turn idle assets into search-ready digital properties using AI content and automated management.">
+<meta name="keywords" content="Valia, AI domain generator, startup branding automations, Jeremy Pringle, freelance developer Rochester MN, SaaS development">
+<meta name="author" content="Jeremy Pringle">
+<link rel="canonical" href="https://jeremypringle.com/valia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Valia Case Study — AI-Powered Domain Management | Jeremy Pringle">
+<meta property="og:description" content="How I built Valia: transforming 'parked' domains into search-ready assets with AI content and automated management.">
+<meta property="og:image" content="img/projects/valia-mockup.png">
+<meta property="og:url" content="https://jeremypringle.com/valia">
+<meta property="og:site_name" content="Jeremy Pringle — Freelance Designer & Developer, Rochester MN">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://jeremypringle.com/#person",
+      "name": "Jeremy Pringle",
+      "url": "https://jeremypringle.com",
+      "jobTitle": "Freelance Web Designer & Developer",
+      "worksFor": {"@type": "Organization", "name": "tarku digital"},
+      "address": {"@type": "PostalAddress", "addressLocality": "Rochester", "addressRegion": "MN", "addressCountry": "US"}
+    },
+    {
+      "@type": "Article",
+      "@id": "https://jeremypringle.com/valia#article",
+      "headline": "Valia — AI-Powered Domain Management & Accelerator",
+      "description": "How Jeremy Pringle built a full-stack domain suite for flipping assets with AI niche articles and evaluators.",
+      "author": {"@id": "https://jeremypringle.com/#person"},
+      "dateModified": "2026-02-15"
+    }
+  ]
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="case-study-page">
+<body>
+<div id="cur" aria-hidden="true"></div>
 
-  <nav class="cs-nav">
-    <div class="wrap">
-      <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Home</a>
-      <div class="cs-nav-title">Valia</div>
-    </div>
-  </nav>
-
-  <header class="cs-hero section reveal">
-    <div class="wrap">
-      <div class="eyebrow cs-accent">SaaS · AI · Domain Engine</div>
-      <h1 class="cs-h1">Accelerating domain sales with <em>AI-driven SEO & Management.</em></h1>
-      <p class="cs-p">An end-to-end platform for domain investors to turn idle assets into search-ready, high-value digital properties.</p>
-      <div class="cs-meta">
-        <div class="cs-m-item"><span>Services</span><strong>Product Strategy, AI Content Integration, Domain Logic</strong></div>
-        <div class="cs-m-item"><span>Stack</span><strong>React, Node.js, GPT-4, Custom DNS Logic</strong></div>
-      </div>
-    </div>
-  </header>
-
-  <div class="cs-img-wrap reveal">
-    <div class="wrap">
-      <img src="img/valia-dash-1.png" alt="Valia Dashboard" class="cs-main-img" style="border-radius:24px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
-    </div>
-  </div>
-
-  <section class="cs-content section">
-    <div class="wrap-s">
-      <div class="cs-block reveal">
-        <h2 class="cs-h2">The Problem</h2>
-        <div style="display:flex; gap:40px; align-items:flex-start; margin-bottom:32px" class="v-flex">
-          <div style="flex:1">
-            <p>Most domain owners have valuable "parked" domains sitting idle. These assets don't generate traffic, they aren't indexed by search engines, and they fail to attract serious buyers. Simply listing a domain on a marketplace is no longer enough—you need to prove the domain has "traction potential" to secure a high-multiple sale.</p>
-          </div>
-          <img src="img/valia-1.png" alt="Original Content Features" style="width:300px; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-        </div>
-      </div>
-
-      <div class="cs-block reveal">
-        <h2 class="cs-h2">The Domain Engine Solution</h2>
-        <p>Valia bridges the gap between a "Parked" link and a "Productive" asset. It's a full-stack domain suite that handles everything an investor needs to flip an asset:</p>
-        <ul style="margin: 24px 0; padding-left: 20px; line-height: 1.8;">
-          <li><strong>Autonomous AI Content:</strong> Generates "human-grade" niche articles to populate the landing page and trigger indexing.</li>
-          <li><strong>Domain Evaluator:</strong> Real-time assessment of domain value based on wholesale and client-side metrics.</li>
-          <li><strong>Lead Generation:</strong> Custom 1-page lead captures that link directly to the owner via nameserver-level routing.</li>
-          <li><strong>Visual Identity:</strong> Automated color scheme and branding tools to make a domain feel like a real business instantly.</li>
-        </ul>
-      </div>
-
-      <div class="cs-grid reveal">
-        <div class="cs-g-img">
-          <p style="margin-bottom: 12px; font-weight: 600; color: var(--valia-purple);">Classlink.com Dashboard View</p>
-          <img src="img/valia-dash-1.png" alt="Domain Management View">
-        </div>
-        <div class="cs-g-img">
-          <p style="margin-bottom: 12px; font-weight: 600; color: var(--valia-purple);">AI Domain Generator</p>
-          <img src="img/valia-gen-1.png" alt="Domain Gen View">
-        </div>
-        <div class="cs-g-img">
-          <p style="margin-bottom: 12px; font-weight: 600; color: var(--valia-purple);">Auto Color Scheme Generator</p>
-          <img src="img/valia-dash-2.png" alt="Color Tool">
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="rev-hd">
-          <div class="rev-avatar">💎</div>
-          <div class="rev-meta">
-            <div class="rev-name">Investor Favorite</div>
-            <div class="rev-stats">Strategic Tooling · Market Impact</div>
-          </div>
-        </div>
-        <div class="rev-stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <div class="rev-body">
-          "The ability to take a dry domain and turn it into a content-rich asset in 10 minutes is a game changer for the flipping market. Valia makes every domain in my portfolio look like a business, not just a link."
-        </div>
-      </div>
-
-      <div class="cs-block reveal">
-        <h2 class="cs-h2">The Impact</h2>
-        <p>By automating the complex process of domain "aging" and validation, Valia allows investors to manage thousands of assets with minutes of oversight. We integrated tools like <strong>Novel.sh</strong> for premium editing and built custom WHOIS/ICANN logic to ensure every bit of data an investor needs is at their fingertips. It's built for scale, speed, and high-margin flips.</p>
-      </div>
-    </div>
-  </section>
-
-<div class="next-case">
-  <div class="next-inner">
-    
-    <div class="nc-col nc-prev">
-      <div class="nc-text">
-        <div class="next-label">Previous</div>
-        <div class="next-title">Eastwood Caddyshack</div>
-        <div class="next-sub">Rochester institution growth & delivery.</div>
-      </div>
-      <a href="eastwood-caddyshack.html" class="btn-g">← Previous</a>
-    </div>
-
-    <div class="nc-col nc-next">
-      <div class="nc-text">
-        <div class="next-label">Next</div>
-        <div class="next-title">The Scoop's Udder Place</div>
-        <div class="next-sub">High-velocity motion design & branding.</div>
-      </div>
-      <a href="the-scoops-udder-place.html" class="btn-p">Read →</a>
-    </div>
-
-  </div>
+<div class="scene" aria-hidden="true">
+  <div class="orb" style="width:600px;height:600px;background:#7c4dff;opacity:.08;top:-150px;left:-80px;animation:breathe 18s ease-in-out infinite"></div>
+  <div class="orb" style="width:420px;height:420px;background:#b388ff;opacity:.06;top:220px;right:-60px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
 </div>
 
-  <footer class="reveal">
-    <div class="fc">© 2026 Jeremy Pringle · <span class="tarku-brand">tarku digital</span> · Rochester, MN · <a href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none" class="nav-cta inline">hey@jeremypringle.com</a></div>
+<nav>
+  <a href="index.html" class="nav-logo">Jeremy Pringle</a>
+  <div style="display:flex;align-items:center;gap:.5rem">
+    <a href="index.html#work" class="nav-back"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All work</a>
+    <a href="mailto:hey@jeremypringle.com" class="nav-cta">Hire me →</a>
+  </div>
+</nav>
+
+<header class="case-hero" role="banner">
+  <div class="case-hero-inner">
+    <div class="case-tag" style="--tag-color:rgba(124,77,255,.25);--tag-bg:rgba(124,77,255,.06);--tag-accent:#7c4dff">
+      <div class="tag-dot" style="background:#7c4dff"></div>
+      <span>SaaS · AI · Domain Engine</span>
+    </div>
+    <h1 class="case-h1">Accelerating domain sales with <em>AI-driven SEO & Management.</em></h1>
+    <p class="case-sub">Most domain owners have valuable assets sitting idle. Valia bridges the gap between a "Parked" link and a "Productive" asset by transforming them into search-ready properties instantly.</p>
+    <div class="case-meta-row">
+      <div class="case-meta"><span class="case-meta-label">Services</span><span class="case-meta-val">Product Strategy, AI Content Integration</span></div>
+      <div class="case-meta"><span class="case-meta-label">Stack</span><span class="case-meta-val">React, Node.js, GPT-4, Custom DNS</span></div>
+      <div class="case-meta"><span class="case-meta-label">Client</span><span class="case-meta-val">Internal (tarku digital)</span></div>
+      <div class="case-meta"><span class="case-meta-label">Outcome</span><span class="case-meta-val">Ready for commercial launch</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="stat-banner" role="region" aria-label="Key results">
+      <div class="stat-cell"><span class="stat-num" style="color:#7c4dff">Instant</span><span class="stat-lbl">Landing pages built<br>via nameserver routing</span></div>
+      <div class="stat-cell"><span class="stat-num" style="color:#7c4dff">GPT-4</span><span class="stat-lbl">Autonomous articles<br>for immediate SEO</span></div>
+      <div class="stat-cell"><span class="stat-num" style="color:var(--text)">Auto</span><span class="stat-lbl">Visual identity &<br>branding generators</span></div>
+      <div class="stat-cell"><span class="stat-num" style="color:var(--text)">Verified</span><span class="stat-lbl">Proven traction<br>for domain evaluation</span></div>
+</div>
+
+<div class="case-top-img reveal">
+  <img src="img/projects/valia-mockup.png" alt="Valia - AI Domain Management Suite Mockup">
+</div>
+
+<main class="case-body" id="main-content">
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">The Problem</div><div class="section-num">01</div></div>
+    <div class="prose-content">
+      <h2>Parked domains don't sell themselves anymore</h2>
+      <p>Domain investors often find themselves with hundreds of "parked" domains that generate zero traffic and fail to attract serious buyers. Marketplaces are crowded. Listings are static. To secure a high-multiple sale today, you need to prove the domain has "traction potential."</p>
+      <p>Idle assets aren't indexed by search engines. They don't have trust signals. They don't show the buyer what the domain *could* become.</p>
+    </div>
+  </div>
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">The Solution</div><div class="section-num">02</div></div>
+    <div class="prose-content">
+      <h2>A full-stack domain accelerator suite</h2>
+      <p>Valia handles everything an investor needs to flip an asset by creating an immediate digital footprint. The engine automates the entire "staging" process of a domain sale:</p>
+      <ul>
+        <li><strong>Autonomous AI Content:</strong> Generates "human-grade" niche articles to populate the landing page and trigger indexing.</li>
+        <li><strong>Domain Evaluator:</strong> Real-time assessment of value based on wholesale and client-side metrics.</li>
+        <li><strong>Lead Generation:</strong> Custom 1-page captures that link directly to the owner via nameserver routing.</li>
+        <li><strong>Visual Identity:</strong> Automated color scheme and branding tools to make a domain feel like a real business instantly.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="case-img-grid reveal" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 4rem 0;">
+    <div class="case-img"><img src="img/valia-dash-1.png" alt="Valia Classlink Dashboard"></div>
+    <div class="case-img"><img src="img/valia-gen-1.png" alt="AI Generator View"></div>
+  </div>
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">Outcome</div><div class="section-num">03</div></div>
+    <div class="prose-content">
+      <h2>Turning idle assets into indexed properties</h2>
+      <p>The platform successfully turned a "Parked" link into a "Productive" asset minutes after nameserver propagation. By adding search-ready content and automated branding, Valia creates a premium staging environment that justifies higher domain valuations.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="reveal">
+    <div class="fc">© 2026 Jeremy Pringle · <span class="tarku-brand">tarku digital</span> · Rochester, MN · <a
+        href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none"
+        class="nav-cta inline">hey@jeremypringle.com</a></div>
     <div class="fl">
-      <a href="mailto:hey@jeremypringle.com" class="nav-cta inline">Hire me</a>
+      <a href="mailto:hey@jeremypringle.com" class="nav-cta inline openMessageBtn">Hire me</a>
       <a href="teach-kids-code.html">Teach Kids</a>
       <a href="index.html">Home</a>
     </div>
-  </footer>
+</footer>
 
-  <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

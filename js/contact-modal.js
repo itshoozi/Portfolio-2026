@@ -69,6 +69,10 @@ const contactModalHTML = `
         <input type="hidden" id="bookType" name="location">
         <input type="hidden" id="bookDate" name="date">
         <input type="hidden" id="bookTime" name="time">
+        <div class="form-group" style="display:none !important;" aria-hidden="true">
+          <label>Leave this empty</label>
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-group">
           <label>Full Name</label>
           <input type="text" name="name" required placeholder="John Doe">
@@ -99,6 +103,10 @@ const contactModalHTML = `
         <p class="modal-desc">Have a question or a quick inquiry? Drop it below and I'll get back to you within 24 hours.</p>
       </div>
       <form id="messageForm" class="booking-form">
+        <div class="form-group" style="display:none !important;" aria-hidden="true">
+          <label>Leave this empty</label>
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-group">
           <label>Full Name</label>
           <input type="text" name="name" required placeholder="John Doe">
@@ -139,6 +147,9 @@ const injectModal = () => {
   const container = document.createElement('div');
   container.innerHTML = contactModalHTML;
   document.body.appendChild(container.firstElementChild);
+  
+  // Anti-spam: mark the time of injection
+  window._formInjectTime = Date.now();
   
   initModalLogic();
 };
@@ -274,7 +285,10 @@ const initModalLogic = () => {
     btn.disabled = true;
     btn.textContent = 'Sending...';
     
+    // Anti-spam: capture metadata
     const data = Object.fromEntries(new FormData(formElement).entries());
+    data._submissionSpeed = Date.now() - (window._formInjectTime || 0);
+    data._jsChallenge = 42 * 2; // Simple proof of JS execution
     
     try {
       const res = await fetch(endpoint, {
