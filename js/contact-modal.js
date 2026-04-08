@@ -290,11 +290,23 @@ const initModalLogic = () => {
     data._submissionSpeed = Date.now() - (window._formInjectTime || 0);
     data._jsChallenge = 42 * 2; // Simple proof of JS execution
     
+    // Anti-hammering: prevent duplicate identical submissions in a single session
+    const subHash = btoa(`${data.name}-${data.email}-${data.message.substring(0,20)}`);
+    if (window._recentSubmissions?.includes(subHash)) {
+      console.log("Blocking duplicate submission locally.");
+      showStep('bookingSuccess');
+      return;
+    }
+
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
         body: JSON.stringify(data)
       });
+      
+      // Mark as submitted
+      if (!window._recentSubmissions) window._recentSubmissions = [];
+      window._recentSubmissions.push(subHash);
       
       if (typeof confetti === 'function') {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, zIndex: 20000 });
