@@ -14,6 +14,7 @@ exports.handler = async (event, context) => {
       (website_url && website_url.length > 0) || // Honeypot filled
       (_submissionSpeed && _submissionSpeed < 3000) || // Too fast (< 3s)
       (!_jsChallenge || _jsChallenge !== 84) || // Missing/wrong JS proof
+      (!date || !time) || // Bypassed the calendar logic
       (/[bcdfghjklmnpqrstvwxyz]{8,}/i.test(name)); // Gibberish name check
 
     if (isBot) {
