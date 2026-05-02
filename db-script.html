@@ -103,7 +103,70 @@
   <div class="divider"></div>
 
   <div class="prose-section reveal">
-    <div class="prose-sidebar"><div class="section-label">My Role</div><div class="section-num">02</div></div>
+    <div class="prose-sidebar"><div class="section-label">Language Structure</div><div class="section-num">02</div></div>
+    <div class="prose-content">
+      <h2>How it worked in practice</h2>
+      <p>This package allowed developers to make Discord bots with ease. We had a similar language structure as the well-known mobile app, "Bot Designer for Discord". Even without familiarity with that app, the package was incredibly simple to understand.</p>
+      
+      <p>To start a basic bot, all you needed was this:</p>
+      <pre><code>$ npm install discordbot-script</code></pre>
+<pre><code>const Dlang = require('discordbot-script')
+const bot = new Dlang({
+  token: "TOKEN_HERE",
+  prefix: ["?", "!"]
+})
+
+bot.MessageEvent()
+ 
+bot.Command({
+  name: "ping",
+  code: `
+$ping ms
+  `
+})</code></pre>
+      
+      <h3>Events & Functions</h3>
+      <p>Events allowed the bot to respond to specific actions, like welcoming a user when they joined:</p>
+<pre><code>bot.JoinedCommand({
+name: "channelID or variable",
+code: `
+Something here like, <@$authorID> thanks for joining the server!
+`
+})
+bot.onJoined()</code></pre>
+
+      <p>Functions were essential to perform tasks and execute commands. Here is a simple clear command:</p>
+<pre><code>bot.Command({
+  name: "clear",
+  code: `
+Cleared $message[1] messages
+$clear[$message[1]]
+  `
+})</code></pre>
+
+      <h3>Command & Event Handlers</h3>
+      <p>Command and Event handlers allowed users to store commands in organized folders instead of cluttering their main file.</p>
+<pre><code>const fs = require('fs');
+const folders = fs.readdirSync("./commands/")
+
+for (const files of folders) {
+    const folder = fs.readdirSync(`./commands/${files}/`).filter(file => file.endsWith(".js"))
+
+    for (const commands of folder) {
+        const command = require(`./commands/${files}/${commands}`)
+        bot.Command(command);
+        console.log(`Loaded: ${command.name} [${command.status}]`);
+    }
+}</code></pre>
+      
+      <p><em>Code Interpretation: All discordbot-script command codes were seen, read and executed by the bot from bottom to top.</em></p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="prose-section reveal">
+    <div class="prose-sidebar"><div class="section-label">My Role</div><div class="section-num">03</div></div>
     <div class="prose-content">
       <h2>Two years as PM, marketer, and developer</h2>
       <p>I was <strong>project manager, marketer, and part-time developer</strong> for DiscordBot-Script for over two years. That combination of roles is unusual — most open source projects have separate people handling community, documentation, promotion, and code. I wore all of those hats simultaneously.</p>
@@ -116,7 +179,7 @@
   <div class="divider"></div>
 
   <div class="prose-section reveal">
-    <div class="prose-sidebar"><div class="section-label">Legacy</div><div class="section-num">03</div></div>
+    <div class="prose-sidebar"><div class="section-label">Legacy</div><div class="section-num">04</div></div>
     <div class="prose-content">
       <h2>100,000 installs, then deprecated</h2>
       <p>DiscordBot-Script reached <strong>100,000+ npm installs</strong> — a real milestone for an open source developer tool. Since leaving the team, the package has been deprecated, but its install history on npm stands as a record of what it did.</p>
