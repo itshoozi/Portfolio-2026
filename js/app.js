@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // IMAGE FADE-IN — pairs with the img[loading="lazy"] opacity rule in
+  // style.css so images resolve smoothly instead of popping in on slow wifi
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    if (img.complete) {
+      img.classList.add('img-loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('img-loaded'), { once: true });
+      img.addEventListener('error', () => img.classList.add('img-loaded'), { once: true });
+    }
+  });
+
   // SCROLL REVEAL - APPLE CALIBRATED
   const rio = new IntersectionObserver(entries => {
     entries.forEach(e => { 
@@ -103,8 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
   }
 
-  // Smooth Spotlight effect
-  document.querySelectorAll('.svc, .bc').forEach(item => {
+  // Smooth Spotlight effect (only .svc actually reads --mx/--my in CSS —
+  // .bc was in this selector too but nothing consumes it there, so it's
+  // dropped to avoid pointless work on every mousemove over a bento card)
+  document.querySelectorAll('.svc').forEach(item => {
     item.addEventListener('mousemove', e => {
       const rect = item.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -115,17 +128,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Magnetic Premium Buttons & Elements (Mouse ONLY)
+  // Bento cards (.bc) used to be in this list too — the drag-toward-cursor
+  // effect is tuned for small buttons; on a large card it produces a big,
+  // jittery offset that also fights the card's own CSS hover lift. They
+  // get their own smoothed tilt effect below instead (see "Bento card
+  // tilt"). :not(.inline) also keeps this off the plain-text footer
+  // "Hire me"/email links — they share the .nav-cta class but shouldn't
+  // drag-and-scale like a real button.
   if (window.matchMedia('(pointer:fine)').matches) {
-    const magneticItems = document.querySelectorAll('.btn-p, .btn-g, .nav-cta, .bento .bc');
+    const magneticItems = document.querySelectorAll('.btn-p, .btn-g, .nav-cta:not(.inline)');
     magneticItems.forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
         const h = rect.width / 2;
         const v = rect.height / 2;
-        
+
         // Increased sensitivity for footer and nav links
         const damp = btn.classList.contains('nav-cta') ? 0.35 : 0.18;
-        
+
         const x = (e.clientX - rect.left - h) * damp;
         const y = (e.clientY - rect.top - v) * damp;
         btn.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.035)`;
@@ -134,6 +154,55 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.style.transform = 'translate3d(0, 0, 0) scale(1)';
       });
     });
+  }
+
+  // Bento card tilt (Mouse ONLY) — a smoothed 3D tilt-toward-cursor,
+  // replacing the old magnetic drag. Every card's target rotation is
+  // recalculated on mousemove, but the actual applied transform lerps
+  // toward that target once per frame in a single shared rAF loop —
+  // the same smoothing technique the custom cursor dot uses — instead
+  // of snapping straight to the raw mouse-diff value on every event.
+  // That's what made the old version feel laggy/jumpy: no interpolation,
+  // and it fought the card's CSS hover transition by setting inline
+  // style dozens of times a second.
+  if (window.matchMedia('(pointer:fine)').matches) {
+    const tiltCards = Array.from(document.querySelectorAll('.bento .bc'));
+    if (tiltCards.length) {
+      const state = tiltCards.map(() => ({ tx: 0, ty: 0, tlift: 0, cx: 0, cy: 0, clift: 0, active: false }));
+
+      tiltCards.forEach((card, i) => {
+        const s = state[i];
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width - 0.5;
+          const py = (e.clientY - rect.top) / rect.height - 0.5;
+          s.ty = px * 6;   // rotateY — max ~3deg either side
+          s.tx = -py * 6;  // rotateX
+          s.tlift = -8;
+          s.active = true;
+        });
+        card.addEventListener('mouseleave', () => {
+          s.tx = 0; s.ty = 0; s.tlift = 0;
+          s.active = false;
+        });
+      });
+
+      (function tiltLoop() {
+        tiltCards.forEach((card, i) => {
+          const s = state[i];
+          const settled = !s.active && Math.abs(s.cx) < 0.02 && Math.abs(s.cy) < 0.02 && Math.abs(s.clift) < 0.05;
+          if (settled) {
+            if (card.style.transform) card.style.transform = '';
+            return;
+          }
+          s.cx += (s.tx - s.cx) * 0.12;
+          s.cy += (s.ty - s.cy) * 0.12;
+          s.clift += (s.tlift - s.clift) * 0.12;
+          card.style.transform = `perspective(900px) rotateX(${s.cx}deg) rotateY(${s.cy}deg) translateY(${s.clift}px)`;
+        });
+        requestAnimationFrame(tiltLoop);
+      })();
+    }
   }
   // NAV SCROLL LOGIC
   const nav = document.querySelector('nav');
@@ -216,22 +285,31 @@ document.addEventListener('DOMContentLoaded', () => {
       card.addEventListener('click', () => {
         const title = card.getAttribute('data-title');
         const desc = card.getAttribute('data-desc');
-        const imgs = card.getAttribute('data-imgs')?.split(',');
+        const imgs = card.getAttribute('data-imgs')?.split(',').map(s => s.trim()).filter(Boolean);
+        const icon = card.getAttribute('data-icon');
         const link = card.getAttribute('data-link');
-        
+
         qlTitle.textContent = title;
         qlDesc.textContent = desc;
-        
+
         // Clear and add images
         qlScroll.innerHTML = '';
-        if (imgs) {
+        if (imgs && imgs.length) {
           imgs.forEach(src => {
             const imgEl = document.createElement('img');
-            imgEl.src = src.trim();
+            imgEl.src = src;
             imgEl.alt = title;
             imgEl.loading = 'lazy';
+            imgEl.decoding = 'async';
+            imgEl.addEventListener('load', () => imgEl.classList.add('img-loaded'), { once: true });
+            imgEl.addEventListener('error', () => imgEl.classList.add('img-loaded'), { once: true });
             qlScroll.appendChild(imgEl);
           });
+        } else if (icon) {
+          const iconWrap = document.createElement('div');
+          iconWrap.className = 'ql-icon-fallback';
+          iconWrap.textContent = icon;
+          qlScroll.appendChild(iconWrap);
         }
         
         if (link) {
@@ -257,4 +335,129 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === qlOverlay) closeQL();
     });
   }
+
+  // FULL-SCREEN IMAGE LIGHTBOX
+  // Injects its own overlay so no markup changes are needed on any page.
+  // Any rendered image at least 100x100 outside nav/footer/other modals
+  // becomes click-to-zoom, with drag-to-pan when zoomed and a download button.
+  (() => {
+    const overlay = document.createElement('div');
+    overlay.className = 'lb-overlay';
+    overlay.innerHTML = `
+      <div class="lb-stage">
+        <img class="lb-img" alt="">
+      </div>
+      <div class="lb-bar">
+        <a class="lb-btn" id="lbDownload" download title="Download image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+        </a>
+        <div class="lb-btn" id="lbClose" title="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </div>
+      </div>
+      <div class="lb-hint">Scroll or double-click to zoom · Drag to pan</div>
+    `;
+    document.body.appendChild(overlay);
+
+    const lbImg = overlay.querySelector('.lb-img');
+    const lbClose = overlay.querySelector('#lbClose');
+    const lbDownload = overlay.querySelector('#lbDownload');
+
+    let scale = 1, panX = 0, panY = 0, dragging = false, startX = 0, startY = 0;
+
+    const applyTransform = () => {
+      lbImg.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+    };
+    const resetZoom = () => {
+      scale = 1; panX = 0; panY = 0;
+      lbImg.classList.remove('zoomed');
+      applyTransform();
+    };
+
+    const openLightbox = (src, alt) => {
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      lbDownload.href = src;
+      lbDownload.download = (alt || 'image').replace(/[^a-z0-9-_]+/gi, '-').toLowerCase() || 'image';
+      resetZoom();
+      overlay.classList.add('active');
+      document.body.classList.add('modal-open');
+    };
+    const closeLightbox = () => {
+      overlay.classList.remove('active');
+      document.body.classList.remove('modal-open');
+    };
+
+    // Attach to qualifying content images site-wide. Images inside a link
+    // or a quick-look modal-trigger keep their existing click behavior
+    // (navigating to the case study / opening the quick-look modal) —
+    // only "dead" content images that don't already do something on
+    // click become zoomable.
+    const excluded = 'nav, footer, .ql-overlay, #videoModal, .lb-overlay, #cur, a[href], .modal-trigger';
+    document.querySelectorAll('img').forEach(img => {
+      if (img.closest(excluded)) return;
+      const rect = img.getBoundingClientRect();
+      const w = rect.width || img.width;
+      const h = rect.height || img.height;
+      if (w < 100 || h < 100) return;
+      img.classList.add('lb-zoomable');
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openLightbox(img.currentSrc || img.src, img.alt);
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeLightbox();
+    });
+    overlay.querySelector('.lb-stage').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
+    });
+
+    // Click-to-zoom toggle
+    lbImg.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (scale === 1) {
+        scale = 2.2;
+        lbImg.classList.add('zoomed');
+      } else {
+        resetZoom();
+      }
+      applyTransform();
+    });
+    lbImg.addEventListener('dblclick', (e) => { e.stopPropagation(); resetZoom(); });
+
+    // Scroll-wheel zoom
+    overlay.addEventListener('wheel', (e) => {
+      if (!overlay.classList.contains('active')) return;
+      e.preventDefault();
+      scale = Math.min(4, Math.max(1, scale - e.deltaY * 0.0025));
+      lbImg.classList.toggle('zoomed', scale > 1);
+      if (scale === 1) { panX = 0; panY = 0; }
+      applyTransform();
+    }, { passive: false });
+
+    // Drag to pan when zoomed
+    lbImg.addEventListener('pointerdown', (e) => {
+      if (scale === 1) return;
+      dragging = true;
+      lbImg.classList.add('dragging');
+      startX = e.clientX - panX;
+      startY = e.clientY - panY;
+      lbImg.setPointerCapture(e.pointerId);
+    });
+    lbImg.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      panX = e.clientX - startX;
+      panY = e.clientY - startY;
+      applyTransform();
+    });
+    ['pointerup', 'pointercancel'].forEach(ev => {
+      lbImg.addEventListener(ev, () => { dragging = false; lbImg.classList.remove('dragging'); });
+    });
+  })();
 });

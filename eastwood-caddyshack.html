@@ -43,18 +43,38 @@
 }</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=14">
 
 </head>
 <body>
 <div id="cur" aria-hidden="true"></div>
 
 <div class="scene" aria-hidden="true">
-  <div class="orb" style="width:600px;height:600px;background:#ffd60a;opacity:.11;top:-150px;left:-80px;animation:breathe 18s ease-in-out infinite"></div>
-  <div class="orb" style="width:420px;height:420px;background:#ff6b35;opacity:.09;top:220px;right:-60px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
-  <div class="orb" style="width:480px;height:480px;background:#4f9eff;opacity:.06;bottom:-60px;left:40%;animation:breathe 20s ease-in-out infinite 9s"></div>
+  <div class="orb" style="width:600px;height:600px;background:radial-gradient(circle, #ffd60a 0%, rgba(255,214,10,0) 70%);opacity:.13;top:-160px;left:-90px;animation:breathe 18s ease-in-out infinite"></div>
+  <div class="orb" style="width:460px;height:460px;background:radial-gradient(circle, #ff6b35 0%, rgba(255,107,53,0) 70%);opacity:.11;top:120px;right:-70px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
+  <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle, #4f9eff 0%, rgba(79,158,255,0) 70%);opacity:.09;bottom:-80px;left:38%;animation:breathe 20s ease-in-out infinite 9s"></div>
+  <div class="grain"></div>
+  <svg class="geo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+    <defs>
+      <pattern id="dp" x="0" y="0" width="64" height="64" patternUnits="userSpaceOnUse">
+        <path d="M 64 0 L 0 0 0 64" fill="none" stroke="rgba(0,0,0,0.022)" stroke-width="0.6"/>
+      </pattern>
+    </defs>
+    <rect width="1440" height="900" fill="url(#dp)"/>
+    <g class="arc-group">
+      <circle cx="180" cy="210" r="310" stroke="rgba(255,214,10,0.05)" stroke-width="1" stroke-dasharray="12 8"/>
+      <circle cx="180" cy="210" r="200" stroke="rgba(255,214,10,0.045)" stroke-width="1"/>
+    </g>
+    <g class="arc-group-r">
+      <circle cx="1270" cy="170" r="360" stroke="rgba(255,107,53,0.05)" stroke-width="1" stroke-dasharray="10 12"/>
+      <circle cx="1270" cy="170" r="230" stroke="rgba(255,107,53,0.04)" stroke-width="1"/>
+    </g>
+    <line x1="720" y1="0" x2="720" y2="900" stroke="rgba(0,0,0,0.03)" stroke-width="1" stroke-dasharray="4 20"/>
+    <line x1="0" y1="450" x2="1440" y2="450" stroke="rgba(0,0,0,0.03)" stroke-width="1" stroke-dasharray="4 20"/>
+    <path d="M36 36 L36 80 M36 36 L80 36" stroke="rgba(255,214,10,0.16)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M1404 864 L1404 820 M1404 864 L1360 864" stroke="rgba(255,107,53,0.14)" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
 </div>
-
 <nav>
   <a href="index.html" class="nav-logo">Jeremy Pringle</a>
   <div style="display:flex;align-items:center;gap:.5rem">
@@ -70,7 +90,7 @@
       <span>Web Design · Delivery Integration · Growth</span>
     </div>
     <h1 class="case-h1">First website and<br><em>revenue-driving delivery apps.</em></h1>
-    <p class="case-sub">Eastwood Caddyshack is a staple in the Rochester community. Despite their popularity, they lacked a digital presence and had struggled to integrate delivery services with their existing kitchen workflow. I fixed that.</p>
+    <p class="case-sub">Eastwood Caddyshack is a new spot in Rochester, but its notoriety came in fast — driven by owner Chef Boji's reputation. Despite that early buzz, they lacked a digital presence and had struggled to integrate delivery services with their existing kitchen workflow. I fixed that.</p>
     <div class="case-meta-row">
       <div class="case-meta"><span class="case-meta-label">Client</span><span class="case-meta-val">Eastwood Caddyshack</span></div>
       <div class="case-meta"><span class="case-meta-label">Role</span><span class="case-meta-val">Web Designer & Strategy</span></div>
@@ -91,7 +111,7 @@
     <div class="prose-sidebar"><div class="section-label">The Problem</div><div class="section-num">01</div></div>
     <div class="prose-content">
       <h2>A community legend without a digital front door</h2>
-      <p>Eastwood Caddyshack didn't have a website. For a business with their history and local reputation, that was a huge missed opportunity. People knew they were great, but they couldn't find a menu, check hours, or order food easily from their phones.</p>
+      <p>Eastwood Caddyshack didn't have a website. For a new restaurant already riding the notoriety of owner Chef Boji, that was a huge missed opportunity. People knew the name, but they couldn't find a menu, check hours, or order food easily from their phones.</p>
       <p>Beyond just a website, they needed a way to tap into the growing delivery market. Previous attempts to set up delivery apps hadn't stuck because they didn't play well with the kitchen's existing workflow. They needed more than just a site—they needed a strategy.</p>
     </div>
   </div>
@@ -173,7 +193,7 @@ const dirs=[{x:35,y:28,s:0.15},{x:-28,y:-22,s:0.22},{x:18,y:-14,s:0.12}];
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script src="js/app.js"></script>
-<script src="js/contact-modal.js"></script>
+<script src="js/app.js?v=3"></script>
+<script src="js/contact-modal.js?v=3"></script>
 </body>
 </html>

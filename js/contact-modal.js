@@ -55,6 +55,7 @@ const contactModalHTML = `
         </div>
         <div class="dates-grid" id="datesGrid"></div>
       </div>
+      <div class="time-slots-label" id="timeSlotsLabel">Times shown in Central Time (CT)</div>
       <div class="time-slots" id="timeSlots"></div>
     </div>
 
@@ -133,8 +134,8 @@ const contactModalHTML = `
     <div id="bookingSuccess" class="booking-step">
        <div class="success-wrap">
           <div class="success-icon">🎉</div>
-          <h2 class="modal-title" id="successTitle">You're booked!</h2>
-          <p class="modal-desc" id="successDesc">I've sent a calendar invite to <span id="successEmail" style="font-weight: 600;"></span>. Talk soon!</p>
+          <h2 class="modal-title" id="successTitle">Request sent!</h2>
+          <p class="modal-desc" id="successDesc">I'll confirm your time and follow up at <span id="successEmail" style="font-weight: 600;"></span> shortly. Talk soon!</p>
           <button class="btn-g" id="finishBookingBtn" style="margin-top: 32px; width: 100%; justify-content: center;">Done</button>
        </div>
     </div>
@@ -263,11 +264,14 @@ const initModalLogic = () => {
     const slots = document.getElementById('timeSlots');
     slots.innerHTML = '';
     slots.classList.add('active');
+    document.getElementById('timeSlotsLabel')?.classList.add('active');
     ['9:00 AM', '11:30 AM', '1:00 PM', '3:30 PM'].forEach(t => {
       const b = document.createElement('button');
       b.className = 'time-slot';
       b.textContent = t;
       b.onclick = () => {
+        document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+        b.classList.add('selected');
         const fullDate = selectedDate.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
         document.getElementById('bookingDateTime').textContent = `${fullDate} at ${t}`;
         document.getElementById('bookDate').value = fullDate;
@@ -328,10 +332,10 @@ const initModalLogic = () => {
     form.onsubmit = (e) => {
       e.preventDefault();
       handleSubmission(
-        form, 
-        '/.netlify/functions/book-call', 
-        "You're booked!", 
-        "I've sent a calendar invite to <strong>{email}</strong>. Talk soon!"
+        form,
+        '/.netlify/functions/book-call',
+        "Request sent!",
+        "I'll confirm your time and follow up at <strong>{email}</strong> shortly. Talk soon!"
       );
     };
   }

@@ -39,16 +39,43 @@
 }</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=14">
+<style>
+  /* Page identity: playful bubbly display for the ice-cream brand */
+  .case-h1{font-family:'Boldone','Geist',sans-serif;font-weight:400;letter-spacing:-.01em;line-height:1.05;}
+  .case-h1 em{font-style:normal;color:#ff4081;}
+  .stat-num{font-family:'Boldone','Geist',sans-serif;font-weight:400;}
+</style>
 </head>
 <body>
 <div id="cur" aria-hidden="true"></div>
 
 <div class="scene" aria-hidden="true">
-  <div class="orb" style="width:600px;height:600px;background:#ff4081;opacity:.08;top:-150px;left:-80px;animation:breathe 18s ease-in-out infinite"></div>
-  <div class="orb" style="width:420px;height:420px;background:#ff80ab;opacity:.06;top:220px;right:-60px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
+  <div class="orb" style="width:600px;height:600px;background:radial-gradient(circle, #ff4081 0%, rgba(255,64,129,0) 70%);opacity:.13;top:-160px;left:-90px;animation:breathe 18s ease-in-out infinite"></div>
+  <div class="orb" style="width:460px;height:460px;background:radial-gradient(circle, #ff80ab 0%, rgba(255,128,171,0) 70%);opacity:.11;top:120px;right:-70px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
+  <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle, #ffb0c8 0%, rgba(255,176,200,0) 70%);opacity:.09;bottom:-80px;left:38%;animation:breathe 20s ease-in-out infinite 9s"></div>
+  <div class="grain"></div>
+  <svg class="geo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+    <defs>
+      <pattern id="dp" x="0" y="0" width="64" height="64" patternUnits="userSpaceOnUse">
+        <path d="M 64 0 L 0 0 0 64" fill="none" stroke="rgba(0,0,0,0.022)" stroke-width="0.6"/>
+      </pattern>
+    </defs>
+    <rect width="1440" height="900" fill="url(#dp)"/>
+    <g class="arc-group">
+      <circle cx="180" cy="210" r="310" stroke="rgba(255,64,129,0.05)" stroke-width="1" stroke-dasharray="12 8"/>
+      <circle cx="180" cy="210" r="200" stroke="rgba(255,64,129,0.045)" stroke-width="1"/>
+    </g>
+    <g class="arc-group-r">
+      <circle cx="1270" cy="170" r="360" stroke="rgba(255,128,171,0.05)" stroke-width="1" stroke-dasharray="10 12"/>
+      <circle cx="1270" cy="170" r="230" stroke="rgba(255,128,171,0.04)" stroke-width="1"/>
+    </g>
+    <line x1="720" y1="0" x2="720" y2="900" stroke="rgba(0,0,0,0.03)" stroke-width="1" stroke-dasharray="4 20"/>
+    <line x1="0" y1="450" x2="1440" y2="450" stroke="rgba(0,0,0,0.03)" stroke-width="1" stroke-dasharray="4 20"/>
+    <path d="M36 36 L36 80 M36 36 L80 36" stroke="rgba(255,64,129,0.16)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M1404 864 L1404 820 M1404 864 L1360 864" stroke="rgba(255,128,171,0.14)" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
 </div>
-
 <nav>
   <a href="index.html" class="nav-logo">Jeremy Pringle</a>
   <div style="display:flex;align-items:center;gap:.5rem">
@@ -82,7 +109,7 @@
 </div>
 
 <div class="case-top-img reveal" style="background: rgba(255,64,129,0.05); padding: 4rem 2rem; display: flex; justify-content: center; border-radius: 24px; margin-bottom: 3rem;">
-  <img src="img/scoops-mockup.png" alt="The Scoop's Udder Place Storefront Mockup" style="width: 280px; max-width: 100%; border-radius: 30px; box-shadow: 0 24px 48px rgba(255,64,129,0.2); border: 8px solid white;">
+  <img width="273" height="1024" loading="lazy" decoding="async" src="img/scoops-mockup.png" alt="The Scoop's Udder Place Storefront Mockup" style="width: 280px; max-width: 100%; border-radius: 30px; box-shadow: 0 24px 48px rgba(255,64,129,0.2); border: 8px solid white;">
 </div>
 
 <main class="case-body" id="main-content">
@@ -153,6 +180,6 @@
     </div>
 </footer>
 
-<script src="js/app.js"></script>
+<script src="js/app.js?v=3"></script>
 </body>
 </html>

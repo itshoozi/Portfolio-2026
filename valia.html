@@ -11,7 +11,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Valia Case Study — AI-Powered Domain Management | Jeremy Pringle">
 <meta property="og:description" content="How I built Valia: transforming 'parked' domains into search-ready assets with AI content and automated management.">
-<meta property="og:image" content="img/projects/valia-mockup.png">
+<meta property="og:image" content="img/valia-dash-1.png">
 <meta property="og:url" content="https://jeremypringle.com/valia">
 <meta property="og:site_name" content="Jeremy Pringle — Freelance Designer & Developer, Rochester MN">
 <meta name="twitter:card" content="summary_large_image">
@@ -39,16 +39,37 @@
 }</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=14">
 </head>
 <body>
 <div id="cur" aria-hidden="true"></div>
 
 <div class="scene" aria-hidden="true">
-  <div class="orb" style="width:600px;height:600px;background:#7c4dff;opacity:.08;top:-150px;left:-80px;animation:breathe 18s ease-in-out infinite"></div>
-  <div class="orb" style="width:420px;height:420px;background:#b388ff;opacity:.06;top:220px;right:-60px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
+  <div class="orb" style="width:600px;height:600px;background:radial-gradient(circle, #7c4dff 0%, rgba(124,77,255,0) 70%);opacity:.13;top:-160px;left:-90px;animation:breathe 18s ease-in-out infinite"></div>
+  <div class="orb" style="width:460px;height:460px;background:radial-gradient(circle, #b388ff 0%, rgba(179,136,255,0) 70%);opacity:.11;top:120px;right:-70px;animation:breathe 22s ease-in-out infinite 5s reverse"></div>
+  <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle, #b388ff 0%, rgba(179,136,255,0) 70%);opacity:.09;bottom:-80px;left:38%;animation:breathe 20s ease-in-out infinite 9s"></div>
+  <div class="grain"></div>
+  <svg class="geo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+    <defs>
+      <pattern id="dp" x="0" y="0" width="64" height="64" patternUnits="userSpaceOnUse">
+        <path d="M 64 0 L 0 0 0 64" fill="none" stroke="rgba(0,0,0,0.022)" stroke-width="0.6"/>
+      </pattern>
+    </defs>
+    <rect width="1440" height="900" fill="url(#dp)"/>
+    <g class="arc-group">
+      <circle cx="180" cy="210" r="310" stroke="rgba(124,77,255,0.05)" stroke-width="1" stroke-dasharray="12 8"/>
+      <circle cx="180" cy="210" r="200" stroke="rgba(124,77,255,0.045)" stroke-width="1"/>
+    </g>
+    <g class="arc-group-r">
+      <circle cx="1270" cy="170" r="360" stroke="rgba(179,136,255,0.05)" stroke-width="1" stroke-dasharray="10 12"/>
+      <circle cx="1270" cy="170" r="230" stroke="rgba(179,136,255,0.04)" stroke-width="1"/>
+    </g>
+    <line x1="720" y1="0" x2="720" y2="900" stroke="rgba(0,0,0,0.03)" stroke-width="1" stroke-dasharray="4 20"/>
+    <line x1="0" y1="450" x2="1440" y2="450" stroke="rgba(0,0,0,0.03)" stroke-width="1" stroke-dasharray="4 20"/>
+    <path d="M36 36 L36 80 M36 36 L80 36" stroke="rgba(124,77,255,0.16)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M1404 864 L1404 820 M1404 864 L1360 864" stroke="rgba(179,136,255,0.14)" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
 </div>
-
 <nav>
   <a href="index.html" class="nav-logo">Jeremy Pringle</a>
   <div style="display:flex;align-items:center;gap:.5rem">
@@ -81,10 +102,6 @@
       <div class="stat-cell"><span class="stat-num" style="color:var(--text)">Verified</span><span class="stat-lbl">Proven traction<br>for domain evaluation</span></div>
 </div>
 
-<div class="case-top-img reveal">
-  <img src="img/projects/valia-mockup.png" alt="Valia - AI Domain Management Suite Mockup">
-</div>
-
 <main class="case-body" id="main-content">
 
   <div class="prose-section reveal">
@@ -94,6 +111,14 @@
       <p>Domain investors often find themselves with hundreds of "parked" domains that generate zero traffic and fail to attract serious buyers. Marketplaces are crowded. Listings are static. To secure a high-multiple sale today, you need to prove the domain has "traction potential."</p>
       <p>Idle assets aren't indexed by search engines. They don't have trust signals. They don't show the buyer what the domain *could* become.</p>
     </div>
+  </div>
+
+  <div class="case-img-caption reveal">Concept & pitch materials</div>
+  <div class="case-img-grid reveal">
+    <div class="case-img"><img width="1024" height="576" loading="lazy" decoding="async" src="img/valia-2.png" alt="Valia concept slide — the problem with parked domains"></div>
+    <div class="case-img"><img width="1024" height="576" loading="lazy" decoding="async" src="img/valia-1.png" alt="Valia concept slide — key features overview"></div>
+    <div class="case-img"><img width="1024" height="576" loading="lazy" decoding="async" src="img/valia-4.png" alt="Valia concept slide — how it works"></div>
+    <div class="case-img"><img width="1024" height="576" loading="lazy" decoding="async" src="img/valia-3.png" alt="Valia concept slide — sell your domain"></div>
   </div>
 
   <div class="prose-section reveal">
@@ -110,9 +135,11 @@
     </div>
   </div>
 
-  <div class="case-img-grid reveal" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 4rem 0;">
-    <div class="case-img"><img src="img/valia-dash-1.png" alt="Valia Classlink Dashboard"></div>
-    <div class="case-img"><img src="img/valia-gen-1.png" alt="AI Generator View"></div>
+  <div class="case-img-caption reveal">Product screenshots</div>
+  <div class="case-img-grid reveal">
+    <div class="case-img"><img width="1024" height="552" loading="lazy" decoding="async" src="img/valia-dash-1.png" alt="Valia domain detail view"></div>
+    <div class="case-img"><img width="1024" height="477" loading="lazy" decoding="async" src="img/valia-dash-2.png" alt="Valia domain evaluator fullscreen view"></div>
+    <div class="case-img"><img width="1024" height="574" loading="lazy" decoding="async" src="img/valia-gen-1.png" alt="Valia AI content generator view"></div>
   </div>
 
   <div class="prose-section reveal">
@@ -125,6 +152,30 @@
 
 </main>
 
+<div class="next-case">
+  <div class="next-inner">
+
+    <div class="nc-col nc-prev">
+      <div class="nc-text">
+        <div class="next-label">Previous</div>
+        <div class="next-title">Eastwood Caddyshack</div>
+        <div class="next-sub">First website and revenue-driving delivery apps.</div>
+      </div>
+      <a href="eastwood-caddyshack.html" class="btn-g">← Previous</a>
+    </div>
+
+    <div class="nc-col nc-next">
+      <div class="nc-text">
+        <div class="next-label">Next</div>
+        <div class="next-title">Goldfish Swim School</div>
+        <div class="next-sub">Automating the deep end — from signups to staff tools.</div>
+      </div>
+      <a href="goldfish-swim-school.html" class="btn-p">Read →</a>
+    </div>
+
+  </div>
+</div>
+
 <footer class="reveal">
     <div class="fc">© 2026 Jeremy Pringle · <span class="tarku-brand">tarku digital</span> · Rochester, MN · <a
         href="mailto:hey@jeremypringle.com" style="color:inherit;text-decoration:none"
@@ -136,6 +187,6 @@
     </div>
 </footer>
 
-<script src="js/app.js"></script>
+<script src="js/app.js?v=3"></script>
 </body>
 </html>
