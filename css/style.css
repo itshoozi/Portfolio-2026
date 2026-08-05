@@ -59,10 +59,15 @@ html {
   scroll-behavior:smooth;
   -webkit-text-size-adjust:100%;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden; /* body alone wasn't enough — position:fixed children
-    (like .scene) size against the initial containing block, which can
-    expand to fit overflowing content elsewhere when only body clips it,
-    dragging fixed elements wider than the real viewport along with it */
+  /* body alone wasn't enough — position:fixed children (like .scene) size
+     against the initial containing block, which can expand to fit
+     overflowing content elsewhere when only body clips it, dragging fixed
+     elements wider than the real viewport along with it. overflow-x:hidden
+     on <html> specifically is a known trigger for iOS Safari's momentum
+     scroll getting interrupted mid-gesture (it makes <html> a competing
+     scroll container) — clip gets the same visual containment without
+     creating a scroll context, so it doesn't fight the page's real scroll. */
+  overflow-x: clip;
 }
 body {
   width: 100%;
@@ -119,8 +124,8 @@ body.modal-open { overflow: hidden !important; }
 }
 
 /* Animated geometry */
-.arc-group{transform-origin:180px 210px;animation:arcSpin 32s linear infinite;will-change:transform}
-.arc-group-r{transform-origin:1270px 170px;animation:arcSpin 44s linear infinite reverse;will-change:transform}
+.arc-group{transform-origin:180px 210px;animation:arcSpin 32s linear infinite}
+.arc-group-r{transform-origin:1270px 170px;animation:arcSpin 44s linear infinite reverse}
 @keyframes arcSpin{to{transform:rotate(360deg)}}
 
 .curve1{stroke-dasharray:2200;stroke-dashoffset:2200;animation:curveDraw 5s ease-out .2s forwards, curvePulse 10s ease-in-out 6s infinite}
@@ -129,7 +134,7 @@ body.modal-open { overflow: hidden !important; }
 @keyframes curveDraw{to{stroke-dashoffset:0}}
 @keyframes curvePulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-.dot-center1,.dot-center2,.dot-mid{transform-box:fill-box;transform-origin:center;will-change:transform}
+.dot-center1,.dot-center2,.dot-mid{transform-box:fill-box;transform-origin:center}
 .dot-center1{animation:dotPulse 4s ease-in-out infinite}
 .dot-center2{animation:dotPulse 5.5s ease-in-out infinite 1.8s}
 .dot-mid{animation:dotPulse 7s ease-in-out infinite 3.2s}
@@ -138,9 +143,9 @@ body.modal-open { overflow: hidden !important; }
    (3.5→6.5 ≈ 1.857x) at a fraction of the render cost */
 @keyframes dotPulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.857);opacity:.95}}
 
-.diamond1{animation:spinD 22s linear infinite;transform-origin:390px 147px;will-change:transform}
-.diamond2{animation:spinD 30s linear infinite reverse 4s;transform-origin:1050px 295px;will-change:transform}
-.diamond3{animation:spinD 19s linear infinite 7s;transform-origin:860px 91px;will-change:transform}
+.diamond1{animation:spinD 22s linear infinite;transform-origin:390px 147px}
+.diamond2{animation:spinD 30s linear infinite reverse 4s;transform-origin:1050px 295px}
+.diamond3{animation:spinD 19s linear infinite 7s;transform-origin:860px 91px}
 @keyframes spinD{to{transform:rotate(360deg)}}
 
 .cross1{animation:crossFade 4.5s ease-in-out infinite}
@@ -980,7 +985,7 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 .breadcrumb span{color:var(--border3)}
 .case-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--tag-color,rgba(79,158,255,.25));border-radius:100px;padding:.38rem .9rem .38rem .55rem;margin-bottom:clamp(1rem,2.5vw,1.5rem);background:var(--tag-bg,rgba(79,158,255,.06));width:fit-content;opacity:0;animation:heroIn .55s var(--ease-out) .18s forwards}
 .tag-dot{position:relative;width:6px;height:6px;border-radius:50%;background:var(--tag-accent,var(--blue))}
-.tag-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:3px solid var(--tag-color,rgba(79,158,255,.25));animation:pip 2.8s ease infinite;will-change:transform,opacity}
+.tag-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:3px solid var(--tag-color,rgba(79,158,255,.25));animation:pip 2.8s ease infinite}
 /* transform+opacity ring instead of an animated box-shadow — box-shadow
    forces a paint every frame; this composites for free */
 @keyframes pip{0%,100%{transform:scale(.6);opacity:1}50%{transform:scale(1.15);opacity:.35}}
