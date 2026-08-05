@@ -35,21 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
   
   let scrollY = window.scrollY;
   let targetScrollY = scrollY;
-  
+
+  // This loop used to run forever, unconditionally, 60fps for the entire
+  // page lifetime — even sitting completely idle. Now it only runs while
+  // actually catching up to a scroll target, and stops the instant it
+  // settles, so the main thread is free the rest of the time.
+  let parallaxRunning = false;
+  function startParallax() {
+    if (!parallaxRunning) { parallaxRunning = true; requestAnimationFrame(tick); }
+  }
+
   window.addEventListener('scroll', () => {
     targetScrollY = window.scrollY;
+    startParallax();
   }, { passive: true });
 
   const heroCards = heroVisual ? Array.from(heroVisual.querySelectorAll('.vcard')) : [];
-  
+
   function tick() {
-    if (Math.abs(targetScrollY - scrollY) < 0.1) {
-      requestAnimationFrame(tick);
-      return;
-    }
-    
     scrollY += (targetScrollY - scrollY) * 0.1;
-    
+
     // Parallax global orbs (subtle background drift)
     for (let i = 0; i < orbs.length; i++) {
         const depth = 0.04 + (i * 0.02);
@@ -68,9 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
         heroCards[i].style.setProperty('--py', `${scrollY * speed}px`);
     }
 
+    if (Math.abs(targetScrollY - scrollY) < 0.1) {
+      scrollY = targetScrollY;
+      parallaxRunning = false;
+      return;
+    }
     requestAnimationFrame(tick);
   }
-  tick();
+  // Page can load already scrolled (anchor link, browser scroll restore) —
+  // catch that case instead of waiting for the first 'scroll' event.
+  if (targetScrollY > 0) startParallax();
 
   // CURSOR LOGIC
   const cur = document.getElementById('cur');
@@ -78,7 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (window.matchMedia('(pointer:fine)').matches && cur) {
     let mx = -100, my = -100, cx = -100, cy = -100;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY });
+    let cursorRunning = false;
+    function startCursorLoop() {
+      if (!cursorRunning) { cursorRunning = true; requestAnimationFrame(cursorLoop); }
+    }
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; startCursorLoop(); });
     document.addEventListener('mousedown', () => cur.classList.add('c'));
     document.addEventListener('mouseup', () => cur.classList.remove('c'));
     
@@ -105,13 +121,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    (function cursorLoop() {
+    // Runs only while actively catching up to the pointer, same idle-stop
+    // pattern as the scroll parallax above — not a perpetual 60fps loop.
+    function cursorLoop() {
       const lerp = 0.14;
       cx += (mx - cx) * lerp; cy += (my - cy) * lerp;
       // Using translate3d for GPU acceleration
       cur.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate3d(-50%, -50%, 0)`;
+      if (Math.abs(mx - cx) < 0.05 && Math.abs(my - cy) < 0.05) {
+        cursorRunning = false;
+        return;
+      }
       requestAnimationFrame(cursorLoop);
-    })();
+    }
   }
 
   // Smooth Spotlight effect (only .svc actually reads --mx/--my in CSS —
@@ -170,6 +192,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tiltCards.length) {
       const state = tiltCards.map(() => ({ tx: 0, ty: 0, tlift: 0, cx: 0, cy: 0, clift: 0, active: false }));
 
+      let tiltRunning = false;
+      function startTiltLoop() {
+        if (!tiltRunning) { tiltRunning = true; requestAnimationFrame(tiltLoop); }
+      }
+
       tiltCards.forEach((card, i) => {
         const s = state[i];
         card.addEventListener('mousemove', (e) => {
@@ -180,14 +207,21 @@ document.addEventListener('DOMContentLoaded', () => {
           s.tx = -py * 6;  // rotateX
           s.tlift = -8;
           s.active = true;
+          startTiltLoop();
         });
         card.addEventListener('mouseleave', () => {
           s.tx = 0; s.ty = 0; s.tlift = 0;
           s.active = false;
+          startTiltLoop(); // still needs to animate back to flat/rest
         });
       });
 
-      (function tiltLoop() {
+      // Same idle-stop pattern as the scroll parallax and cursor loops:
+      // only ticks while at least one card is mid-transition, instead of
+      // running forever regardless of whether the mouse has ever touched
+      // the bento grid.
+      function tiltLoop() {
+        let anyActive = false;
         tiltCards.forEach((card, i) => {
           const s = state[i];
           const settled = !s.active && Math.abs(s.cx) < 0.02 && Math.abs(s.cy) < 0.02 && Math.abs(s.clift) < 0.05;
@@ -195,13 +229,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (card.style.transform) card.style.transform = '';
             return;
           }
+          anyActive = true;
           s.cx += (s.tx - s.cx) * 0.12;
           s.cy += (s.ty - s.cy) * 0.12;
           s.clift += (s.tlift - s.clift) * 0.12;
           card.style.transform = `perspective(900px) rotateX(${s.cx}deg) rotateY(${s.cy}deg) translateY(${s.clift}px)`;
         });
+        if (!anyActive) { tiltRunning = false; return; }
         requestAnimationFrame(tiltLoop);
-      })();
+      }
     }
   }
   // NAV SCROLL LOGIC
@@ -226,7 +262,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
+  // scrollHeight reads force a layout flush, and raw 'scroll' events can
+  // fire many times per animation frame during a fast/flung scroll — batch
+  // to one handleScroll() per frame instead of running it unthrottled.
+  let navScrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!navScrollTicking) {
+      navScrollTicking = true;
+      requestAnimationFrame(() => { handleScroll(); navScrollTicking = false; });
+    }
+  }, { passive: true });
   handleScroll(); // Initial check
 
   // COUNTER ANIMATION
