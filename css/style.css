@@ -58,6 +58,10 @@ html {
   scroll-behavior:smooth;
   -webkit-text-size-adjust:100%;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* body alone wasn't enough — position:fixed children
+    (like .scene) size against the initial containing block, which can
+    expand to fit overflowing content elsewhere when only body clips it,
+    dragging fixed elements wider than the real viewport along with it */
 }
 body {
   width: 100%;
@@ -114,8 +118,8 @@ body.modal-open { overflow: hidden !important; }
 }
 
 /* Animated geometry */
-.arc-group{transform-origin:180px 210px;animation:arcSpin 32s linear infinite}
-.arc-group-r{transform-origin:1270px 170px;animation:arcSpin 44s linear infinite reverse}
+.arc-group{transform-origin:180px 210px;animation:arcSpin 32s linear infinite;will-change:transform}
+.arc-group-r{transform-origin:1270px 170px;animation:arcSpin 44s linear infinite reverse;will-change:transform}
 @keyframes arcSpin{to{transform:rotate(360deg)}}
 
 .curve1{stroke-dasharray:2200;stroke-dashoffset:2200;animation:curveDraw 5s ease-out .2s forwards, curvePulse 10s ease-in-out 6s infinite}
@@ -124,14 +128,18 @@ body.modal-open { overflow: hidden !important; }
 @keyframes curveDraw{to{stroke-dashoffset:0}}
 @keyframes curvePulse{0%,100%{opacity:1}50%{opacity:.35}}
 
+.dot-center1,.dot-center2,.dot-mid{transform-box:fill-box;transform-origin:center;will-change:transform}
 .dot-center1{animation:dotPulse 4s ease-in-out infinite}
 .dot-center2{animation:dotPulse 5.5s ease-in-out infinite 1.8s}
 .dot-mid{animation:dotPulse 7s ease-in-out infinite 3.2s}
-@keyframes dotPulse{0%,100%{r:3.5;opacity:.4}50%{r:6.5;opacity:.95}}
+/* transform:scale, not the SVG r attribute — r changes force a geometry
+   repaint every frame; scale is compositor-only, same visual growth
+   (3.5→6.5 ≈ 1.857x) at a fraction of the render cost */
+@keyframes dotPulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.857);opacity:.95}}
 
-.diamond1{animation:spinD 22s linear infinite;transform-origin:390px 147px}
-.diamond2{animation:spinD 30s linear infinite reverse 4s;transform-origin:1050px 295px}
-.diamond3{animation:spinD 19s linear infinite 7s;transform-origin:860px 91px}
+.diamond1{animation:spinD 22s linear infinite;transform-origin:390px 147px;will-change:transform}
+.diamond2{animation:spinD 30s linear infinite reverse 4s;transform-origin:1050px 295px;will-change:transform}
+.diamond3{animation:spinD 19s linear infinite 7s;transform-origin:860px 91px;will-change:transform}
 @keyframes spinD{to{transform:rotate(360deg)}}
 
 .cross1{animation:crossFade 4.5s ease-in-out infinite}
@@ -183,7 +191,7 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 
 @media (max-width:1024px){
   .hero-grid{grid-template-columns:1fr;gap:3rem;text-align:center}
-  .hero-content{display:flex;flex-direction:column;align-items:center}
+  .hero-content{display:flex;flex-direction:column;align-items:center;width:100%;max-width:100%;min-width:0}
   .hero-visual{height:400px}
 }
 
@@ -487,7 +495,12 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 /* Quick Look Modal */
 .ql-overlay{position:fixed;inset:0;background:rgba(255,255,255,0.7);backdrop-filter:blur(10px);z-index:10000;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;padding:20px;overflow-y:auto;scroll-behavior:smooth}
 .ql-overlay.active{opacity:1;pointer-events:all}
-.ql-modal{background:white;width:100%;max-width:600px;border-radius:32px;box-shadow:0 30px 100px rgba(0,0,0,0.15);overflow:hidden;transform:scale(0.95) translateY(40px);transition:all .5s var(--spring);margin:auto}
+.ql-modal{position:relative;background:white;width:100%;max-width:600px;border-radius:32px;box-shadow:0 30px 100px rgba(0,0,0,0.15);overflow:hidden;transform:scale(0.95) translateY(40px);transition:all .5s var(--spring);margin:auto}
+/* .ql-close is position:absolute but .ql-modal had no position set, so
+   it anchored to the fixed full-viewport .ql-overlay instead of the
+   modal card — correct on narrow/mobile widths where the modal is
+   nearly viewport-width, but on desktop the button landed far from the
+   actual card, in a spot the image content could sit on top of. */
 .ql-overlay.active .ql-modal{transform:scale(1) translateY(0)}
 .ql-img{width:100%;max-height:60vh;background:var(--surface2);overflow-y:auto;position:relative;border-bottom:1px solid var(--border)}
 .ql-scroll{display:grid;grid-template-columns:1fr;gap:12px;padding:24px}
@@ -779,8 +792,14 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 .reveal {
   opacity: 0;
   transform: translateY(22px) scale(.97);
-  filter: blur(6px);
-  will-change: transform, opacity, filter;
+  /* was 6px — blur cost scales with radius, and this class sits on every
+     prose section/card, re-triggering on every scroll pass (in/out of
+     view, not just once). 3px keeps the soft-focus settle at a much
+     cheaper sampling cost. will-change is intentionally left off the
+     resting state: with this many .reveal elements on a page, permanently
+     promoting all of them (most not actively transitioning at any given
+     moment) burns more GPU layer memory than it saves. */
+  filter: blur(3px);
   transition: opacity .6s var(--ease-out),
               transform .6s var(--ease-out),
               filter .6s var(--ease-out);
@@ -959,8 +978,11 @@ nav.scrolled .nav-progress{bottom:0;left:20px;right:20px;width:calc(var(--scroll
 .breadcrumb a:hover{color:var(--text2)}
 .breadcrumb span{color:var(--border3)}
 .case-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--tag-color,rgba(79,158,255,.25));border-radius:100px;padding:.38rem .9rem .38rem .55rem;margin-bottom:clamp(1rem,2.5vw,1.5rem);background:var(--tag-bg,rgba(79,158,255,.06));width:fit-content;opacity:0;animation:heroIn .55s var(--ease-out) .18s forwards}
-.tag-dot{width:6px;height:6px;border-radius:50%;background:var(--tag-accent,var(--blue));animation:pip 2.8s ease infinite}
-@keyframes pip{0%,100%{box-shadow:0 0 0 3px var(--tag-color,rgba(79,158,255,.25))}50%{box-shadow:0 0 0 6px var(--tag-bg,rgba(79,158,255,.06))}}
+.tag-dot{position:relative;width:6px;height:6px;border-radius:50%;background:var(--tag-accent,var(--blue))}
+.tag-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:3px solid var(--tag-color,rgba(79,158,255,.25));animation:pip 2.8s ease infinite;will-change:transform,opacity}
+/* transform+opacity ring instead of an animated box-shadow — box-shadow
+   forces a paint every frame; this composites for free */
+@keyframes pip{0%,100%{transform:scale(.6);opacity:1}50%{transform:scale(1.15);opacity:.35}}
 .case-tag span{font-size:.73rem;font-weight:500;color:var(--tag-accent,var(--blue))}
 .case-h1{font-family:var(--display);font-weight:700;font-size:clamp(2.5rem,7.2vw,5.7rem);line-height:1.03;letter-spacing:-.02em;color:var(--text);margin-bottom:clamp(1rem,2vw,1.5rem);max-width:900px;opacity:0;animation:heroIn .7s var(--ease-out) .26s forwards}
 .case-h1 em{font-style:italic;color:var(--text3)}
@@ -1122,7 +1144,11 @@ footer{
   stroke-dasharray: 100 2400;
   stroke-dashoffset: 2500;
   stroke-linecap: round;
-  filter: drop-shadow(0 0 8px currentColor);
+  /* drop-shadow blur radius was 8px — the dashoffset sweep already forces
+     a repaint every frame, and drop-shadow's cost scales with radius, so
+     an 8px kernel was the single most expensive thing in the whole scene.
+     3px keeps a visible glow at a fraction of the sampling cost. */
+  filter: drop-shadow(0 0 3px currentColor);
   opacity: 0.8;
 }
 .comet1 { color: var(--blue); animation: cometAnim 8s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
